@@ -348,6 +348,8 @@ public class EstadisticasFragment extends Fragment {
         pieChartIngresos.animate();
         pieChart.getLegend().setWordWrapEnabled(true);
         pieChartIngresos.getLegend().setWordWrapEnabled(true);
+        pieChart.getLegend().setTextColor(ColorTemplate.getHoloBlue());
+        pieChartIngresos.getLegend().setTextColor(ColorTemplate.getHoloBlue());
 
 
     }

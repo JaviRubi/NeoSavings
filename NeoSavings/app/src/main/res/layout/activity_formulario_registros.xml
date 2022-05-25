@@ -72,6 +72,7 @@
         android:layout_marginEnd="20dp"
         android:contentDescription="@string/String_Empty"
         android:minHeight="48dp"
+        android:theme="@style/Theme.AppCompat.DayNight"
         app:layout_constraintEnd_toStartOf="@+id/toggleButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
@@ -196,10 +197,12 @@
         android:layout_height="50dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="25dp"
+        android:backgroundTint="@color/design_default_color_secondary"
         android:text="@string/togglebutton"
         android:textColor="#455A64"
         android:textOff="@string/gasto"
         android:textOn="@string/ingreso"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
