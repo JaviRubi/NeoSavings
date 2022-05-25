@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_cuentas"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_cuentas" />
+        <item
+            android:id="@+id/nav_registros"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_registros" />
+        <item
+            android:id="@+id/nav_stadistic"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/estadisticas" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_pagosProgramados"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_pagosProgramados" />
+        <item
+            android:id="@+id/nav_presupuestos"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_presupuestos" />
+        <item
+            android:id="@+id/nav_deudas"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_deudas" />
+
+        <item
+            android:id="@+id/nav_objetivos"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_objetivos" />
+    </group>
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_importar"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_importar" />
+        <item
+            android:id="@+id/nav_exportar"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_exportar" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_ayuda"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_ayuda" />
+        <item
+            android:id="@+id/nav_configuracion"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_configuracion" />
+    </group>
+
+
+</menu>
