@@ -1,7 +1,9 @@
 package com.example.neosavings;
 
+import android.Manifest;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private UsuarioRepository mRepository;
+
+    private static final int CODE_CAMARA=200;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
 
         mRepository= new UsuarioRepository(getApplication());
         Categorias();
+        String[] permisos=new String[1];
+        permisos[0]= Manifest.permission.CAMERA;
+
+
+
 
 
     }
@@ -172,4 +181,6 @@ public class MainActivity extends AppCompatActivity {
         mRepository.insertCategoria(categoria);
 
     }
+
+
 }

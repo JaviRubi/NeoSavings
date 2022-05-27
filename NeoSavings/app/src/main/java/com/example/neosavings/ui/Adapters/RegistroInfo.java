@@ -1,15 +1,25 @@
 package com.example.neosavings.ui.Adapters;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.neosavings.R;
 import com.example.neosavings.ui.Database.UsuarioRepository;
@@ -26,6 +36,8 @@ import io.reactivex.Flowable;
 
 public class RegistroInfo extends AppCompatActivity {
 
+    private static final int PICK_IMAGE = 200;
+    private static final int CODE_CAMARA = 500;
     private UsuarioRepository mRepository;
     private Registro registro;
 
@@ -49,6 +61,11 @@ public class RegistroInfo extends AppCompatActivity {
     EditText Gasto;
 
     ArrayAdapter<String> adapter;
+
+    ImageView Ticket;
+    ImageView TicketAmp;
+    private boolean isImageFitToScreen=false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -179,6 +196,32 @@ public class RegistroInfo extends AppCompatActivity {
             }
         });
 
+        Ticket=(ImageView) findViewById(R.id.imageView3);
+
+        if(registro.getTicket()!=null){
+            Ticket.setImageBitmap(registro.getTicket());
+        }
+
+        ImageButton camera=(ImageButton) findViewById(R.id.imageButtonCamera);
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                if (ContextCompat.checkSelfPermission(
+                        getBaseContext(), Manifest.permission.CAMERA) ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    // You can use the API that requires the permission.
+                    startActivityForResult(intent,PICK_IMAGE);
+                } else {
+                    // You can directly ask for the permission.
+                    requestPermissions(new String[]{Manifest.permission.CAMERA},CODE_CAMARA);
+                }
+                startActivityForResult(intent,PICK_IMAGE);
+
+
+            }
+        });
 
 
     }
@@ -256,4 +299,44 @@ public class RegistroInfo extends AppCompatActivity {
         mRepository.Update(registro);
         return true;
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==PICK_IMAGE && resultCode==RESULT_OK){
+            ImageView imageView=(ImageView)findViewById(R.id.imageView3);
+            imageView.setImageBitmap((Bitmap) data.getExtras().get("data"));
+            registro.setTicket((Bitmap) data.getExtras().get("data"));
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    setContentView(imageView);
+                }
+            });
+        }
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case CODE_CAMARA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                    startActivityForResult(intent,PICK_IMAGE);
+                } else {
+                    //PERMISO DENEGADO
+                }
+                break;
+            // Aquí más casos dependiendo de los permisos
+            // case OTRO_CODIGO_DE_PERMISOS...
+        }
+    }
+
+
 }

@@ -1,16 +1,26 @@
 package com.example.neosavings.ui.Formularios;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.neosavings.R;
 import com.example.neosavings.ui.Database.UsuarioRepository;
@@ -28,6 +38,9 @@ import io.reactivex.Flowable;
 
 public class Formulario_Registros extends AppCompatActivity {
 
+    private static final int PICK_IMAGE=200;
+    private static final int CODE_CAMARA=500;
+
     public List<Cuenta> ListaCuentas;
     public List<Categoria> ListaCategoriaGastos;
     public List<Categoria> ListaCategoriaIngresos;
@@ -42,6 +55,7 @@ public class Formulario_Registros extends AppCompatActivity {
     public UsuarioRepository mRepository;
     public Context context;
     ArrayAdapter<String> adapter;
+    private Registro registro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +67,7 @@ public class Formulario_Registros extends AppCompatActivity {
         spinnerCategorias =new ArrayList<>();
         spinnerCategoriasGastos=new ArrayList<>();
         spinnerCategoriasIngresos=new ArrayList<>();
+        registro=new Registro();
 
         Flowable<List<Cuenta>> allUsers = mRepository.getAllCuentasFW();
         ListaCuentas=allUsers.blockingFirst();
@@ -115,6 +130,27 @@ public class Formulario_Registros extends AppCompatActivity {
             }
         });
 
+        ImageButton camera=(ImageButton) findViewById(R.id.imageButtonCamera);
+        camera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                if (ContextCompat.checkSelfPermission(
+                        getBaseContext(), Manifest.permission.CAMERA) ==
+                        PackageManager.PERMISSION_GRANTED) {
+                    // You can use the API that requires the permission.
+                    startActivityForResult(intent,PICK_IMAGE);
+                } else {
+                    // You can directly ask for the permission.
+                    requestPermissions(new String[]{Manifest.permission.CAMERA},CODE_CAMARA);
+                }
+                    startActivityForResult(intent,PICK_IMAGE);
+
+
+            }
+        });
+
         spinner_cuentas=(Spinner) findViewById(R.id.Spinner_Cuentas);
         spinner_cuentas.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerCuentas));
 
@@ -143,10 +179,17 @@ public class Formulario_Registros extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.button_CANCEL_FormularioRegistro2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
     }
 
     public boolean CrearRegistro() throws ParseException {
-        Registro registro=new Registro();
+
 
         EditText editText = (EditText)findViewById(R.id.Gastos_Registro);
         registro.setCoste(editText.getText().toString());
@@ -208,5 +251,35 @@ public class Formulario_Registros extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode==PICK_IMAGE && resultCode==RESULT_OK){
+            ImageView imageView=(ImageView)findViewById(R.id.imageView3);
+            imageView.setImageBitmap((Bitmap) data.getExtras().get("data"));
+            registro.setTicket((Bitmap) data.getExtras().get("data"));
+        }
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case CODE_CAMARA:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+                    startActivityForResult(intent,PICK_IMAGE);
+                } else {
+                    //PERMISO DENEGADO
+                }
+                break;
+            // Aquí más casos dependiendo de los permisos
+            // case OTRO_CODIGO_DE_PERMISOS...
+        }
+    }
 }
 

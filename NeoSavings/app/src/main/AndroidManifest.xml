@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.neosavings">
 
+    <uses-feature android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,12 +23,11 @@
             android:name=".ui.Formularios.Formulario_Cuentas"
             android:exported="false"
             android:label="@string/String_CrearCuenta"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".ui.Formularios.Formulario_Registros"
             android:exported="false"
-            android:label="@string/String_CrearFormulario"
-            android:parentActivityName=".MainActivity" />
+            android:label="@string/String_CrearFormulario" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

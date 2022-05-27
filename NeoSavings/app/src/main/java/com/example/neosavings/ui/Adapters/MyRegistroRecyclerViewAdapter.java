@@ -62,10 +62,16 @@ public class MyRegistroRecyclerViewAdapter extends RecyclerView.Adapter<MyRegist
             holder.mGasto.setTextColor(Color.GREEN);
         }
 
+        if(holder.mItem.getTicket()!=null){
+            holder.mImageView.setImageBitmap(holder.mItem.getTicket());
+        }else {
+            holder.mImageView.setImageResource(R.drawable.ic_menu_camera);
+        }
+
         if(holder.mItem.getFecha()!=null)
         holder.mFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(holder.mItem.getFecha()));
 
-        holder.mImageView.setImageResource(R.drawable.ic_menu_camera);
+
 
     }
 

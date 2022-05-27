@@ -1,6 +1,9 @@
 package com.example.neosavings.ui.Modelo;
 
 
+import android.graphics.Bitmap;
+
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
@@ -14,8 +17,10 @@ import java.util.Date;
 public class Registro {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(index = true,name = "RegistroID")
     public long RegistroID;
 
+    @ColumnInfo(index = true,name = "RegistroUserID")
     public long RegistroUserID;
 
     public boolean Gasto;
@@ -32,8 +37,9 @@ public class Registro {
 
     public String Ubicacion;
 
-    //@Ignore
-    //public Blob Ticket;
+
+@ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    public Bitmap Ticket;
 
     public long getRegistroID() {
         return RegistroID;
@@ -107,13 +113,13 @@ public class Registro {
         Ubicacion = ubicacion;
     }
 
-    /*public Blob getTicket() {
+    public Bitmap getTicket() {
         return Ticket;
     }
 
-    public void setTicket(Blob ticket) {
+    public void setTicket(Bitmap ticket) {
         Ticket = ticket;
-    }*/
+    }
 
 
 }

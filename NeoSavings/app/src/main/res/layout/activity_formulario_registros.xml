@@ -28,6 +28,20 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.08291874" />
 
+    <ImageButton
+        android:id="@+id/button_CANCEL_FormularioRegistro2"
+        android:layout_width="65dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/design_default_color_error"
+        android:contentDescription="@string/String_Back"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/Gastos_Registro"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_dialog_close_dark"
+        app:tint="@color/design_default_color_primary"
+        tools:ignore="ImageContrastCheck" />
+
     <EditText
         android:id="@+id/Gastos_Registro"
         android:layout_width="wrap_content"
@@ -207,30 +221,34 @@
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButtonCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/String_Imagen"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
         app:srcCompat="@android:drawable/ic_menu_camera"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:contentDescription="@string/todo"
         android:minWidth="48dp"
         android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonCamera"
+        app:layout_constraintTop_toBottomOf="@+id/Spinner_Categorias"
         app:srcCompat="@drawable/ic_menu_gallery" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
