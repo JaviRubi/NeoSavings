@@ -9,12 +9,13 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
 
 @Entity(indices = {@Index(value = {"RegistroID","RegistroUserID"},unique = true)},foreignKeys = @ForeignKey(entity = Usuario.class, childColumns = "RegistroUserID",parentColumns = "userID", onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE))
-public class Registro {
+public class Registro implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true,name = "RegistroID")

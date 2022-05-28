@@ -1,10 +1,14 @@
 package com.example.neosavings.ui.Adapters;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -20,17 +24,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
+import com.example.neosavings.ImageZoom;
 import com.example.neosavings.R;
 import com.example.neosavings.ui.Database.UsuarioRepository;
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;
 import com.example.neosavings.ui.Modelo.Registro;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.Flowable;
 
@@ -38,8 +50,10 @@ public class RegistroInfo extends AppCompatActivity {
 
     private static final int PICK_IMAGE = 200;
     private static final int CODE_CAMARA = 500;
+    private static final int CODE_EXTERNAL_STORAGE = 700;
     private UsuarioRepository mRepository;
     private Registro registro;
+    private String currentPhotoPath;
 
     ToggleButton TipoRegistro;
 
@@ -202,22 +216,74 @@ public class RegistroInfo extends AppCompatActivity {
             Ticket.setImageBitmap(registro.getTicket());
         }
 
+        Ticket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getBaseContext(),ImageZoom.class);
+                if(registro.getTicket()==null){
+                    intent.putExtra("Imagen","NOIMAGEN");
+                    startActivity(intent);
+                }else {
+                    String fileName = "myImage";//no .png or .jpg needed
+                    String path;
+                    try {
+                        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                        registro.getTicket().compress(Bitmap.CompressFormat.PNG, 50, bytes);
+                        FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
+                        fo.write(bytes.toByteArray());
+                        // remember close file output
+                        fo.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        fileName = null;
+                    }
+                    intent.putExtra("Imagen",fileName);
+                    startActivity(intent);
+                }
+            }
+        });
+
         ImageButton camera=(ImageButton) findViewById(R.id.imageButtonCamera);
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                String timeStamp =new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+                String imageFileName="PNG_"+timeStamp+"_";
+                File storageDir=getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                File image = null;
+                try {
+                    image=File.createTempFile(imageFileName,
+                            ".png",storageDir);
+                    currentPhotoPath=image.getAbsolutePath();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if(image!=null){
+                    Uri photoUri= FileProvider.getUriForFile(getBaseContext(),"com.example.neosavings",image);
+                    intent.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
+                }
+
 
                 if (ContextCompat.checkSelfPermission(
                         getBaseContext(), Manifest.permission.CAMERA) ==
                         PackageManager.PERMISSION_GRANTED) {
                     // You can use the API that requires the permission.
-                    startActivityForResult(intent,PICK_IMAGE);
+
+                    if (ContextCompat.checkSelfPermission(
+                            getBaseContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                            PackageManager.PERMISSION_GRANTED) {
+                        // You can use the API that requires the permission.
+                        startActivityForResult(intent,PICK_IMAGE);
+                    } else {
+                        // You can directly ask for the permission.
+                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},CODE_CAMARA);
+                    }
                 } else {
                     // You can directly ask for the permission.
                     requestPermissions(new String[]{Manifest.permission.CAMERA},CODE_CAMARA);
                 }
-                startActivityForResult(intent,PICK_IMAGE);
 
 
             }
@@ -303,21 +369,11 @@ public class RegistroInfo extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode==PICK_IMAGE && resultCode==RESULT_OK){
             ImageView imageView=(ImageView)findViewById(R.id.imageView3);
-            imageView.setImageBitmap((Bitmap) data.getExtras().get("data"));
-            registro.setTicket((Bitmap) data.getExtras().get("data"));
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    setContentView(imageView);
-                }
-            });
+            registro.setTicket(BitmapFactory.decodeFile(currentPhotoPath));
+            imageView.setImageBitmap(registro.getTicket());
         }
-
-
     }
 
     @Override
@@ -326,12 +382,12 @@ public class RegistroInfo extends AppCompatActivity {
         switch (requestCode) {
             case CODE_CAMARA:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-
-                    startActivityForResult(intent,PICK_IMAGE);
+                    ImageButton camera=(ImageButton) findViewById(R.id.imageButtonCamera);
+                    camera.callOnClick();
                 } else {
-                    //PERMISO DENEGADO
+                    Toast.makeText(getBaseContext(),"No se pueden realizar fotos",Toast.LENGTH_SHORT).show();
                 }
+
                 break;
             // Aquí más casos dependiendo de los permisos
             // case OTRO_CODIGO_DE_PERMISOS...

@@ -37,6 +37,7 @@ dependencies {
 
 //Graficas de Datos
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
 
 
 //Recycler View
