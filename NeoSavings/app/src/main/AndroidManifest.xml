@@ -20,25 +20,35 @@
         android:theme="@style/Theme.NeoSavings">
         <activity
             android:name=".ImageZoom"
-            android:exported="false" />
+            android:exported="false"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.Adapters.RegistroInfo"
             android:exported="false"
-            android:label="@string/String_EditarRegistro" />
+            android:label="@string/String_EditarRegistro"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.Formularios.Formulario_Cuentas"
             android:exported="false"
             android:label="@string/String_CrearCuenta"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.Formularios.Formulario_Registros"
             android:exported="false"
-            android:label="@string/String_CrearFormulario" />
+            android:label="@string/String_CrearFormulario"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.NeoSavings.NoActionBar">
+            android:theme="@style/Theme.NeoSavings.NoActionBar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

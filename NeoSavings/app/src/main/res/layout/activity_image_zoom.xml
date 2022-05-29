@@ -9,8 +9,10 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:weightSum="1"
+        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

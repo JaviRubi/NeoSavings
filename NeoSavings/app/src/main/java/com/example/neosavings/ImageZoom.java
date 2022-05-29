@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
-import com.example.neosavings.ui.Database.UsuarioRepository;
 
 import java.io.FileNotFoundException;
 
@@ -22,7 +21,6 @@ public class ImageZoom extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_zoom);
-        UsuarioRepository mRepository=new UsuarioRepository(getBaseContext());
         String file=(String)getIntent().getExtras().get("Imagen");
         imageView=findViewById(R.id.ImagenZoom);
 

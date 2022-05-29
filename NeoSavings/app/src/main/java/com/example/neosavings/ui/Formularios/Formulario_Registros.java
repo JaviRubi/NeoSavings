@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -238,7 +240,7 @@ public class Formulario_Registros extends AppCompatActivity {
                     String path;
                     try {
                         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                        registro.getTicket().compress(Bitmap.CompressFormat.PNG, 50, bytes);
+                        registro.getTicket().compress(Bitmap.CompressFormat.JPEG, 80, bytes);
                         FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
                         fo.write(bytes.toByteArray());
                         // remember close file output
@@ -324,9 +326,38 @@ public class Formulario_Registros extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode==PICK_IMAGE && resultCode==RESULT_OK){
+            Bitmap rotatedBitmap = null;
             ImageView imageView=(ImageView)findViewById(R.id.imageView3);
             registro.setTicket(BitmapFactory.decodeFile(currentPhotoPath));
-            imageView.setImageBitmap(registro.getTicket());
+            try {
+                ExifInterface ei=new ExifInterface(currentPhotoPath);
+                int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                        ExifInterface.ORIENTATION_UNDEFINED);
+
+
+                switch(orientation) {
+
+                    case ExifInterface.ORIENTATION_ROTATE_90:
+                        rotatedBitmap = rotateImage(registro.getTicket(), 90);
+                        break;
+
+                    case ExifInterface.ORIENTATION_ROTATE_180:
+                        rotatedBitmap = rotateImage(registro.getTicket(), 180);
+                        break;
+
+                    case ExifInterface.ORIENTATION_ROTATE_270:
+                        rotatedBitmap = rotateImage(registro.getTicket(), 270);
+                        break;
+
+                    case ExifInterface.ORIENTATION_NORMAL:
+                    default:
+                        rotatedBitmap = registro.getTicket();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            registro.setTicket(rotatedBitmap);
+            imageView.setImageBitmap(rotatedBitmap);
         }
 
 
@@ -347,6 +378,13 @@ public class Formulario_Registros extends AppCompatActivity {
             // Aquí más casos dependiendo de los permisos
             // case OTRO_CODIGO_DE_PERMISOS...
         }
+    }
+
+    public static Bitmap rotateImage(Bitmap source, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
+                matrix, true);
     }
 }
 
