@@ -14,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.neosavings.R;
 import com.example.neosavings.databinding.FragmentRegistrosBinding;
-import com.example.neosavings.ui.Adapters.RegistroFragment;
 import com.example.neosavings.ui.Database.UsuarioRepository;
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;

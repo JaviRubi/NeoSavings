@@ -11,6 +11,7 @@ import androidx.room.Update;
 
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;
+import com.example.neosavings.ui.Modelo.Presupuesto;
 import com.example.neosavings.ui.Modelo.Registro;
 import com.example.neosavings.ui.Modelo.Usuario;
 
@@ -129,6 +130,40 @@ public interface CuentaDAO {
 
     @Query("SELECT * FROM Categoria where Categoria.Tipo=:GASTOINGRESO")
     public Flowable<List<Categoria>> getAllCategoriasGastosIngresos(String GASTOINGRESO);
+
+    ///Presupuestos
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(Presupuesto presupuesto);
+
+
+    @Update
+    void update(Presupuesto presupuesto);
+
+    @Delete
+    void delete(Presupuesto presupuesto);
+
+    @Query("DELETE FROM Presupuesto where Presupuesto.PresupuestoID=:PresupuestoID")
+    void deletePresupuesto(long PresupuestoID);
+
+    @Query("DELETE FROM Presupuesto")
+    void deleteALLPresupuesto();
+
+    @Query("SELECT * FROM Presupuesto")
+    public Flowable<List<Presupuesto>> getAllPresupuestos();
+
+    @Query("SELECT * FROM Presupuesto where Presupuesto.PresupuestoID=:PresupuestoID Limit 1")
+    public Flowable<Presupuesto> getPresupuestosByID(long PresupuestoID);
+
+    @Query("SELECT * FROM Registro where Registro.Categoria=:Categoria AND RegistroUserID=:UserID AND Registro.Fecha Between :FechaIni AND :FechaFin")
+    public Flowable<List<Registro>> getAllRegistrosPresupuesto(String Categoria,long UserID,Date FechaIni,Date FechaFin);
+
+    @Query("SELECT * FROM Registro where Registro.Categoria=:Categoria AND Registro.Fecha Between :FechaIni AND :FechaFin")
+    public Flowable<List<Registro>> getAllRegistrosPresupuestoAllUsers(String Categoria,Date FechaIni,Date FechaFin);
+
+    @Query("SELECT * FROM Registro where RegistroUserID=:UserID AND Registro.Fecha Between :FechaIni AND :FechaFin")
+    public Flowable<List<Registro>> getAllRegistrosPresupuestoAllCategorias(long UserID,Date FechaIni,Date FechaFin);
+
 
 
 

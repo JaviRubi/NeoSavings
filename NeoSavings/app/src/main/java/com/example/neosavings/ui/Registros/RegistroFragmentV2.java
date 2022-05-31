@@ -1,4 +1,4 @@
-package com.example.neosavings.ui.Adapters;
+package com.example.neosavings.ui.Registros;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,43 +20,49 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.neosavings.R;
+import com.example.neosavings.ui.Adapters.MyRegistroRecyclerViewAdapter;
 import com.example.neosavings.ui.Adapters.placeholder.ItemClickListener;
 import com.example.neosavings.ui.Database.UsuarioRepository;
-import com.example.neosavings.ui.Formularios.Formulario_Cuentas;
-import com.example.neosavings.ui.Modelo.Cuenta;
+import com.example.neosavings.ui.Modelo.Registro;
+import com.example.neosavings.ui.Presupuestos.PresupuestoInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Flowable;
-
 /**
  * A fragment representing a list of Items.
  */
-public class CuentaFragment extends Fragment implements ItemClickListener {
+public class RegistroFragmentV2 extends Fragment implements ItemClickListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private List<Cuenta> listaCuentas;
+    private MyRegistroRecyclerViewAdapter adapter;
+    private static List<Registro> ListaCuentas=new ArrayList<>();
     private UsuarioRepository mRepository;
-    private MyCuentaRecyclerViewAdapter adapter;
+    private static PresupuestoInfo presupuestoInfo;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public CuentaFragment() {
+    public RegistroFragmentV2(){}
+
+    public RegistroFragmentV2(List<Registro> registros, PresupuestoInfo context) {
+        ListaCuentas=new ArrayList<>();
+        ListaCuentas.addAll(registros);
+        this.presupuestoInfo=context;
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static CuentaFragment newInstance(int columnCount) {
-        CuentaFragment fragment = new CuentaFragment();
+    public static RegistroFragmentV2 newInstance(int columnCount) {
+        RegistroFragmentV2 fragment = new RegistroFragmentV2(ListaCuentas,presupuestoInfo);
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -73,9 +79,8 @@ public class CuentaFragment extends Fragment implements ItemClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        SwipeRefreshLayout srLayout=(SwipeRefreshLayout) inflater.inflate(R.layout.fragment_item_cuenta,container,false);
+        SwipeRefreshLayout srLayout=(SwipeRefreshLayout) inflater.inflate(R.layout.fragment_item_list,container,false);
         View view = srLayout.findViewById(R.id.list);
-        mRepository=new UsuarioRepository(getContext());
 
         ItemTouchHelper.SimpleCallback myCallback=new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
 
@@ -88,9 +93,10 @@ public class CuentaFragment extends Fragment implements ItemClickListener {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                mRepository.DeleteUsuario(listaCuentas.get(viewHolder.getAbsoluteAdapterPosition()).getUser());
-                listaCuentas.remove(viewHolder.getAbsoluteAdapterPosition());
+                mRepository.DeleteRegistro(ListaCuentas.get(viewHolder.getAbsoluteAdapterPosition()));
+                ListaCuentas.remove(viewHolder.getAbsoluteAdapterPosition());
                 adapter.notifyItemRemoved(viewHolder.getAbsoluteAdapterPosition());
+                presupuestoInfo.ActualizarLayout();
             }
 
             @Override
@@ -110,8 +116,10 @@ public class CuentaFragment extends Fragment implements ItemClickListener {
         };
 
         ItemTouchHelper myHelper = new ItemTouchHelper(myCallback);
+        mRepository=new UsuarioRepository(getContext());
 
         // Set the adapter
+
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
@@ -120,38 +128,35 @@ public class CuentaFragment extends Fragment implements ItemClickListener {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-
-            listaCuentas=new ArrayList<>();
-            Flowable<List<Cuenta>> CuentasBlock=mRepository.getAllCuentasFW();
-            listaCuentas=CuentasBlock.blockingFirst();
-            adapter=new MyCuentaRecyclerViewAdapter(listaCuentas);
+            adapter = new MyRegistroRecyclerViewAdapter(ListaCuentas);
             adapter.setClickListener(this);
-
             recyclerView.setAdapter(adapter);
-
             myHelper.attachToRecyclerView(recyclerView);
         }
-
         srLayout.setOnRefreshListener(()->{
-            listaCuentas.clear();
-            listaCuentas.addAll(mRepository.getAllCuentasFW().blockingFirst());
             adapter.notifyDataSetChanged();
             srLayout.setRefreshing(false);
+            presupuestoInfo.ActualizarLayout();
         });
+
         return srLayout;
     }
 
     public void refresh(){
-        listaCuentas.clear();
-        listaCuentas.addAll(mRepository.getAllCuentasFW().blockingFirst());
+        adapter.notifyDataSetChanged();
+    }
+
+    public void setRegistros(List<Registro> ITEMS){
+        ListaCuentas.clear();
+        ListaCuentas.addAll(ITEMS);
         adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onClick(View view, int position) {
-        Cuenta cuenta=listaCuentas.get(position);
-        Intent i = new Intent(getContext(), Formulario_Cuentas.class);
-        i.putExtra("UserID", cuenta.getUser().getUserID());
+        Registro registro=ListaCuentas.get(position);
+        Intent i = new Intent(getContext(), RegistroInfo.class);
+        i.putExtra("RegistroID", registro.getRegistroID());
         startActivity(i);
     }
 }

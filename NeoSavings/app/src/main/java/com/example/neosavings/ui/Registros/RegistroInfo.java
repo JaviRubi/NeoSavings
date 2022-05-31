@@ -1,24 +1,29 @@
-package com.example.neosavings.ui.Adapters;
+package com.example.neosavings.ui.Registros;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.drawable.ColorDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -87,7 +92,9 @@ public class RegistroInfo extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
+        int[] attr = {androidx.appcompat.R.attr.colorPrimary};
+        TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0,Color.BLACK)));
 
         mRepository=new UsuarioRepository(getApplication());
         Flowable<Registro> registroBlock=mRepository.getRegistroByID((long)this.getIntent().getExtras().get("RegistroID"));
@@ -169,11 +176,39 @@ public class RegistroInfo extends AppCompatActivity {
         spinner_cuentas.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerCuentas));
         spinner_cuentas.setSelection(getPosicionCuenta());
 
+        spinner_cuentas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                ((TextView) parent.getChildAt(0)).setTextColor(typedArray.getColor(0, Color.LTGRAY));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         spinner_categorias=(Spinner) findViewById(R.id.Spinner_Categorias);
-        adapter=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerCategorias);
+        adapter=new ArrayAdapter<>(getApplicationContext(), androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, spinnerCategorias);
         spinner_categorias.setAdapter(adapter);
 
         spinner_categorias.setSelection(getPosicionCategorias());
+
+        spinner_categorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                ((TextView) parent.getChildAt(0)).setTextColor(typedArray.getColor(0, Color.LTGRAY));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         findViewById(R.id.button_CANCEL_FormularioRegistro).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -341,7 +376,7 @@ public class RegistroInfo extends AppCompatActivity {
         editText=(EditText) findViewById(R.id.editTextDate);
         String fecha=editText.getText().toString();
 
-        if(fecha.matches("\\d{1,2}/\\d{1,2}/\\d{4}")){
+        if(fecha.matches("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/([12][0-9]{3})$")){
             registro.setFecha(new SimpleDateFormat("dd/MM/yyyy").parse(fecha));
         }else {
             Toast.makeText(getBaseContext(), "Formato Fecha No Valido", Toast.LENGTH_SHORT).show();

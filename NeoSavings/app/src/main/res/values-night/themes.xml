@@ -2,15 +2,36 @@
     <!-- Base application theme. -->
     <style name="Theme.NeoSavings" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">#996AF7</item>
+        <item name="colorPrimaryVariant">#4932B3</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:colorBackground">@color/black</item>
+        <item name="colorOnBackground">#FFFFFF</item>
+        <item name="colorSurface">@color/black</item>
+        <item name ="colorOnSurface">@color/white</item>
+        <item name="colorError">#B00020</item>
+        <item name="colorOnError">#000000</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="q">?attr/colorPrimaryVariant</item>
+        <item name="android:textColorLink">@color/white</item>
+        <item name="android:prompt">@color/white</item>
+        <item name="android:colorBackgroundCacheHint">@color/white</item>
         <!-- Customize your theme here. -->
+
     </style>
+
+    <style name="Theme.NeoSavings.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="MySpinner" parent="Widget.AppCompat.Spinner">
+        <item name="colorSurface">@color/white</item>
+    </style>
+
+
 </resources>

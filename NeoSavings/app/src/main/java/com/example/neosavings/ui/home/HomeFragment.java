@@ -14,7 +14,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.neosavings.R;
-import com.example.neosavings.ui.Adapters.RegistroFragment;
+import com.example.neosavings.ui.Registros.RegistroFragment;
 import com.example.neosavings.ui.Database.UsuarioRepository;
 import com.example.neosavings.ui.Formularios.Formulario_Cuentas;
 import com.example.neosavings.ui.Formularios.Formulario_Registros;

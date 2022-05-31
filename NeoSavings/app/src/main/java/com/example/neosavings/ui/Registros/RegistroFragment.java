@@ -1,4 +1,4 @@
-package com.example.neosavings.ui.Adapters;
+package com.example.neosavings.ui.Registros;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.neosavings.R;
+import com.example.neosavings.ui.Adapters.MyRegistroRecyclerViewAdapter;
 import com.example.neosavings.ui.Adapters.placeholder.ItemClickListener;
 import com.example.neosavings.ui.Database.UsuarioRepository;
 import com.example.neosavings.ui.Modelo.Registro;

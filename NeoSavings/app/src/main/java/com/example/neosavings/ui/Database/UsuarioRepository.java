@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import com.example.neosavings.ui.DAO.CuentaDAO;
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;
+import com.example.neosavings.ui.Modelo.Presupuesto;
 import com.example.neosavings.ui.Modelo.Registro;
 import com.example.neosavings.ui.Modelo.Usuario;
 
@@ -58,6 +59,14 @@ public class UsuarioRepository {
         return mUsuarioDao.getALLCuentasFW();
     }
 
+    public Flowable<List<Presupuesto>> getAllPresupuestosFW() {
+        return mUsuarioDao.getAllPresupuestos();
+    }
+
+    public Flowable<Presupuesto> getPresupuestosByIDFW(long PresupuestoID) {
+        return mUsuarioDao.getPresupuestosByID(PresupuestoID);
+    }
+
     public Flowable<Registro> getRegistroByID(long registroID) {
         return mUsuarioDao.getRegistroByID(registroID);
     }
@@ -81,6 +90,14 @@ public class UsuarioRepository {
         );
     }
 
+    public void insertPresupuesto(Presupuesto presupuesto) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.insert(presupuesto)
+        );
+    }
+
+
+
 
     public void Update(Usuario user) {
         DatabaseNeosavings.dbExecutor.execute(
@@ -91,6 +108,12 @@ public class UsuarioRepository {
     public void Update(Registro registro) {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> mUsuarioDao.update(registro)
+        );
+    }
+
+    public void Update(Presupuesto presupuesto) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.update(presupuesto)
         );
     }
 
@@ -110,6 +133,18 @@ public class UsuarioRepository {
     public void DeleteRegistro(Registro registro) {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> mUsuarioDao.deleteRegistro(registro)
+        );
+    }
+
+    public void DeletePresupuesto(long presupuesto) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.deletePresupuesto(presupuesto)
+        );
+    }
+
+    public void DeletePresupuesto(Presupuesto presupuesto) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.delete(presupuesto)
         );
     }
 

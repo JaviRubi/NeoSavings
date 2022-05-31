@@ -71,4 +71,7 @@
     <string name="resumen">Resumen</string>
     <string name="String_EstructuraIngresos">Estructura de Ingresos</string>
     <string name="String_Neosavings">NeoSavings Utilities</string>
+    <string name="String_FechaIni">Fecha Inicio</string>
+    <string name="String_FechaFin">Fecha Fin</string>
+    <string name="String_Edit">Editar</string>
 </resources>

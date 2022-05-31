@@ -105,7 +105,7 @@
         tools:layout="@layout/fragment_configuracion" />
     <activity
         android:id="@+id/registroInfo"
-        android:name="com.example.neosavings.ui.Adapters.RegistroInfo"
+        android:name="com.example.neosavings.ui.Registros.RegistroInfo"
         android:label="activity_registro_info"
         tools:layout="@layout/activity_registro_info" />
     <activity

@@ -278,9 +278,7 @@ public class Formulario_Registros extends AppCompatActivity {
         editText=(EditText) findViewById(R.id.editTextDate);
         String fecha=editText.getText().toString();
 
-        boolean prueba=fecha.matches("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/([12][0-9]{3})$");
-
-        if(fecha.matches("\\d{1,2}/\\d{1,2}/\\d{4}")){
+        if(fecha.matches("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/([12][0-9]{3})$")){
             registro.setFecha(new SimpleDateFormat("dd/MM/yyyy").parse(fecha));
         }else{
            /* AlertDialog.Builder builder = new AlertDialog.Builder(context);

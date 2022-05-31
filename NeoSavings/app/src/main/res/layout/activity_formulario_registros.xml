@@ -40,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_dialog_close_dark"
         app:tint="@color/design_default_color_primary"
-        tools:ignore="ImageContrastCheck" />
+        tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck"        />
 
     <EditText
         android:id="@+id/Gastos_Registro"
@@ -86,10 +86,10 @@
         android:layout_marginEnd="20dp"
         android:contentDescription="@string/String_Empty"
         android:minHeight="48dp"
-        android:theme="@style/Theme.AppCompat.DayNight"
         app:layout_constraintEnd_toStartOf="@+id/toggleButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        tools:listitem="@android:layout/simple_spinner_item" />
 
     <TextView
         android:id="@+id/textView3"
@@ -162,14 +162,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="20dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/String_Fecha"
         android:inputType="date"
         android:minHeight="48dp"
-        android:textColorHint="#757575"
+        android:textColorHint="#78909C"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView5"
@@ -187,12 +187,15 @@
         android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:alpha="100"
         android:contentDescription="@string/String_Categoria"
         android:minHeight="48dp"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextDate"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        tools:ignore="DuplicateSpeakableTextCheck"
+        tools:listitem="@android:layout/simple_spinner_item" />
 
     <TextView
         android:id="@+id/textView6"
@@ -249,6 +252,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButtonCamera"
         app:layout_constraintTop_toBottomOf="@+id/Spinner_Categorias"
-        app:srcCompat="@drawable/ic_menu_gallery" />
+        app:srcCompat="@drawable/ic_menu_gallery"
+        tools:ignore="ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

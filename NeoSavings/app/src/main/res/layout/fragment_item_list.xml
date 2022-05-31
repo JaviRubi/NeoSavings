@@ -17,7 +17,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".ui.Adapters.RegistroFragment"
+    tools:context=".ui.Registros.RegistroFragment"
     tools:listitem="@layout/fragment_itemregistro" />
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

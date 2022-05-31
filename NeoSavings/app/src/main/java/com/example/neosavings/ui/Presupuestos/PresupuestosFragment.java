@@ -1,13 +1,16 @@
 package com.example.neosavings.ui.Presupuestos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.neosavings.R;
+import com.example.neosavings.ui.Formularios.Formulario_Presupuestos;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +27,8 @@ public class PresupuestosFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private FrameLayout frameLayout;
+    PresupuestoFragmentList presupuestoFragmentList;
 
     public PresupuestosFragment() {
         // Required empty public constructor
@@ -60,6 +65,30 @@ public class PresupuestosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_presupuestos, container, false);
+
+        View view=inflater.inflate(R.layout.fragment_presupuestos, container, false);
+        view.findViewById(R.id.floatingActionButton_ADDPresupuesto).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), Formulario_Presupuestos.class);
+                intent.putExtra("CASO","CREAR");
+                startActivity(intent);
+            }
+        });
+        frameLayout=view.findViewById(R.id.FrameLayoutListaPresupuestos);
+
+        presupuestoFragmentList=new PresupuestoFragmentList();
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.FrameLayoutListaPresupuestos,presupuestoFragmentList)
+                .commit();
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        presupuestoFragmentList.refresh();
+        super.onResume();
     }
 }
