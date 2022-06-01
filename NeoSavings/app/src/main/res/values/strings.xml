@@ -74,4 +74,6 @@
     <string name="String_FechaIni">Fecha Inicio</string>
     <string name="String_FechaFin">Fecha Fin</string>
     <string name="String_Edit">Editar</string>
+    <string name="tipo">Tipo</string>
+    <string name="valor_inicial">Valor Inicial</string>
 </resources>

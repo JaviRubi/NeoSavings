@@ -4,21 +4,26 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.drawable.ColorDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
@@ -76,6 +81,11 @@ public class Formulario_Registros extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_registros);
+
+        int[] attr = {androidx.appcompat.R.attr.colorPrimary};
+        TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));
+
         context=this;
         mRepository = new UsuarioRepository(getApplicationContext());
         spinnerCuentas=new ArrayList<>();
@@ -252,6 +262,34 @@ public class Formulario_Registros extends AppCompatActivity {
                     intent.putExtra("Imagen",fileName);
                     startActivity(intent);
                 }
+            }
+        });
+
+        spinner_Categorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                ((TextView) parent.getChildAt(0)).setTextColor(typedArray.getColor(0, Color.LTGRAY));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinner_cuentas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                ((TextView) parent.getChildAt(0)).setTextColor(typedArray.getColor(0, Color.LTGRAY));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
 

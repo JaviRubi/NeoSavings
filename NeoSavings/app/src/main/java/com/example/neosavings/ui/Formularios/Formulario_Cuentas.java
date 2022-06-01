@@ -1,10 +1,15 @@
 package com.example.neosavings.ui.Formularios;
 
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +35,10 @@ public class Formulario_Cuentas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_cuentas);
+
+        int[] attr = {androidx.appcompat.R.attr.colorPrimary};
+        TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));
 
         mRepository=new UsuarioRepository(getApplicationContext());
 
@@ -57,6 +66,20 @@ public class Formulario_Cuentas extends AppCompatActivity {
 
             Spinner spinner_cuentas = (Spinner) findViewById(R.id.spinner_Tipo);
             spinner_cuentas.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, ListaTipo));
+            spinner_cuentas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                    TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                    ((TextView) parent.getChildAt(0)).setTextColor(typedArray.getColor(0, Color.LTGRAY));
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
         }else{
 
             Flowable<Usuario> usuarioBlock=mRepository.getUserByID((long)this.getIntent().getExtras().get("UserID"));
@@ -94,6 +117,19 @@ public class Formulario_Cuentas extends AppCompatActivity {
 
             Spinner spinner_cuentas = (Spinner) findViewById(R.id.spinner_Tipo);
             spinner_cuentas.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, ListaTipo));
+            spinner_cuentas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                    TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                    ((TextView) parent.getChildAt(0)).setTextColor(typedArray.getColor(0, Color.LTGRAY));
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
 
             int index=0;
             for (String i:ListaTipo){

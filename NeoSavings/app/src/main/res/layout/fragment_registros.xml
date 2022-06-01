@@ -9,8 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout2"
         android:layout_width="414dp"
-        android:layout_height="180dp"
-        android:background="@color/design_default_color_secondary_variant"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorSecondaryVariant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -24,13 +24,15 @@
             android:layout_marginEnd="10dp"
             android:ems="10"
             android:hint="@string/String_Fecha"
+            android:importantForAutofill="no"
             android:inputType="date"
             android:minHeight="48dp"
             android:textColor="@color/design_default_color_primary"
-            android:textColorHint="@color/design_default_color_primary"
+            android:textColorHint="#000000"
             app:layout_constraintEnd_toStartOf="@+id/imageButton2"
             app:layout_constraintStart_toEndOf="@+id/textView13"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <EditText
             android:id="@+id/editTextDate2"
@@ -41,10 +43,11 @@
             android:layout_marginEnd="10dp"
             android:ems="10"
             android:hint="@string/String_Fecha"
+            android:importantForAutofill="no"
             android:inputType="date"
             android:minHeight="48dp"
             android:textColor="@color/design_default_color_primary"
-            android:textColorHint="@color/design_default_color_primary"
+            android:textColorHint="#000000"
             app:layout_constraintEnd_toStartOf="@+id/textView13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -58,6 +61,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="25dp"
             android:text="@string/String_Entre"
+            android:textColor="#000000"
             android:textColorHighlight="@color/design_default_color_primary_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/editTextDate3"
@@ -74,27 +78,30 @@
             android:contentDescription="@string/String_Buscar"
             android:src="@android:drawable/ic_menu_search"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/design_default_color_primary" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView14"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/String_Cuentas"
+            android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
 
         <TextView
             android:id="@+id/textView15"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="132dp"
             android:text="@string/String_Categoria"
+            android:textColor="#000000"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
@@ -104,25 +111,31 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="@string/String_Cuentas"
             android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <Spinner
             android:id="@+id/spinnerCategorias"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="10dp"
             android:contentDescription="@string/String_Categoria"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            tools:ignore="DuplicateSpeakableTextCheck" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline5"

@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="25dp"
-        android:text="Tipo"
+        android:text="@string/tipo"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
@@ -53,7 +53,8 @@
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <TextView
         android:id="@+id/textView11"
@@ -61,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="25dp"
-        android:text="Valor Inicial"
+        android:text="@string/valor_inicial"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner_Tipo" />
@@ -73,11 +74,12 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:hint="0"
+        android:hint="@string/String_Empty"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        android:importantForAutofill="no" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton_Cancelar"
@@ -88,6 +90,8 @@
         android:backgroundTint="@color/design_default_color_error"
         android:clickable="true"
         android:contentDescription="@string/String_Add"
+        android:focusable="true"
+        app:backgroundTint="@color/design_default_color_error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:maxImageSize="50dp"
@@ -104,6 +108,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:maxImageSize="50dp"
-        app:srcCompat="@drawable/ic_checked_checkbox" />
+        app:srcCompat="@drawable/ic_checked_checkbox"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

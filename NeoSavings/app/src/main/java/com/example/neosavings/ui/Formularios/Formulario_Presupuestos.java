@@ -1,11 +1,16 @@
 package com.example.neosavings.ui.Formularios;
 
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,6 +46,10 @@ public class Formulario_Presupuestos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_presupuestos);
+
+        int[] attr = {androidx.appcompat.R.attr.colorPrimary};
+        TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));
 
         String caso= (String) getIntent().getExtras().get("CASO");
         if(caso.equals("CREAR")) {
@@ -199,6 +208,34 @@ public class Formulario_Presupuestos extends AppCompatActivity {
             });
 
         }
+
+        spinner_Categorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                ((TextView) parent.getChildAt(0)).setTextColor(typedArray.getColor(0, Color.LTGRAY));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        spinner_cuentas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                ((TextView) parent.getChildAt(0)).setTextColor(typedArray.getColor(0, Color.LTGRAY));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public int getPosicionCuenta(){

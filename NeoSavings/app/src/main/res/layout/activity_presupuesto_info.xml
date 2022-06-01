@@ -17,6 +17,7 @@
 
         <TextView
             android:id="@+id/textViewNombrePresupuesto"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -30,12 +31,13 @@
 
         <TextView
             android:id="@+id/textViewCategoriaPresupuesto"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
             android:text="@string/String_NotFound"
-            android:textColor="#00796B"
+            android:textColor="?attr/colorSecondaryVariant"
             android:textSize="20sp"
             android:textStyle="bold"
             app:autoSizeTextType="uniform"
@@ -44,12 +46,12 @@
 
         <TextView
             android:id="@+id/textViewUsuarioPresupuesto"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:text="@string/String_NotFound"
-            android:textColor="#424242"
             android:textSize="16sp"
             app:autoSizeTextType="uniform"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,23 +59,23 @@
 
         <TextView
             android:id="@+id/textViewFechaInicioPresupuesto"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:text="@string/String_Fecha"
-            android:textColor="#424242"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewUsuarioPresupuesto" />
 
         <TextView
             android:id="@+id/textViewFechaFinPresupuesto"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
             android:text="@string/String_Fecha"
-            android:textColor="#424242"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewUsuarioPresupuesto" />
 
@@ -95,24 +97,24 @@
 
         <TextView
             android:id="@+id/textViewPresupuestoInicial"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:text="@string/String_Empty"
-            android:textColor="#424242"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewFechaInicioPresupuesto" />
 
         <TextView
             android:id="@+id/textViewPresupuestoFinal"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
             android:text="@string/String_Empty"
-            android:textColor="#424242"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewFechaFinPresupuesto" />
