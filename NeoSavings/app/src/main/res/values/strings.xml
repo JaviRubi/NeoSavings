@@ -76,4 +76,9 @@
     <string name="String_Edit">Editar</string>
     <string name="tipo">Tipo</string>
     <string name="valor_inicial">Valor Inicial</string>
+    <string name="String_FormaPago">Forma de Pago</string>
+    <string name="neoskills">NeoSkills</string>
+    <string name="modo_oscuro">Modo Oscuro</string>
+    <string name="String_Periocidad">Periocidad</string>
+    <string name="String_Recordatorio">Recordatorio</string>
 </resources>

@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
@@ -59,20 +60,23 @@ public class Formulario_Registros extends AppCompatActivity {
     private static final int PICK_IMAGE=200;
     private static final int CODE_CAMARA=500;
 
-    public List<Cuenta> ListaCuentas;
-    public List<Categoria> ListaCategoriaGastos;
-    public List<Categoria> ListaCategoriaIngresos;
-    public List<Categoria> ListaCategoriaSelec;
+    private List<Cuenta> ListaCuentas;
+    private List<Categoria> ListaCategoriaGastos;
+    private List<Categoria> ListaCategoriaIngresos;
+    private List<Categoria> ListaCategoriaSelec;
 
-    public List<String> spinnerCuentas;
-    public List<String> spinnerCategorias;
-    public List<String> spinnerCategoriasIngresos;
-    public List<String> spinnerCategoriasGastos;
-    public Spinner spinner_cuentas;
-    public Spinner spinner_Categorias;
-    public UsuarioRepository mRepository;
-    public Context context;
-    ArrayAdapter<String> adapter;
+    private List<String> spinnerCuentas;
+    private List<String> spinnerCategorias;
+    private List<String> spinnerCategoriasIngresos;
+    private List<String> spinnerCategoriasGastos;
+    private List<String> spinnerFormaPagos;
+
+    private Spinner spinner_cuentas;
+    private Spinner spinner_Categorias;
+    private Spinner spinner_FormaPago;
+    private UsuarioRepository mRepository;
+    private Context context;
+    private ArrayAdapter<String> adapter;
     private Registro registro;
     private String currentPhotoPath;
     private ImageView Ticket;
@@ -92,6 +96,7 @@ public class Formulario_Registros extends AppCompatActivity {
         spinnerCategorias =new ArrayList<>();
         spinnerCategoriasGastos=new ArrayList<>();
         spinnerCategoriasIngresos=new ArrayList<>();
+        InicializarSpinnerFormaPago();
         registro=new Registro();
 
         Flowable<List<Cuenta>> allUsers = mRepository.getAllCuentasFW();
@@ -218,14 +223,16 @@ public class Formulario_Registros extends AppCompatActivity {
                     spinnerCategorias.clear();
                     ListaCategoriaSelec=ListaCategoriaIngresos;
                     spinnerCategorias.addAll(spinnerCategoriasIngresos);
-                    adapter.notifyDataSetChanged();
+                    adapter=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerCategorias);
+                    spinner_Categorias.setAdapter(adapter);
+
                 }else{
                     spinnerCategorias.clear();
                     ListaCategoriaSelec=ListaCategoriaGastos;
                     spinnerCategorias.addAll(spinnerCategoriasGastos);
-                    adapter.notifyDataSetChanged();
+                    adapter=new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerCategorias);
+                    spinner_Categorias.setAdapter(adapter);
                 }
-
             }
         });
 
@@ -238,33 +245,6 @@ public class Formulario_Registros extends AppCompatActivity {
 
         Ticket=(ImageView) findViewById(R.id.imageView3);
 
-        Ticket.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getBaseContext(), ImageZoom.class);
-                if(registro.getTicket()==null){
-                    intent.putExtra("Imagen","NOIMAGEN");
-                    startActivity(intent);
-                }else {
-                    String fileName = "myImage";//no .png or .jpg needed
-                    String path;
-                    try {
-                        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                        registro.getTicket().compress(Bitmap.CompressFormat.JPEG, 80, bytes);
-                        FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
-                        fo.write(bytes.toByteArray());
-                        // remember close file output
-                        fo.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        fileName = null;
-                    }
-                    intent.putExtra("Imagen",fileName);
-                    startActivity(intent);
-                }
-            }
-        });
-
         spinner_Categorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -275,7 +255,9 @@ public class Formulario_Registros extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                ((TextView) parent.getChildAt(0)).setTextColor(typedArray.getColor(0, Color.LTGRAY));
             }
         });
 
@@ -343,6 +325,8 @@ public class Formulario_Registros extends AppCompatActivity {
             return false;
         }
 
+        registro.setFormaPago((String)spinner_FormaPago.getSelectedItem());
+
         spinner_Categorias=(Spinner) findViewById(R.id.Spinner_Categorias);
         int Pos=spinner_Categorias.getSelectedItemPosition();
         registro.setCategoria(spinnerCategorias.get(Pos));
@@ -393,7 +377,34 @@ public class Formulario_Registros extends AppCompatActivity {
                 e.printStackTrace();
             }
             registro.setTicket(rotatedBitmap);
+            imageView.setImageTintMode(PorterDuff.Mode.MULTIPLY);
             imageView.setImageBitmap(rotatedBitmap);
+            Ticket.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getBaseContext(), ImageZoom.class);
+                    if (registro.getTicket() == null) {
+                        intent.putExtra("Imagen", "NOIMAGEN");
+                        startActivity(intent);
+                    } else {
+                        String fileName = "myImage";//no .png or .jpg needed
+                        String path;
+                        try {
+                            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                            registro.getTicket().compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+                            FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
+                            fo.write(bytes.toByteArray());
+                            // remember close file output
+                            fo.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            fileName = null;
+                        }
+                        intent.putExtra("Imagen", fileName);
+                        startActivity(intent);
+                    }
+                }
+            });
         }
 
 
@@ -421,6 +432,35 @@ public class Formulario_Registros extends AppCompatActivity {
         matrix.postRotate(angle);
         return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(),
                 matrix, true);
+    }
+
+    public void InicializarSpinnerFormaPago(){
+        spinnerFormaPagos=new ArrayList<>();
+        spinnerFormaPagos.add("Dinero en efectivo");
+        spinnerFormaPagos.add("Tarjeta de debito");
+        spinnerFormaPagos.add("Tarjeta de crédito");
+        spinnerFormaPagos.add("Transferencia bancaria");
+        spinnerFormaPagos.add("Cupón");
+        spinnerFormaPagos.add("Pago por móvil");
+        spinnerFormaPagos.add("Pago por web");
+
+        spinner_FormaPago=(Spinner) findViewById(R.id.spinner_FormasPago);
+        spinner_FormaPago.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerFormaPagos));
+        spinner_FormaPago.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                ((TextView) parent.getChildAt(0)).setTextColor(typedArray.getColor(0, Color.LTGRAY));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
     }
 }
 

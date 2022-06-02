@@ -24,8 +24,11 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,32 +50,32 @@ public class EstadisticasFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private List<Cuenta> ListaCuentas;
-    private List<Cuenta> ListaCuentasSelec;
-    private List<String> spinnerCuentas;
-    private ArrayAdapter<String> adapter;
-    private List<Categoria> ListaCategoriaGastos;
+     List<Cuenta> ListaCuentas;
+     List<Cuenta> ListaCuentasSelec;
+     List<String> spinnerCuentas;
+     ArrayAdapter<String> adapter;
+     List<Categoria> ListaCategoriaGastos;
 
-    private HashMap<String,Double> ListaGastosCategorias;
-    private HashMap<String,Double> ListaIngresosCategorias;
+     HashMap<String,Double> ListaGastosCategorias;
+     HashMap<String,Double> ListaIngresosCategorias;
 
-    private PieChart pieChart;
-    private PieChart pieChartIngresos;
-    private List<PieEntry> GastosCategorias;
-    private List<PieEntry> GastosCategoriasIngresos;
-    private PieDataSet pieDataSet;
-    private PieData pieData;
+     PieChart pieChart;
+     PieChart pieChartIngresos;
+     List<PieEntry> GastosCategorias;
+     List<PieEntry> GastosCategoriasIngresos;
+     PieDataSet pieDataSet;
+     PieData pieData;
 
-    private UsuarioRepository mRepository;
-    private Spinner spinner_cuentas;
+     UsuarioRepository mRepository;
+     Spinner spinner_cuentas;
 
-    private Calendar calendar;
-    private TextView TextDate;
-    private TextView TextSaldoInicial;
-    private TextView TextSaldoFinal;
-    private TextView TextIngresos;
-    private TextView TextGastos;
-    private TextView TextTotal;
+    Calendar calendar;
+     TextView TextDate;
+     TextView TextSaldoInicial;
+     TextView TextSaldoFinal;
+     TextView TextIngresos;
+     TextView TextGastos;
+     TextView TextTotal;
 
 
     public EstadisticasFragment() {
@@ -248,16 +251,31 @@ public class EstadisticasFragment extends Fragment {
         Double Gastos= Double.valueOf(0);
 
         Calendar CalendarioInicioMes= (Calendar) calendar.clone();
-        Calendar CalendarioFinalMes= (Calendar) calendar.clone();
-        CalendarioInicioMes.set(Calendar.DAY_OF_MONTH,1);
-        CalendarioFinalMes.set(Calendar.DAY_OF_MONTH,calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        Calendar CalendarioFinalMes= Calendar.getInstance();
+        Calendar CalendarioRegistro= (Calendar) calendar.clone();
 
+        CalendarioInicioMes.set(Calendar.DAY_OF_MONTH,1);
+        int actualMaximum;
+        actualMaximum = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+        CalendarioFinalMes.set(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),actualMaximum);
+        String fechaIni=new SimpleDateFormat("dd/MM/yyyy").format(CalendarioInicioMes.getTime());
+        String fechaFin=new SimpleDateFormat("dd/MM/yyyy").format(CalendarioFinalMes.getTime());
+
+        Date FechaInicioMes=new Date();
+        Date FechaFinalMes=new Date();
+        try {
+            FechaInicioMes=new SimpleDateFormat("dd/MM/yyyy").parse(fechaIni);
+            FechaFinalMes=new SimpleDateFormat("dd/MM/yyyy").parse(fechaFin);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         for(Cuenta c:ListaCuentasSelec){
             SaldoInical=SaldoInical+Double.valueOf(c.getUser().getValor());
 
             for (Registro r:c.Registros){
 
-                if(r.getFecha().before(CalendarioInicioMes.getTime())){
+
+                if(r.getFecha().getTime()<(FechaInicioMes.getTime())){
 
                     if(r.isGasto()){
                         SaldoInical=SaldoInical-Double.valueOf(r.getCoste());
@@ -267,7 +285,7 @@ public class EstadisticasFragment extends Fragment {
 
                 }
 
-                if(r.getFecha().before(CalendarioFinalMes.getTime()) && r.getFecha().after(CalendarioInicioMes.getTime())){
+                if((r.getFecha().getTime()>=FechaInicioMes.getTime() && r.getFecha().getTime()<=FechaFinalMes.getTime())){
 
                     if(r.isGasto()){
                         Gastos=Gastos+Double.valueOf(r.getCoste());

@@ -24,6 +24,8 @@ public class Registro implements Serializable {
     @ColumnInfo(index = true,name = "RegistroUserID")
     public long RegistroUserID;
 
+    public long PagoProgramadoID=-999;
+
     public boolean Gasto;
 
     public String Descripcion;
@@ -122,5 +124,11 @@ public class Registro implements Serializable {
         Ticket = ticket;
     }
 
+    public long getPagoProgramadoID() {
+        return PagoProgramadoID;
+    }
 
+    public void setPagoProgramadoID(long pagoProgramadoID) {
+        PagoProgramadoID = pagoProgramadoID;
+    }
 }

@@ -74,7 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Gastos_Registro"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_checked_checkbox"
+        app:srcCompat="@drawable/ic_baseline_done_24"
         app:tint="?attr/colorPrimary"
         tools:ignore="ImageContrastCheck" />
 
@@ -83,13 +83,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:contentDescription="@string/String_Empty"
         android:minHeight="48dp"
         app:layout_constraintEnd_toStartOf="@+id/toggleButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:listitem="@android:layout/simple_spinner_item" />
 
     <TextView
@@ -98,10 +98,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"
         android:text="@string/String_Cuentas"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/Spinner_Cuentas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
@@ -110,31 +108,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/String_Cuentas"
+        android:layout_marginTop="10dp"
+        android:text="@string/String_FormaPago"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/Spinner_Cuentas"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/Spinner_Cuentas" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="@string/String_Descripcion"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Spinner_Cuentas" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner_FormasPago" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:text="@string/String_Imagen"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -145,8 +141,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="100dp"
+        android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
@@ -154,15 +151,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="DuplicateSpeakableTextCheck"
-        android:autofillHints="" />
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <EditText
         android:id="@+id/editTextDate"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/String_Fecha"
@@ -177,7 +173,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="@string/fecha"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -187,7 +183,7 @@
         android:id="@+id/Spinner_Categorias"
         android:layout_width="165dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:alpha="100"
         android:contentDescription="@string/String_Categoria"
         android:minHeight="48dp"
@@ -202,7 +198,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="104dp"
         android:text="@string/String_Categoria"
         android:textSize="20sp"
@@ -213,14 +209,14 @@
         android:id="@+id/toggleButton"
         android:layout_width="138dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="25dp"
         android:text="@string/togglebutton"
         android:textOff="@string/gasto"
         android:textOn="@string/ingreso"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <ImageButton
         android:id="@+id/imageButtonCamera"
@@ -256,5 +252,18 @@
         app:srcCompat="@drawable/ic_menu_gallery"
         tools:ignore="ImageContrastCheck"
         app:tint="?attr/colorOnBackground" />
+
+    <Spinner
+        android:id="@+id/spinner_FormasPago"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="100dp"
+        android:contentDescription="@string/String_Coste"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

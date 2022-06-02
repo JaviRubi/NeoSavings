@@ -10,6 +10,7 @@ import androidx.room.TypeConverters;
 import com.example.neosavings.ui.DAO.Converters;
 import com.example.neosavings.ui.DAO.CuentaDAO;
 import com.example.neosavings.ui.Modelo.Categoria;
+import com.example.neosavings.ui.Modelo.PagoProgramado;
 import com.example.neosavings.ui.Modelo.Presupuesto;
 import com.example.neosavings.ui.Modelo.Registro;
 import com.example.neosavings.ui.Modelo.Usuario;
@@ -18,7 +19,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {Usuario.class, Registro.class, Categoria.class, Presupuesto.class}, version = 10,exportSchema = false)
+@Database(entities = {Usuario.class, Registro.class, Categoria.class, Presupuesto.class, PagoProgramado.class}, version = 11,exportSchema = false)
 @TypeConverters({Converters.class})
     public abstract class DatabaseNeosavings extends RoomDatabase {
         public abstract CuentaDAO userDao();

@@ -14,32 +14,35 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NeoSavings">
         <activity
+            android:name=".ui.Formularios.Formulario_PagosProgramados"
+            android:exported="false" />
+        <activity
             android:name=".ui.Presupuestos.PresupuestoInfo"
             android:configChanges="orientation"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Informacion Presupuesto"
-            android:theme="@style/Theme.NeoSavings"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Formularios.Formulario_Presupuestos"
             android:configChanges="orientation"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:label="Editar Presupuesto"
-            android:theme="@style/Theme.NeoSavings"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ImageZoom"
             android:configChanges="orientation"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NeoSavings"/>
+            android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Registros.RegistroInfo"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/String_EditarRegistro"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NeoSavings"/>
+            android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Formularios.Formulario_Cuentas"
             android:configChanges="orientation"
@@ -47,14 +50,14 @@
             android:label="@string/String_CrearCuenta"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NeoSavings"/>
+            android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Formularios.Formulario_Registros"
             android:configChanges="orientation"
             android:exported="false"
             android:label="@string/String_CrearFormulario"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NeoSavings"/>
+            android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation"

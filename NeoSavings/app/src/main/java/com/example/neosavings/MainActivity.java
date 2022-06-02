@@ -2,9 +2,14 @@ package com.example.neosavings;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -23,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private UsuarioRepository mRepository;
 
     private static final int CODE_CAMARA=200;
+    private SwitchCompat NightModeSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,31 @@ public class MainActivity extends AppCompatActivity {
         Categorias();
         String[] permisos=new String[1];
         permisos[0]= Manifest.permission.CAMERA;
+
+
+        MenuItem ModoOscuro= binding.navView.getMenu().findItem(R.id.app_bar_switch);
+        View view= ModoOscuro.getActionView();
+        NightModeSwitch=view.findViewById(R.id.SwitchNav);
+
+        if(AppCompatDelegate.getDefaultNightMode()!=AppCompatDelegate.MODE_NIGHT_NO){
+            NightModeSwitch.setChecked(true);
+        }else{
+            NightModeSwitch.setChecked(false);
+        }
+
+        NightModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(MainActivity.this, "MODO OSCURO activado", Toast.LENGTH_SHORT).show();
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                else {
+                    Toast.makeText(MainActivity.this, "Modo OSCURO desactivado", Toast.LENGTH_SHORT).show();
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+            }
+        });
 
 
 

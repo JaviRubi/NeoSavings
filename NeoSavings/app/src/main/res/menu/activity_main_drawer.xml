@@ -21,36 +21,50 @@
             android:id="@+id/nav_stadistic"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/estadisticas" />
-    </group>
-
-    <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_pagosProgramados"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_pagosProgramados" />
-        <item
-            android:id="@+id/nav_presupuestos"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_presupuestos" />
-        <item
-            android:id="@+id/nav_deudas"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_deudas" />
+    </group>
 
+    <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_objetivos"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_objetivos" />
+            android:id="@+id/subtitle"
+            android:checkableBehavior="single"
+            android:title="@string/neoskills">
+            <menu>
+
+                <item
+                    android:id="@+id/nav_presupuestos"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="@string/menu_presupuestos" />
+                <item
+                    android:id="@+id/nav_deudas"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="@string/menu_deudas" />
+
+                <item
+                    android:id="@+id/nav_objetivos"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="@string/menu_objetivos" />
+            </menu>
+        </item>
     </group>
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_importar"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_importar" />
-        <item
-            android:id="@+id/nav_exportar"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_exportar" />
+            android:id="@+id/subtitle2"
+            android:title="@string/String_Neosavings">
+            <menu>
+                <item
+                    android:id="@+id/nav_importar"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="@string/menu_importar" />
+                <item
+                    android:id="@+id/nav_exportar"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="@string/menu_exportar" />
+            </menu>
+        </item>
     </group>
 
     <group android:checkableBehavior="single">
@@ -62,6 +76,11 @@
             android:id="@+id/nav_configuracion"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_configuracion" />
+        <item
+            android:id="@+id/app_bar_switch"
+            android:title="@string/modo_oscuro"
+            app:actionLayout="@layout/switch_item"
+            app:showAsAction="always" />
     </group>
 
 

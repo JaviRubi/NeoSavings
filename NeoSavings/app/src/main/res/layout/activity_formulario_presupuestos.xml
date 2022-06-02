@@ -73,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Gastos_Registro"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_checked_checkbox"
+        app:srcCompat="@drawable/ic_baseline_done_24"
         app:tint="?attr/colorPrimary"
         tools:ignore="ImageContrastCheck" />
 
