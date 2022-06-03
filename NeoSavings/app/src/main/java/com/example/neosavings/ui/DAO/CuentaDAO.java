@@ -11,8 +11,10 @@ import androidx.room.Update;
 
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;
+import com.example.neosavings.ui.Modelo.PagoProgramado;
 import com.example.neosavings.ui.Modelo.Presupuesto;
 import com.example.neosavings.ui.Modelo.Registro;
+import com.example.neosavings.ui.Modelo.RegistrosPagosProgramados;
 import com.example.neosavings.ui.Modelo.Usuario;
 
 import java.util.Date;
@@ -164,7 +166,40 @@ public interface CuentaDAO {
     @Query("SELECT * FROM Registro where RegistroUserID=:UserID AND Registro.Fecha Between :FechaIni AND :FechaFin")
     public Flowable<List<Registro>> getAllRegistrosPresupuestoAllCategorias(long UserID,Date FechaIni,Date FechaFin);
 
+    ///PAGOS PROGRAMADOS
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(PagoProgramado pagoProgramado);
 
 
+    @Update
+    void update(PagoProgramado pagoProgramado);
 
+    @Delete
+    void delete(PagoProgramado pagoProgramado);
+
+    @Query("DELETE FROM PagoProgramado where pagoprogramado.PagoProgramadoID=:PagoProgramadoID")
+    void deletePagoProgramado(Integer PagoProgramadoID);
+
+    @Query("DELETE FROM PagoProgramado")
+    void deleteALLPagosProgramados();
+
+    @Query("SELECT * FROM PagoProgramado")
+    public Flowable<List<PagoProgramado>> getAllPagosProgramadosFW();
+
+    @Query("SELECT * FROM PagoProgramado where PagoProgramado.PagoProgramadoID=:PresupuestoID Limit 1")
+    public Flowable<PagoProgramado> getPagoProgramadoByID(Integer PresupuestoID);
+
+    @Query("SELECT * FROM PagoProgramado where PagoProgramado.Gasto=:isGasto")
+    public Flowable<List<PagoProgramado>> getPagoProgramadoByGasto(boolean isGasto);
+
+    @Query("SELECT * FROM Registro where Registro.PagoProgramadoID=:PagoProgramadoID AND Registro.Fecha Between :FechaIni AND :FechaFin")
+    public Flowable<List<Registro>> getAllRegistrosPagoProgramado(Integer PagoProgramadoID,Date FechaIni,Date FechaFin);
+
+    @Query("Delete FROM Registro where Registro.PagoProgramadoID=:PagoProgramadoID")
+    public void getAllRegistrosPagoProgramado(Integer PagoProgramadoID);
+
+    @Transaction
+    @Query("SELECT * FROM PagoProgramado")
+    public Flowable<List<RegistrosPagosProgramados>> getALLRegistrosPagosProgramadosFW();
 }

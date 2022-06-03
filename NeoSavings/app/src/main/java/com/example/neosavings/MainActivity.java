@@ -1,6 +1,9 @@
 package com.example.neosavings;
 
 import android.Manifest;
+import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -64,8 +68,13 @@ public class MainActivity extends AppCompatActivity {
 
         if(AppCompatDelegate.getDefaultNightMode()!=AppCompatDelegate.MODE_NIGHT_NO){
             NightModeSwitch.setChecked(true);
+            ModoOscuro.setIcon(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_dark_mode,null));
+            int[] attr = {com.google.android.material.R.attr.colorSurface};
+            TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));
         }else{
             NightModeSwitch.setChecked(false);
+            ModoOscuro.setIcon(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_light_mode,null));
         }
 
         NightModeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -74,10 +83,16 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked) {
                     Toast.makeText(MainActivity.this, "MODO OSCURO activado", Toast.LENGTH_SHORT).show();
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    ModoOscuro.setIcon(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_dark_mode,null));
+
+                    int[] attr = {com.google.android.material.R.attr.colorSurface};
+                    TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                    getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));
                 }
                 else {
                     Toast.makeText(MainActivity.this, "Modo OSCURO desactivado", Toast.LENGTH_SHORT).show();
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    ModoOscuro.setIcon(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_light_mode,null));
                 }
             }
         });

@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import com.example.neosavings.ui.DAO.CuentaDAO;
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;
+import com.example.neosavings.ui.Modelo.PagoProgramado;
 import com.example.neosavings.ui.Modelo.Presupuesto;
 import com.example.neosavings.ui.Modelo.Registro;
 import com.example.neosavings.ui.Modelo.Usuario;
@@ -28,26 +29,21 @@ public class UsuarioRepository {
         mUsuarioLists = mUsuarioDao.getAllLD();
     }
 
-    public LiveData<List<Usuario>> getAllUsers() {
-        return mUsuarioDao.getAllLD();
-    }
+    public Flowable<List<PagoProgramado>> getAllPagosProgramados() { return mUsuarioDao.getAllPagosProgramadosFW(); }
+
+    public Flowable<List<PagoProgramado>> getAllPagosProgramadosByGasto(boolean isGasto) { return mUsuarioDao.getPagoProgramadoByGasto(isGasto); }
 
     public Flowable<List<Usuario>> getAllUsersFW() {
         return mUsuarioDao.getAll();
     }
 
-    public Flowable<Usuario> getUserByID(long userID) {
-        return mUsuarioDao.findUsuarioByID(userID);
-    }
+    public Flowable<Usuario> getUserByID(long userID) { return mUsuarioDao.findUsuarioByID(userID); }
 
     public Flowable<List<Registro>> getAllRegistros() {
         return mUsuarioDao.getAllRegistros();
     }
 
-    public Flowable<List<Registro>> getAllRegistrosbyFecha(Date FechaInicio, Date FechaFin) {
-        return mUsuarioDao.getALLRegistroByFecha(FechaInicio,FechaFin);
-    }
-
+    public Flowable<List<Registro>> getAllRegistrosbyFecha(Date FechaInicio, Date FechaFin) { return mUsuarioDao.getALLRegistroByFecha(FechaInicio,FechaFin); }
 
     public Flowable<List<Categoria>> getALLCategorias() {return mUsuarioDao.getAllCategorias(); }
 
@@ -71,8 +67,19 @@ public class UsuarioRepository {
         return mUsuarioDao.getRegistroByID(registroID);
     }
 
+    public Flowable<PagoProgramado> getPagoProgramadoByID(Integer PagoProgramadoID) {
+        return mUsuarioDao.getPagoProgramadoByID(PagoProgramadoID);
+    }
+
+
 
     public void insert(Usuario user) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.insert(user)
+        );
+    }
+
+    public void insertPagoProgramado(PagoProgramado user) {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> mUsuarioDao.insert(user)
         );
@@ -117,6 +124,12 @@ public class UsuarioRepository {
         );
     }
 
+    public void Update(PagoProgramado presupuesto) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.update(presupuesto)
+        );
+    }
+
 
     public void DeleteUsuario(Usuario user) {
         DatabaseNeosavings.dbExecutor.execute(
@@ -143,6 +156,18 @@ public class UsuarioRepository {
     }
 
     public void DeletePresupuesto(Presupuesto presupuesto) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.delete(presupuesto)
+        );
+    }
+
+    public void DeletePagoProgramado(Integer presupuesto) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.deletePagoProgramado(presupuesto)
+        );
+    }
+
+    public void DeletePagoProgramado(PagoProgramado presupuesto) {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> mUsuarioDao.delete(presupuesto)
         );

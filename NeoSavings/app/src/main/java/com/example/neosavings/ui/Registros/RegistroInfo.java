@@ -10,7 +10,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -94,10 +93,6 @@ public class RegistroInfo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        int[] attr = {androidx.appcompat.R.attr.colorPrimary};
-        TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0,Color.BLACK)));
 
         mRepository=new UsuarioRepository(getApplication());
         Flowable<Registro> registroBlock=mRepository.getRegistroByID((long)this.getIntent().getExtras().get("RegistroID"));

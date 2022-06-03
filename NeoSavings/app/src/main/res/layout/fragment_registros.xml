@@ -10,7 +10,8 @@
         android:id="@+id/frameLayout2"
         android:layout_width="414dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorSecondaryVariant"
+        android:layout_marginTop="10dp"
+        android:background="?attr/colorSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,8 +28,8 @@
             android:importantForAutofill="no"
             android:inputType="date"
             android:minHeight="48dp"
-            android:textColor="@color/design_default_color_primary"
-            android:textColorHint="#000000"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurface"
             app:layout_constraintEnd_toStartOf="@+id/imageButton2"
             app:layout_constraintStart_toEndOf="@+id/textView13"
             app:layout_constraintTop_toTopOf="parent"
@@ -46,8 +47,7 @@
             android:importantForAutofill="no"
             android:inputType="date"
             android:minHeight="48dp"
-            android:textColor="@color/design_default_color_primary"
-            android:textColorHint="#000000"
+            android:textColorHint="?attr/colorOnSurface"
             app:layout_constraintEnd_toStartOf="@+id/textView13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -61,8 +61,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="25dp"
             android:text="@string/String_Entre"
-            android:textColor="#000000"
-            android:textColorHighlight="@color/design_default_color_primary_dark"
+            android:textColorHighlight="?attr/colorOnSurface"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/editTextDate3"
             app:layout_constraintStart_toEndOf="@+id/editTextDate2"
@@ -78,7 +77,8 @@
             android:contentDescription="@string/String_Buscar"
             android:src="@android:drawable/ic_menu_search"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ImageContrastCheck" />
 
         <TextView
             android:id="@+id/textView14"
@@ -88,7 +88,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/String_Cuentas"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
@@ -101,7 +101,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="132dp"
             android:text="@string/String_Categoria"
-            android:textColor="#000000"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
@@ -153,6 +153,7 @@
         android:id="@+id/FrameLayout2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

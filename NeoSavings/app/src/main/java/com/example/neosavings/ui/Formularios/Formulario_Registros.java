@@ -10,7 +10,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -85,10 +84,6 @@ public class Formulario_Registros extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_registros);
-
-        int[] attr = {androidx.appcompat.R.attr.colorPrimary};
-        TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));
 
         context=this;
         mRepository = new UsuarioRepository(getApplicationContext());
@@ -459,6 +454,7 @@ public class Formulario_Registros extends AppCompatActivity {
 
             }
         });
+
 
 
     }

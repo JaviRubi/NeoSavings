@@ -25,15 +25,14 @@
             android:id="@+id/nav_pagosProgramados"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_pagosProgramados" />
+
     </group>
-
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/subtitle"
-            android:checkableBehavior="single"
-            android:title="@string/neoskills">
-            <menu>
-
+    <item
+        android:id="@+id/subtitle"
+        android:checkableBehavior="single"
+        android:title="@string/neoskills">
+        <menu>
+            <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_presupuestos"
                     android:icon="@drawable/ic_menu_camera"
@@ -42,19 +41,20 @@
                     android:id="@+id/nav_deudas"
                     android:icon="@drawable/ic_menu_camera"
                     android:title="@string/menu_deudas" />
-
                 <item
                     android:id="@+id/nav_objetivos"
                     android:icon="@drawable/ic_menu_camera"
                     android:title="@string/menu_objetivos" />
-            </menu>
-        </item>
-    </group>
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/subtitle2"
-            android:title="@string/String_Neosavings">
-            <menu>
+            </group>
+
+        </menu>
+    </item>
+    <item
+        android:id="@+id/subtitle2"
+        android:title="@string/String_Neosavings">
+
+        <menu tools:showIn="navigation_view">
+            <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_importar"
                     android:icon="@drawable/ic_menu_camera"
@@ -63,11 +63,12 @@
                     android:id="@+id/nav_exportar"
                     android:icon="@drawable/ic_menu_camera"
                     android:title="@string/menu_exportar" />
-            </menu>
-        </item>
-    </group>
-
-    <group android:checkableBehavior="single">
+            </group>
+        </menu>
+    </item>
+    <group
+        android:id="@+id/Group4"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/nav_ayuda"
             android:icon="@drawable/ic_menu_camera"

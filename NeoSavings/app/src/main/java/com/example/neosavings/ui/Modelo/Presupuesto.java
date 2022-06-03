@@ -2,7 +2,10 @@ package com.example.neosavings.ui.Modelo;
 
 import android.content.Context;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import com.example.neosavings.ui.Database.UsuarioRepository;
@@ -13,13 +16,15 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 
-@Entity
+@Entity(indices = {@Index(value = {"PresupuestoID","UserID"},unique = true)},foreignKeys = @ForeignKey(entity = Usuario.class, childColumns = "UserID",parentColumns = "userID", onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE))
 public class Presupuesto {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(index = true,name = "PresupuestoID")
     private long PresupuestoID;
 
-    private long UserID;
+    @ColumnInfo(index = true,name = "UserID")
+    private Integer UserID;
 
     private String UserName;
 
@@ -41,11 +46,11 @@ public class Presupuesto {
         PresupuestoID = presupuestoID;
     }
 
-    public long getUserID() {
+    public Integer getUserID() {
         return UserID;
     }
 
-    public void setUserID(long userID) {
+    public void setUserID(Integer userID) {
         UserID = userID;
     }
 
@@ -106,9 +111,8 @@ public class Presupuesto {
             registros=new ArrayList<>();
         }
 
-        if((!(Categoria.equals("TODAS")) && this.UserID>0)) {
-            List<Registro> AuxUsuario = new ArrayList<>();
-            AuxUsuario.addAll(registros);
+        if((!(Categoria.equals("TODAS")) && this.UserID!=null)) {
+            List<Registro> AuxUsuario = new ArrayList<>(registros);
             registros.clear();
             for (Registro r : AuxUsuario) {
                 if ((r.isGasto() && r.getCategoria().equals(this.Categoria) && r.getRegistroUserID() == this.getUserID())) {
@@ -116,18 +120,17 @@ public class Presupuesto {
                 }
             }
 
-            Double PresupuestoFinal = Double.valueOf(0);
+            double PresupuestoFinal = (double) 0;
 
             for (Registro r : registros) {
-                PresupuestoFinal += Double.valueOf(r.getCoste());
+                PresupuestoFinal += Double.parseDouble(r.getCoste());
             }
             return PresupuestoFinal;
         }
 
-        if(!Categoria.equals("TODAS") && UserID<0){
+        if(!Categoria.equals("TODAS") && UserID==null){
 
-            List<Registro> AuxUsuario = new ArrayList<>();
-            AuxUsuario.addAll(registros);
+            List<Registro> AuxUsuario = new ArrayList<>(registros);
             registros.clear();
             for (Registro r : AuxUsuario) {
                 if ((r.isGasto() && r.getCategoria().equals(this.Categoria))) {
@@ -135,19 +138,18 @@ public class Presupuesto {
                 }
             }
 
-            Double PresupuestoFinal = Double.valueOf(0);
+            double PresupuestoFinal = (double) 0;
 
             for (Registro r : registros) {
-                PresupuestoFinal += Double.valueOf(r.getCoste());
+                PresupuestoFinal += Double.parseDouble(r.getCoste());
             }
             return PresupuestoFinal;
 
         }
 
-        if(Categoria.equals("TODAS") && UserID>0){
+        if(Categoria.equals("TODAS") && UserID!=null){
 
-            List<Registro> AuxUsuario = new ArrayList<>();
-            AuxUsuario.addAll(registros);
+            List<Registro> AuxUsuario = new ArrayList<>(registros);
             registros.clear();
             for (Registro r : AuxUsuario) {
                 if ((r.isGasto() && r.getRegistroUserID()==UserID)) {
@@ -155,19 +157,19 @@ public class Presupuesto {
                 }
             }
 
-            Double PresupuestoFinal = Double.valueOf(0);
+            double PresupuestoFinal = (double) 0;
 
             for (Registro r : registros) {
-                PresupuestoFinal += Double.valueOf(r.getCoste());
+                PresupuestoFinal += Double.parseDouble(r.getCoste());
             }
             return PresupuestoFinal;
 
         }
 
-        Double PresupuestoFinal = Double.valueOf(0);
+        double PresupuestoFinal = (double) 0;
 
         for (Registro r : registros) {
-            PresupuestoFinal += Double.valueOf(r.getCoste());
+            PresupuestoFinal += Double.parseDouble(r.getCoste());
         }
         return PresupuestoFinal;
     }
@@ -182,9 +184,8 @@ public class Presupuesto {
             registros=new ArrayList<>();
         }
 
-        if((!(Categoria.equals("TODAS")) && this.UserID>0)) {
-            List<Registro> AuxUsuario = new ArrayList<>();
-            AuxUsuario.addAll(registros);
+        if((!(Categoria.equals("TODAS")) && this.UserID!=null)) {
+            List<Registro> AuxUsuario = new ArrayList<>(registros);
             registros.clear();
             for (Registro r : AuxUsuario) {
                 if ((r.isGasto() && r.getCategoria().equals(this.Categoria) && r.getRegistroUserID() == this.getUserID())) {
@@ -193,10 +194,9 @@ public class Presupuesto {
             }
         }
 
-        if(!Categoria.equals("TODAS") && UserID<0){
+        if(!Categoria.equals("TODAS") && UserID==null){
 
-            List<Registro> AuxUsuario = new ArrayList<>();
-            AuxUsuario.addAll(registros);
+            List<Registro> AuxUsuario = new ArrayList<>(registros);
             registros.clear();
             for (Registro r : AuxUsuario) {
                 if ((r.isGasto() && r.getCategoria().equals(this.Categoria))) {
@@ -206,10 +206,9 @@ public class Presupuesto {
 
         }
 
-        if(Categoria.equals("TODAS") && UserID>0){
+        if(Categoria.equals("TODAS") && UserID!=null){
 
-            List<Registro> AuxUsuario = new ArrayList<>();
-            AuxUsuario.addAll(registros);
+            List<Registro> AuxUsuario = new ArrayList<>(registros);
             registros.clear();
             for (Registro r : AuxUsuario) {
                 if ((r.isGasto() && r.getRegistroUserID()==UserID)) {

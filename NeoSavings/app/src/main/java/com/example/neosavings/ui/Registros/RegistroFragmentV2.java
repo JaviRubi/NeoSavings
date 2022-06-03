@@ -2,6 +2,7 @@ package com.example.neosavings.ui.Registros;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -52,7 +53,7 @@ public class RegistroFragmentV2 extends Fragment implements ItemClickListener {
     public RegistroFragmentV2(List<Registro> registros, PresupuestoInfo context) {
         ListaCuentas=new ArrayList<>();
         ListaCuentas.addAll(registros);
-        this.presupuestoInfo=context;
+        presupuestoInfo=context;
     }
 
     // TODO: Customize parameter initialization
@@ -101,7 +102,7 @@ public class RegistroFragmentV2 extends Fragment implements ItemClickListener {
 
             @Override
             public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-                Drawable trashBinIcon = getResources().getDrawable(R.drawable.ic_baseline_delete_forever_24);
+                Drawable trashBinIcon = getResources().getDrawable(R.drawable.ic_baseline_delete_forever_24, Resources.getSystem().newTheme());
                 c.clipRect(0f,((float)viewHolder.itemView.getTop()),dX,(float)viewHolder.itemView.getBottom());
                 if(dX < viewHolder.itemView.getWidth() / 3f)
                     c.drawColor(Color.GRAY);
@@ -142,9 +143,6 @@ public class RegistroFragmentV2 extends Fragment implements ItemClickListener {
         return srLayout;
     }
 
-    public void refresh(){
-        adapter.notifyDataSetChanged();
-    }
 
     public void setRegistros(List<Registro> ITEMS){
         ListaCuentas.clear();

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.fragment.app.Fragment;
 
@@ -24,10 +23,6 @@ public class PresupuestosFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-    private FrameLayout frameLayout;
     PresupuestoFragmentList presupuestoFragmentList;
 
     public PresupuestosFragment() {
@@ -55,10 +50,7 @@ public class PresupuestosFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        // TODO: Rename and change types of parameters
     }
 
     @Override
@@ -67,20 +59,16 @@ public class PresupuestosFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view=inflater.inflate(R.layout.fragment_presupuestos, container, false);
-        view.findViewById(R.id.floatingActionButton_ADDPresupuesto).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getContext(), Formulario_Presupuestos.class);
-                intent.putExtra("CASO","CREAR");
-                startActivity(intent);
-            }
+        view.findViewById(R.id.floatingActionButton_ADDPresupuesto).setOnClickListener(v -> {
+            Intent intent=new Intent(getContext(), Formulario_Presupuestos.class);
+            intent.putExtra("CASO","CREAR");
+            startActivity(intent);
         });
-        frameLayout=view.findViewById(R.id.FrameLayoutListaPresupuestos);
 
         presupuestoFragmentList=new PresupuestoFragmentList();
 
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.FrameLayoutListaPresupuestos,presupuestoFragmentList)
+        int commit = requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.FrameLayoutListaPresupuestos, presupuestoFragmentList)
                 .commit();
 
         return view;

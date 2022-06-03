@@ -10,8 +10,9 @@
         android:id="@+id/frameLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:alpha="0.75"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorSurface"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08291874" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <ImageButton
         android:id="@+id/button_CANCEL"
@@ -37,9 +38,9 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@+id/Gastos_Registro"
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
         app:srcCompat="@drawable/ic_dialog_close_dark"
-        app:tint="?attr/colorPrimary"
+        app:tint="?attr/colorOnSurface"
         tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
     <EditText
@@ -47,19 +48,19 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:autofillHints=""
-        android:backgroundTint="?attr/colorOnPrimary"
+        android:backgroundTint="?attr/colorOnSurface"
         android:backgroundTintMode="src_in"
         android:ems="10"
         android:hint="@string/String_Empty"
         android:inputType="numberDecimal"
         android:textAlignment="center"
-        android:textColor="?attr/colorOnPrimary"
-        android:textColorHint="?attr/colorOnPrimary"
+        android:textColor="?attr/colorOnSurface"
+        android:textColorHint="?attr/colorOnSurface"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <ImageButton
@@ -72,9 +73,9 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Gastos_Registro"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
         app:srcCompat="@drawable/ic_baseline_done_24"
-        app:tint="?attr/colorPrimary"
+        app:tint="?attr/colorOnSurface"
         tools:ignore="ImageContrastCheck" />
 
     <TextView

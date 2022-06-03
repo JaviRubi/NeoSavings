@@ -7,11 +7,11 @@
     tools:context=".ui.Formularios.Formulario_PagosProgramados">
 
     <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="451dp"
+        android:layout_height="537dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout"
         app:layout_constraintVertical_bias="1.0">
@@ -69,11 +69,11 @@
                 android:id="@+id/textView30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/String_Recordatorio"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toEndOf="@+id/spinnerPeriocidad"
                 app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
             <TextView
@@ -279,19 +279,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView29"
                 tools:ignore="DuplicateSpeakableTextCheck" />
 
-            <Spinner
-                android:id="@+id/spinnerRecordatorio"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="25dp"
-                android:contentDescription="@string/String_Add"
-                android:minHeight="48dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline4"
-                app:layout_constraintTop_toBottomOf="@+id/textView30" />
-
             <View
                 android:id="@+id/divider3"
                 android:layout_width="0dp"
@@ -304,6 +291,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Spinner_Categorias" />
 
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch2"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/String_Notificaciones"
+                app:layout_constraintBottom_toTopOf="@+id/textView27"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline4"
+                app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -311,8 +312,9 @@
         android:id="@+id/frameLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:alpha="0.75"
-        android:background="?attr/colorPrimary"
+        android:background="?attr/colorSurface"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -327,7 +329,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.08291874" />
+        app:layout_constraintGuide_percent="0.10945274" />
 
     <ImageButton
         android:id="@+id/button_CANCEL_FormularioRegistro2"
@@ -338,9 +340,9 @@
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toStartOf="@+id/Gastos_Registro"
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
         app:srcCompat="@drawable/ic_dialog_close_dark"
-        app:tint="?attr/colorPrimary"
+        app:tint="?attr/colorOnSurface"
         tools:ignore="ImageContrastCheck,DuplicateSpeakableTextCheck" />
 
     <EditText
@@ -348,19 +350,19 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:autofillHints=""
-        android:backgroundTint="?attr/colorOnPrimary"
+        android:backgroundTint="?attr/colorOnSurface"
         android:backgroundTintMode="src_in"
         android:ems="10"
         android:hint="@string/String_Empty"
         android:inputType="numberDecimal"
         android:textAlignment="center"
-        android:textColor="?attr/colorOnPrimary"
-        android:textColorHint="?attr/colorOnPrimary"
+        android:textColor="?attr/colorOnSurface"
+        android:textColorHint="?attr/colorOnSurface"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <ImageButton
@@ -373,9 +375,9 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Gastos_Registro"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
         app:srcCompat="@drawable/ic_baseline_done_24"
-        app:tint="?attr/colorPrimary"
+        app:tint="?attr/colorOnSurface"
         tools:ignore="ImageContrastCheck" />
 
 

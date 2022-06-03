@@ -1,15 +1,19 @@
 package com.example.neosavings.ui.Modelo;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity
+@Entity(indices = {@Index(value = {"PagoProgramadoID","UserID"},unique = true)},foreignKeys = @ForeignKey(entity = Usuario.class, childColumns = "UserID",parentColumns = "userID", onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE))
 public class PagoProgramado {
 
     @PrimaryKey(autoGenerate = true)
-    private long PagoProgramadoID;
+    @ColumnInfo(index = true,name = "PagoProgramadoID")
+    private Integer PagoProgramadoID;
 
     private String Nombre;
 
@@ -19,11 +23,16 @@ public class PagoProgramado {
 
     private String NombreUser;
 
+    @ColumnInfo(index = true,name = "UserID")
     private long UserId;
 
     private String FormaPago;
 
-    private String Recordatorio;
+    private String Coste;
+
+    private boolean Recordatorio;
+
+    private boolean Gasto;
 
     private String Periodicidad;
 
@@ -31,11 +40,35 @@ public class PagoProgramado {
 
     private Date FechaFin;
 
-    public long getPagoProgramadoID() {
+    public boolean isGasto() {
+        return Gasto;
+    }
+
+    public void setGasto(boolean gasto) {
+        Gasto = gasto;
+    }
+
+    public String getCoste() {
+        return Coste;
+    }
+
+    public void setCoste(String coste) {
+        Coste = coste;
+    }
+
+    public boolean isRecordatorio() {
+        return Recordatorio;
+    }
+
+    public void setRecordatorio(boolean recordatorio) {
+        Recordatorio = recordatorio;
+    }
+
+    public Integer getPagoProgramadoID() {
         return PagoProgramadoID;
     }
 
-    public void setPagoProgramadoID(long pagoProgramadoID) {
+    public void setPagoProgramadoID(Integer pagoProgramadoID) {
         PagoProgramadoID = pagoProgramadoID;
     }
 
@@ -85,14 +118,6 @@ public class PagoProgramado {
 
     public void setFormaPago(String formaPago) {
         FormaPago = formaPago;
-    }
-
-    public String getRecordatorio() {
-        return Recordatorio;
-    }
-
-    public void setRecordatorio(String recordatorio) {
-        Recordatorio = recordatorio;
     }
 
     public String getPeriodicidad() {

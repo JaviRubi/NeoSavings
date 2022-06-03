@@ -2,7 +2,6 @@ package com.example.neosavings.ui.Formularios;
 
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,10 +45,6 @@ public class Formulario_Presupuestos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_presupuestos);
-
-        int[] attr = {androidx.appcompat.R.attr.colorPrimary};
-        TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));
 
         String caso= (String) getIntent().getExtras().get("CASO");
         if(caso.equals("CREAR")) {
@@ -180,7 +175,12 @@ public class Formulario_Presupuestos extends AppCompatActivity {
 
             spinner_cuentas = (Spinner) findViewById(R.id.Spinner_Cuentas);
             spinner_cuentas.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerCuentas));
-            int Pos=getPosicionCuenta();
+            int Pos;
+            if(presupuesto.getUserID()!=null) {
+                Pos = getPosicionCuenta();
+            }else {
+                Pos=0;
+            }
             spinner_cuentas.setSelection(Pos);
             spinner_Categorias = (Spinner) findViewById(R.id.Spinner_Categorias);
             spinner_Categorias.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerCategorias));
@@ -303,13 +303,13 @@ public class Formulario_Presupuestos extends AppCompatActivity {
         }
 
         if(text.equals("TODOS")){
-            presupuesto.setUserID(-999);
             presupuesto.setUserName(text);
+            presupuesto.setUserID(null);
         }else {
             spinner_cuentas=(Spinner) findViewById(R.id.Spinner_Cuentas);
             int Pos = spinner_cuentas.getSelectedItemPosition()-1;
             Cuenta user=ListaCuentas.get(Pos);
-            presupuesto.setUserID(user.getUser().getUserID());
+            presupuesto.setUserID((int) user.getUser().getUserID());
             presupuesto.setUserName(user.getUser().getUsuario());
         }
 
@@ -361,13 +361,13 @@ public class Formulario_Presupuestos extends AppCompatActivity {
         }
 
         if(text.equals("TODOS")){
-            presupuesto.setUserID(-999);
+            presupuesto.setUserID(null);
             presupuesto.setUserName(text);
         }else {
             spinner_cuentas=(Spinner) findViewById(R.id.Spinner_Cuentas);
             int Pos = spinner_cuentas.getSelectedItemPosition()-1;
             Cuenta user=ListaCuentas.get(Pos);
-            presupuesto.setUserID(user.getUser().getUserID());
+            presupuesto.setUserID((int) user.getUser().getUserID());
             presupuesto.setUserName(user.getUser().getUsuario());
         }
 

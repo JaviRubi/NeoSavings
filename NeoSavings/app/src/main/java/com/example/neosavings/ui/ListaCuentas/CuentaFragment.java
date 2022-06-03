@@ -2,6 +2,7 @@ package com.example.neosavings.ui.ListaCuentas;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Rect;
@@ -96,7 +97,7 @@ public class CuentaFragment extends Fragment implements ItemClickListener {
 
             @Override
             public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
-                Drawable trashBinIcon = getResources().getDrawable(R.drawable.ic_baseline_delete_forever_24);
+                Drawable trashBinIcon = getResources().getDrawable(R.drawable.ic_baseline_delete_forever_24, Resources.getSystem().newTheme());
                 c.clipRect(0f,((float)viewHolder.itemView.getTop()),dX,(float)viewHolder.itemView.getBottom());
                 if(dX < viewHolder.itemView.getWidth() / 3f)
                     c.drawColor(Color.GRAY);

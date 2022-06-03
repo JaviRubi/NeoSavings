@@ -1,4 +1,4 @@
-package com.example.neosavings.ui.Presupuestos;
+package com.example.neosavings.ui.PagosProgramados;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,37 +23,39 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.example.neosavings.R;
 import com.example.neosavings.ui.Adapters.placeholder.ItemClickListener;
 import com.example.neosavings.ui.Database.UsuarioRepository;
-import com.example.neosavings.ui.Modelo.Presupuesto;
+import com.example.neosavings.ui.Modelo.PagoProgramado;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.Flowable;
-
 /**
  * A fragment representing a list of Items.
  */
-public class PresupuestoFragmentList extends Fragment implements ItemClickListener {
+public class PagoProgramadoFragment extends Fragment implements ItemClickListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private MyPresupuestoRecyclerViewAdapter adapter;
-    private List<Presupuesto> ListaPresupuestos=new ArrayList<>();
+
+    static List<PagoProgramado> ListaPagosProgramados;
     private UsuarioRepository mRepository;
+    private MyPagoProgramadoRecyclerViewAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public PresupuestoFragmentList() {
+
+    public PagoProgramadoFragment(List<PagoProgramado> items) {
+        ListaPagosProgramados= new ArrayList<>();
+        ListaPagosProgramados.addAll(items);
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static PresupuestoFragmentList newInstance(int columnCount) {
-        PresupuestoFragmentList fragment = new PresupuestoFragmentList();
+    public static PagoProgramadoFragment newInstance(int columnCount) {
+        PagoProgramadoFragment fragment = new PagoProgramadoFragment(ListaPagosProgramados);
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -72,8 +74,11 @@ public class PresupuestoFragmentList extends Fragment implements ItemClickListen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        SwipeRefreshLayout srLayout=(SwipeRefreshLayout) inflater.inflate(R.layout.fragment_item_list_presupuesto,container,false);
+
+        SwipeRefreshLayout srLayout=(SwipeRefreshLayout) inflater.inflate(R.layout.fragment_item_list_pagoprogramado,container,false);
         View view = srLayout.findViewById(R.id.list);
+
+        mRepository=new UsuarioRepository(getContext());
 
         ItemTouchHelper.SimpleCallback myCallback=new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT) {
 
@@ -86,8 +91,8 @@ public class PresupuestoFragmentList extends Fragment implements ItemClickListen
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                mRepository.DeletePresupuesto(ListaPresupuestos.get(viewHolder.getAbsoluteAdapterPosition()));
-                ListaPresupuestos.remove(viewHolder.getAbsoluteAdapterPosition());
+                mRepository.DeletePagoProgramado(ListaPagosProgramados.get(viewHolder.getAbsoluteAdapterPosition()));
+                ListaPagosProgramados.remove(viewHolder.getAbsoluteAdapterPosition());
                 adapter.notifyItemRemoved(viewHolder.getAbsoluteAdapterPosition());
             }
 
@@ -108,10 +113,6 @@ public class PresupuestoFragmentList extends Fragment implements ItemClickListen
         };
 
         ItemTouchHelper myHelper = new ItemTouchHelper(myCallback);
-        mRepository=new UsuarioRepository(getContext());
-
-        Flowable<List<Presupuesto>> allRegistros = mRepository.getAllPresupuestosFW();
-        ListaPresupuestos=allRegistros.blockingFirst();
 
         // Set the adapter
         if (view instanceof RecyclerView) {
@@ -122,32 +123,32 @@ public class PresupuestoFragmentList extends Fragment implements ItemClickListen
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            adapter=new MyPresupuestoRecyclerViewAdapter(ListaPresupuestos);
+
+            adapter=new MyPagoProgramadoRecyclerViewAdapter(ListaPagosProgramados);
             adapter.setClickListener(this);
             recyclerView.setAdapter(adapter);
             myHelper.attachToRecyclerView(recyclerView);
         }
         srLayout.setOnRefreshListener(()->{
-            ListaPresupuestos.clear();
-            ListaPresupuestos.addAll(mRepository.getAllPresupuestosFW().blockingFirst());
             adapter.notifyDataSetChanged();
             srLayout.setRefreshing(false);
         });
 
+
         return srLayout;
     }
 
-    public void refresh(){
-        ListaPresupuestos.clear();
-        ListaPresupuestos.addAll(mRepository.getAllPresupuestosFW().blockingFirst());
+    public void setListaRefresh(List<PagoProgramado> items){
+        ListaPagosProgramados.clear();
+        ListaPagosProgramados.addAll(items);
         adapter.notifyDataSetChanged();
     }
 
     @Override
     public void onClick(View view, int position) {
-        Presupuesto presupuesto=ListaPresupuestos.get(position);
-        Intent i = new Intent(getContext(), PresupuestoInfo.class);
-        i.putExtra("PresupuestoID", presupuesto.getPresupuestoID());
+        PagoProgramado presupuesto=ListaPagosProgramados.get(position);
+        Intent i = new Intent(getContext(), PagosProgramadosInfo.class);
+        i.putExtra("PagoProgramadoID", presupuesto.getPagoProgramadoID());
         startActivity(i);
     }
 }

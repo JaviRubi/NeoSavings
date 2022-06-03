@@ -2,7 +2,6 @@ package com.example.neosavings.ui.Formularios;
 
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -35,10 +34,6 @@ public class Formulario_Cuentas extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario_cuentas);
-
-        int[] attr = {androidx.appcompat.R.attr.colorPrimary};
-        TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));
 
         mRepository=new UsuarioRepository(getApplicationContext());
 
