@@ -9,7 +9,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.PorterDuff;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -255,6 +254,7 @@ public class RegistroInfo extends AppCompatActivity {
 
         if(registro.getTicket()!=null) {
             Ticket.setImageBitmap(registro.getTicket());
+            Ticket.setColorFilter(Color.TRANSPARENT);
             Ticket.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -453,7 +453,7 @@ public class RegistroInfo extends AppCompatActivity {
                 e.printStackTrace();
             }
             registro.setTicket(rotatedBitmap);
-            imageView.setImageTintMode(PorterDuff.Mode.MULTIPLY);
+            Ticket.setColorFilter(Color.TRANSPARENT);
             imageView.setImageBitmap(rotatedBitmap);
             Ticket.setOnClickListener(new View.OnClickListener() {
                 @Override

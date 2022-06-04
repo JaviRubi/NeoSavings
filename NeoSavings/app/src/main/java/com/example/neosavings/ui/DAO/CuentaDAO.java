@@ -169,7 +169,10 @@ public interface CuentaDAO {
     ///PAGOS PROGRAMADOS
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(PagoProgramado pagoProgramado);
+    long insert(PagoProgramado pagoProgramado);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insertReturnID(PagoProgramado pagoProgramado);
 
 
     @Update
@@ -197,9 +200,13 @@ public interface CuentaDAO {
     public Flowable<List<Registro>> getAllRegistrosPagoProgramado(Integer PagoProgramadoID,Date FechaIni,Date FechaFin);
 
     @Query("Delete FROM Registro where Registro.PagoProgramadoID=:PagoProgramadoID")
-    public void getAllRegistrosPagoProgramado(Integer PagoProgramadoID);
+    public void deleteAllRegistrosPagoProgramado(Integer PagoProgramadoID);
 
     @Transaction
     @Query("SELECT * FROM PagoProgramado")
     public Flowable<List<RegistrosPagosProgramados>> getALLRegistrosPagosProgramadosFW();
+
+    @Transaction
+    @Query("SELECT * FROM PagoProgramado where PagoProgramadoID=:pagoProgramadoID Limit 1")
+    public Flowable<RegistrosPagosProgramados> getRegistroPagosProgramadoByIDFW(Integer pagoProgramadoID);
 }

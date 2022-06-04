@@ -63,9 +63,16 @@ public class MyRegistroRecyclerViewAdapter extends RecyclerView.Adapter<MyRegist
         }
 
         if(holder.mItem.getTicket()!=null){
+
             holder.mImageView.setImageBitmap(holder.mItem.getTicket());
+            holder.mImageView.setColorFilter(Color.TRANSPARENT);
+
         }else {
-            holder.mImageView.setImageResource(R.drawable.ic_menu_camera);
+            if(holder.mItem.getPagoProgramadoID()!=null) {
+                holder.mImageView.setImageResource(R.drawable.ic_update);
+            }else{
+                holder.mImageView.setImageResource(R.drawable.ic_menu_camera);
+            }
         }
 
         if(holder.mItem.getFecha()!=null)

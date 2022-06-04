@@ -317,6 +317,8 @@ public class Formulario_Presupuestos extends AppCompatActivity {
         int Pos=spinner_Categorias.getSelectedItemPosition();
         presupuesto.setCategoria(spinnerCategorias.get(Pos));
 
+        presupuesto.setNotificado(false);
+
         mRepository.insertPresupuesto(presupuesto);
         return true;
 
@@ -374,6 +376,8 @@ public class Formulario_Presupuestos extends AppCompatActivity {
         spinner_Categorias=(Spinner) findViewById(R.id.Spinner_Categorias);
         int Pos=spinner_Categorias.getSelectedItemPosition();
         presupuesto.setCategoria(spinnerCategorias.get(Pos));
+
+        presupuesto.setNotificado(false);
 
         mRepository.Update(presupuesto);
         return true;

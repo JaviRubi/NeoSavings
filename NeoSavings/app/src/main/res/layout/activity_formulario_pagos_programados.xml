@@ -7,8 +7,8 @@
     tools:context=".ui.Formularios.Formulario_PagosProgramados">
 
     <ScrollView
-        android:layout_width="451dp"
-        android:layout_height="537dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -329,7 +329,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.10945274" />
+        app:layout_constraintGuide_begin="66dp" />
 
     <ImageButton
         android:id="@+id/button_CANCEL_FormularioRegistro2"

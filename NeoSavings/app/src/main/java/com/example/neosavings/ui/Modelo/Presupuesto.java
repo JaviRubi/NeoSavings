@@ -38,6 +38,8 @@ public class Presupuesto {
 
     private Date FechaFin;
 
+    private boolean Notificado=false;
+
     public long getPresupuestoID() {
         return PresupuestoID;
     }
@@ -100,6 +102,14 @@ public class Presupuesto {
 
     public void setUserName(String userName) {
         UserName = userName;
+    }
+
+    public boolean isNotificado() {
+        return Notificado;
+    }
+
+    public void setNotificado(boolean notificado) {
+        Notificado = notificado;
     }
 
     public Double presupuestoHastaAhora(Context context){

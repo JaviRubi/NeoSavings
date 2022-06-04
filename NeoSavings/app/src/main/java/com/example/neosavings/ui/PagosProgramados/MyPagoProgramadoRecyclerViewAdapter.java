@@ -1,5 +1,6 @@
 package com.example.neosavings.ui.PagosProgramados;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,11 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.neosavings.databinding.FragmentItemPagoprogramadoBinding;
 import com.example.neosavings.ui.Adapters.placeholder.ItemClickListener;
+import com.example.neosavings.ui.Database.UsuarioRepository;
 import com.example.neosavings.ui.Modelo.PagoProgramado;
+import com.example.neosavings.ui.Modelo.RegistrosPagosProgramados;
 import com.example.neosavings.ui.PagosProgramados.placeholder.PlaceholderContent.PlaceholderItem;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -51,8 +55,26 @@ public class MyPagoProgramadoRecyclerViewAdapter extends RecyclerView.Adapter<My
         holder.mFechaFin.setText(new SimpleDateFormat("dd/MM/yyyy").format(holder.mItem.getFechaFin()));
         DecimalFormat formato=new DecimalFormat("#,###.### €");
         Double presupuesto= Double.valueOf(holder.mItem.getCoste());
-        holder.mGasto.setText(formato.format(Double.valueOf(presupuesto)));
-        holder.mNextFecha.setText("EN PROCESO");
+
+        if(holder.mItem.isGasto()){
+            holder.mGasto.setTextColor(Color.RED);
+            holder.mGasto.setText("-"+formato.format(Double.valueOf(presupuesto)));
+        }else{
+            holder.mGasto.setTextColor(Color.GREEN);
+            holder.mGasto.setText(formato.format(Double.valueOf(presupuesto)));
+        }
+
+
+        UsuarioRepository usuarioRepository=new UsuarioRepository(holder.itemView.getContext());
+        RegistrosPagosProgramados pagos=usuarioRepository.getRegistroPagosProgramadoByID(holder.mItem.getPagoProgramadoID()).blockingFirst();
+
+        Date NextPago=pagos.getNextPago();
+        if(NextPago.getTime()>holder.mItem.getFechaFin().getTime()){
+            holder.mNextFecha.setText("CONCLUIDO");
+        }else {
+            holder.mNextFecha.setText(new SimpleDateFormat("dd/MM/yyyy").format(NextPago));
+        }
+
     }
 
     @Override

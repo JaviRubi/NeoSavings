@@ -5,6 +5,14 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR"/>
+    <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="com.google.android.c2dm.RECEIVE"/>
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -13,12 +21,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NeoSavings">
+
+        <receiver android:name=".ui.Reciver.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.ACTION_LOCKED_BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".ui.PagosProgramados.PagosProgramadosInfo"
-            android:exported="false" />
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="Informacion Pago Programado"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Formularios.Formulario_PagosProgramados"
-            android:exported="false" />
+            android:configChanges="orientation"
+            android:exported="false"
+            android:label="Editar Pago Programado"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Presupuestos.PresupuestoInfo"
             android:configChanges="orientation"

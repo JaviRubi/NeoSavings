@@ -23,6 +23,8 @@ public class PagosProgramadosFragment extends Fragment {
 
     private UsuarioRepository mRepository;
 
+    boolean SelectedGastos;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         PagosProgramadosViewModel slideshowViewModel =
@@ -46,6 +48,7 @@ public class PagosProgramadosFragment extends Fragment {
                     @Override
                     public void onTabSelected(TabLayout.Tab tab) {
                         if(tab.getText().equals("Gastos")){
+                            SelectedGastos=true;
                             mRepository=new UsuarioRepository(getContext());
                             pagoProgramadoFragment=new PagoProgramadoFragment(mRepository.getAllPagosProgramadosByGasto(true).blockingFirst());
                             getActivity().getSupportFragmentManager().beginTransaction()
@@ -55,6 +58,7 @@ public class PagosProgramadosFragment extends Fragment {
                                     .replace(R.id.FrameLayoutListaPagosProgramados,pagoProgramadoFragment)
                                     .commit();
                         }else{
+                            SelectedGastos=false;
                             mRepository=new UsuarioRepository(getContext());
                             pagoProgramadoFragment=new PagoProgramadoFragment(mRepository.getAllPagosProgramadosByGasto(false).blockingFirst());
                             getActivity().getSupportFragmentManager().beginTransaction()
@@ -89,12 +93,28 @@ public class PagosProgramadosFragment extends Fragment {
 
     @Override
     public void onResume() {
-        mRepository=new UsuarioRepository(getContext());
-        pagoProgramadoFragment=new PagoProgramadoFragment(mRepository.getAllPagosProgramadosByGasto(true).blockingFirst());
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.FrameLayoutListaPagosProgramados,pagoProgramadoFragment)
-                .commit();
-        super.onResume();
+
+        if(SelectedGastos) {
+            mRepository=new UsuarioRepository(getContext());
+            pagoProgramadoFragment=new PagoProgramadoFragment(mRepository.getAllPagosProgramadosByGasto(true).blockingFirst());
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .setCustomAnimations(androidx.navigation.ui.R.animator.nav_default_enter_anim, androidx.navigation.ui.R.animator.nav_default_exit_anim,
+                            androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
+                            androidx.navigation.ui.R.animator.nav_default_pop_exit_anim)
+                    .replace(R.id.FrameLayoutListaPagosProgramados, pagoProgramadoFragment)
+                    .commit();
+        }else {
+            mRepository=new UsuarioRepository(getContext());
+            pagoProgramadoFragment=new PagoProgramadoFragment(mRepository.getAllPagosProgramadosByGasto(false).blockingFirst());
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .setCustomAnimations(androidx.navigation.ui.R.animator.nav_default_enter_anim, androidx.navigation.ui.R.animator.nav_default_exit_anim,
+                            androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
+                            androidx.navigation.ui.R.animator.nav_default_pop_exit_anim)
+                    .replace(R.id.FrameLayoutListaPagosProgramados,pagoProgramadoFragment)
+                    .commit();
+
+        }
+            super.onResume();
     }
 
     @Override

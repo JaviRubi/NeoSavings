@@ -1,6 +1,5 @@
 package com.example.neosavings.ui.Formularios;
 
-import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
@@ -340,28 +338,17 @@ public class Formulario_PagosProgramados extends AppCompatActivity {
         String fechaFin=FechaFin.getText().toString();
 
         if(fecha.matches("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/([12][0-9]{3})$") && fechaFin.matches("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/([12][0-9]{3})$")){
-            AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
-            builder.setTitle("Formato Invalido");
-            builder.setMessage("Cambiar la Fecha de Inicio o Fin no eliminará los gastos ya creados");
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    try {
-                        pagoProgramado.setFechaInicio(new SimpleDateFormat("dd/MM/yyyy").parse(FechaIni.getText().toString()));
-                        pagoProgramado.setFechaFin(new SimpleDateFormat("dd/MM/yyyy").parse(FechaFin.getText().toString()));
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+            try {
+                if(new SimpleDateFormat("dd/MM/yyyy").parse(FechaIni.getText().toString()).getTime()>=pagoProgramado.getFechaInicio().getTime()) {
+                    pagoProgramado.setFechaInicio(new SimpleDateFormat("dd/MM/yyyy").parse(FechaIni.getText().toString()));
+                    pagoProgramado.setFechaFin(new SimpleDateFormat("dd/MM/yyyy").parse(FechaFin.getText().toString()));
+                }else{
+                    Toast.makeText(getBaseContext(), "La Fecha de Inicio no puede ser menor a la configurada inicialmente", Toast.LENGTH_SHORT).show();
+                    return false;
                 }
-            });
-            builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    finish();
-                }
-            });
-            builder.create();
-            builder.show();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
         }else{
             Toast.makeText(getBaseContext(), "Formato Fecha Inicio No Valido", Toast.LENGTH_SHORT).show();
@@ -409,6 +396,8 @@ public class Formulario_PagosProgramados extends AppCompatActivity {
         spinnerPeriodicidad.add("DIARIAMENTE");
         spinnerPeriodicidad.add("SEMANALMENTE");
         spinnerPeriodicidad.add("MENSUALMENTE");
+        spinnerPeriodicidad.add("TRIMESTRALMENTE");
+        spinnerPeriodicidad.add("SEMESTRALMENTE");
         spinnerPeriodicidad.add("ANUALMENTE");
 
 

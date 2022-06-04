@@ -1,6 +1,7 @@
 package com.example.neosavings;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,11 +20,17 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import com.example.neosavings.databinding.ActivityMainBinding;
 import com.example.neosavings.ui.Database.UsuarioRepository;
 import com.example.neosavings.ui.Modelo.Categoria;
+import com.example.neosavings.ui.Reciver.NotificationWorker;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int CODE_CAMARA=200;
     private SwitchCompat NightModeSwitch;
+    public AlarmManager alarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +64,41 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
+
         mRepository= new UsuarioRepository(getApplication());
         Categorias();
         String[] permisos=new String[1];
         permisos[0]= Manifest.permission.CAMERA;
 
+        ConfiguracionesTemas();
 
+        setWorker();
+
+
+
+
+
+
+
+
+
+    }
+
+    /*@Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }*/
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
+    public void ConfiguracionesTemas(){
         MenuItem ModoOscuro= binding.navView.getMenu().findItem(R.id.app_bar_switch);
         View view= ModoOscuro.getActionView();
         NightModeSwitch=view.findViewById(R.id.SwitchNav);
@@ -96,25 +133,19 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
-
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }*/
+    public void setWorker(){
+        PeriodicWorkRequest saveRequest = new PeriodicWorkRequest.Builder(NotificationWorker.class,15, TimeUnit.MINUTES)
+                .addTag("notificaciones")
+                .build();
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
+        WorkManager workManager=WorkManager.getInstance(getApplicationContext());
+        workManager.enqueueUniquePeriodicWork(
+                "notificaciones",
+                ExistingPeriodicWorkPolicy.KEEP,
+                saveRequest);
+
     }
 
     public void Categorias(){
