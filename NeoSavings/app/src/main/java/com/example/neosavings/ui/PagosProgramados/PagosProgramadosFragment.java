@@ -23,7 +23,11 @@ public class PagosProgramadosFragment extends Fragment {
 
     private UsuarioRepository mRepository;
 
-    boolean SelectedGastos;
+    boolean SelectedGastos=true;
+
+    public PagosProgramadosFragment() {
+        // Required empty public constructor
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -86,8 +90,13 @@ public class PagosProgramadosFragment extends Fragment {
         mRepository=new UsuarioRepository(getContext());
         pagoProgramadoFragment=new PagoProgramadoFragment(mRepository.getAllPagosProgramadosByGasto(true).blockingFirst());
         getActivity().getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(androidx.navigation.ui.R.animator.nav_default_enter_anim, androidx.navigation.ui.R.animator.nav_default_exit_anim,
+                        androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
+                        androidx.navigation.ui.R.animator.nav_default_pop_exit_anim)
                 .replace(R.id.FrameLayoutListaPagosProgramados,pagoProgramadoFragment)
                 .commit();
+
+
         return root;
     }
 

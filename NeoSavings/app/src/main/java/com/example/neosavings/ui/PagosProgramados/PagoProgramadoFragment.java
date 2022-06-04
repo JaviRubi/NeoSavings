@@ -49,6 +49,8 @@ public class PagoProgramadoFragment extends Fragment implements ItemClickListene
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
+    public PagoProgramadoFragment(){
+    }
 
     public PagoProgramadoFragment(List<PagoProgramado> items) {
         ListaPagosProgramados= new ArrayList<>();

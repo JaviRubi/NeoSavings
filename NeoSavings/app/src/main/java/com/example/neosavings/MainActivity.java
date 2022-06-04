@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setWorker(){
-        PeriodicWorkRequest saveRequest = new PeriodicWorkRequest.Builder(NotificationWorker.class,15, TimeUnit.MINUTES)
+        PeriodicWorkRequest saveRequest = new PeriodicWorkRequest.Builder(NotificationWorker.class,3, TimeUnit.HOURS)
                 .addTag("notificaciones")
                 .build();
 
