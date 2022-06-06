@@ -10,6 +10,7 @@ import androidx.room.TypeConverters;
 import com.example.neosavings.ui.DAO.Converters;
 import com.example.neosavings.ui.DAO.CuentaDAO;
 import com.example.neosavings.ui.Modelo.Categoria;
+import com.example.neosavings.ui.Modelo.Deuda;
 import com.example.neosavings.ui.Modelo.PagoProgramado;
 import com.example.neosavings.ui.Modelo.Presupuesto;
 import com.example.neosavings.ui.Modelo.Registro;
@@ -19,7 +20,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {Usuario.class, Registro.class, Categoria.class, Presupuesto.class, PagoProgramado.class}, version =1,exportSchema = false)
+@Database(entities = {Usuario.class, Registro.class, Categoria.class, Presupuesto.class, PagoProgramado.class, Deuda.class}, version =1,exportSchema = false)
 @TypeConverters({Converters.class})
     public abstract class DatabaseNeosavings extends RoomDatabase {
         public abstract CuentaDAO userDao();
@@ -32,14 +33,15 @@ import java.util.concurrent.Executors;
 
         public static final ExecutorService dbExecutor = Executors.newFixedThreadPool(THREADS);
 
-        public static DatabaseNeosavings getInstance(final Context context) {
+    public static DatabaseNeosavings getInstance(final Context context) {
             if (INSTANCE == null) {
                 synchronized (DatabaseNeosavings.class) {
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
                                 context.getApplicationContext(), DatabaseNeosavings.class,
                                 DATABASE_NAME)
-                                .fallbackToDestructiveMigration().build();
+                                .fallbackToDestructiveMigration()
+                                .build();
                     }
                 }
             }

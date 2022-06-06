@@ -27,15 +27,25 @@ public class AlarmReceiver extends BroadcastReceiver {
     }
 
     public void setWorker(){
-        PeriodicWorkRequest saveRequest = new PeriodicWorkRequest.Builder(NotificationWorker.class,15, TimeUnit.MINUTES)
-                .addTag("notificaciones")
+        PeriodicWorkRequest NotificacionesPagosProgramados = new PeriodicWorkRequest.Builder(NotificationWorker.class,4, TimeUnit.HOURS)
+                .addTag("notificaciones PagosProgramados")
+                .setInitialDelay(2,TimeUnit.HOURS)
+                .build();
+
+        PeriodicWorkRequest NotificacionesDeudas = new PeriodicWorkRequest.Builder(NotificationWorker.class,3, TimeUnit.HOURS)
+                .addTag("notificaciones Deudas")
                 .build();
 
         WorkManager workManager=WorkManager.getInstance(context);
         workManager.enqueueUniquePeriodicWork(
-                "notificaciones",
+                "notificaciones Deudas",
                 ExistingPeriodicWorkPolicy.KEEP,
-                saveRequest);
+                NotificacionesDeudas);
+
+        workManager.enqueueUniquePeriodicWork(
+                "notificaciones PagosProgramados",
+                ExistingPeriodicWorkPolicy.KEEP,
+                NotificacionesPagosProgramados);
 
     }
 }

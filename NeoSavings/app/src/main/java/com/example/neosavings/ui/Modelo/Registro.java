@@ -14,7 +14,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-@Entity(indices = {@Index(value = {"RegistroID","RegistroUserID"},unique = true)},foreignKeys = @ForeignKey(entity = Usuario.class, childColumns = "RegistroUserID",parentColumns = "userID", onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE))
+@Entity(indices = {@Index(value = {"RegistroID","RegistroUserID"},unique = true)},
+        foreignKeys = {@ForeignKey(entity = Usuario.class, childColumns = "RegistroUserID",parentColumns = "userID", onDelete = ForeignKey.CASCADE, onUpdate = ForeignKey.CASCADE), @ForeignKey(entity = Deuda.class,parentColumns = "DeudaID",childColumns = "DeudaID", onDelete = ForeignKey.CASCADE,onUpdate = ForeignKey.CASCADE)})
 public class Registro implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
@@ -25,6 +26,9 @@ public class Registro implements Serializable {
     public long RegistroUserID;
 
     public Integer PagoProgramadoID;
+
+    @ColumnInfo(index = true,name = "DeudaID")
+    public Integer DeudaID;
 
     public boolean Gasto;
 
@@ -43,6 +47,14 @@ public class Registro implements Serializable {
 
 @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     public Bitmap Ticket;
+
+    public Integer getDeudaID() {
+        return DeudaID;
+    }
+
+    public void setDeudaID(Integer deudaID) {
+        DeudaID = deudaID;
+    }
 
     public long getRegistroID() {
         return RegistroID;

@@ -136,16 +136,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setWorker(){
-        PeriodicWorkRequest saveRequest = new PeriodicWorkRequest.Builder(NotificationWorker.class,3, TimeUnit.HOURS)
-                .addTag("notificaciones")
+
+        PeriodicWorkRequest NotificacionesPagosProgramados = new PeriodicWorkRequest.Builder(NotificationWorker.class,4, TimeUnit.HOURS)
+                .addTag("notificaciones PagosProgramados")
+                .setInitialDelay(2,TimeUnit.HOURS)
+                .build();
+
+        PeriodicWorkRequest NotificacionesDeudas = new PeriodicWorkRequest.Builder(NotificationWorker.class,3, TimeUnit.HOURS)
+                .addTag("notificaciones Deudas")
                 .build();
 
         WorkManager workManager=WorkManager.getInstance(getApplicationContext());
         workManager.enqueueUniquePeriodicWork(
-                "notificaciones",
+                "notificaciones Deudas",
                 ExistingPeriodicWorkPolicy.KEEP,
-                saveRequest);
+                NotificacionesDeudas);
 
+        workManager.enqueueUniquePeriodicWork(
+                "notificaciones PagosProgramados",
+                ExistingPeriodicWorkPolicy.KEEP,
+                NotificacionesPagosProgramados);
     }
 
     public void Categorias(){
@@ -188,6 +198,11 @@ public class MainActivity extends AppCompatActivity {
 
         categoria=new Categoria();
         categoria.setCategoría("Impuestos");
+        categoria.setTipoGasto();
+        mRepository.insertCategoria(categoria);
+
+        categoria=new Categoria();
+        categoria.setCategoría("Préstamos");
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 

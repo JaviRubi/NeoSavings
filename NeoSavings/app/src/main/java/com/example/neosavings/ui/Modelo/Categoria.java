@@ -8,7 +8,9 @@ import androidx.room.PrimaryKey;
 public class Categoria {
 
 
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
+    private long CategoriaID;
+
     @NonNull
     private String Categoría;
 
@@ -36,5 +38,13 @@ public class Categoria {
 
     public void setTipoIngreso(){
         Tipo="INGRESO";
+    }
+
+    public long getCategoriaID() {
+        return CategoriaID;
+    }
+
+    public void setCategoriaID(long categoriaID) {
+        CategoriaID = categoriaID;
     }
 }

@@ -100,7 +100,7 @@ public class MyPagoProgramadoRecyclerViewAdapter extends RecyclerView.Adapter<My
         public ViewHolder(FragmentItemPagoprogramadoBinding binding) {
             super(binding.getRoot());
             mNombre = binding.textViewNombrePresupuesto;
-            mCategoria = binding.textViewCategoriaPresupuesto;
+            mCategoria = binding.textViewDeuda;
             mNombreUsuario = binding.textViewUsuarioPresupuesto;
             mFechaInicio = binding.textViewFechaInicioPresupuesto;
             mFechaFin = binding.textViewFechaFinPresupuesto;

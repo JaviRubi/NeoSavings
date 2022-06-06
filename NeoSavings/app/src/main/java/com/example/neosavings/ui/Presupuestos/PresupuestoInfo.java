@@ -58,7 +58,7 @@ public class PresupuestoInfo extends AppCompatActivity {
         TextView texto=(TextView) findViewById(R.id.textViewNombrePresupuesto);
         texto.setText(presupuesto.getName());
 
-        texto=(TextView) findViewById(R.id.textViewCategoriaPresupuesto);
+        texto=(TextView) findViewById(R.id.textViewDeuda);
         texto.setText(presupuesto.getCategoria());
 
         texto=(TextView) findViewById(R.id.textViewUsuarioPresupuesto);

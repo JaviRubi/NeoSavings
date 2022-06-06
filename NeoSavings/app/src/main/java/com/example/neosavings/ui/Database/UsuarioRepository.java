@@ -13,14 +13,18 @@ import com.example.neosavings.R;
 import com.example.neosavings.ui.DAO.CuentaDAO;
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;
+import com.example.neosavings.ui.Modelo.Deuda;
 import com.example.neosavings.ui.Modelo.PagoProgramado;
+import com.example.neosavings.ui.Modelo.PagosDeudas;
 import com.example.neosavings.ui.Modelo.Presupuesto;
 import com.example.neosavings.ui.Modelo.Registro;
 import com.example.neosavings.ui.Modelo.RegistrosPagosProgramados;
 import com.example.neosavings.ui.Modelo.Usuario;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -39,6 +43,18 @@ public class UsuarioRepository {
         mUsuarioDao = db.userDao();
         this.context=context;
     }
+
+    public Flowable<Deuda> getDeudaByID(Integer deudaID) { return mUsuarioDao.getDeudaByID(deudaID); }
+
+    public Flowable<List<Deuda>> getAllDeudas() { return mUsuarioDao.getAllDeudasFW(); }
+
+    public Flowable<PagosDeudas> getRegistrosDeudasByID(Integer DeudaID) {
+        return mUsuarioDao.getRegistrosDeudaByIDFW(DeudaID);
+    }
+
+    public Flowable<List<PagosDeudas>> getAllRegistrosDeuda() { return mUsuarioDao.getALLRegistrosPagosDeudasFW(); }
+
+    public Flowable<List<Deuda>> getAllDeudasByisDeuda(boolean isDeuda) { return mUsuarioDao.getDeudasIsDeuda(isDeuda); }
 
     public Flowable<List<PagoProgramado>> getAllPagosProgramados() { return mUsuarioDao.getAllPagosProgramadosFW(); }
 
@@ -118,7 +134,31 @@ public class UsuarioRepository {
     public void insertRegistro(Registro registro) {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> {
-                    mUsuarioDao.insert(registro);
+                    long id=mUsuarioDao.insert(registro);
+                    registro.setRegistroID(id);
+                    if( registro.getCategoria().equals("Préstamos") && registro.getDeudaID()==null){
+                        Deuda deuda= new Deuda();
+                        deuda.setDeuda(!registro.isGasto());
+                        deuda.setCosteDeuda(registro.getCoste());
+                        deuda.setUserID(registro.getRegistroUserID());
+                        deuda.setRegistroIDPrincipal(id);
+                        String aux=mUsuarioDao.findUsuarioByID(registro.getRegistroUserID()).blockingFirst().getUsuario();
+                        deuda.setNombreCuenta(aux);
+                        deuda.setNombre("SIN NOMBRE");
+
+                        deuda.setFechaInicio(registro.getFecha());
+                        Calendar calendar=Calendar.getInstance();
+                        calendar.add(Calendar.YEAR,1);
+                        aux=new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+                        try {
+                            deuda.setFechaVencimiento(new SimpleDateFormat("dd/MM/yyyy").parse(aux));
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        id=mUsuarioDao.insertReturnID(deuda);
+                        registro.setDeudaID((int) id);
+                        mUsuarioDao.insert(registro);
+                    }
                 }
         );
         NotificarPresupuestos();
@@ -136,6 +176,31 @@ public class UsuarioRepository {
         );
     }
 
+    public void insertDeuda(Deuda deuda) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> {
+                    long id=mUsuarioDao.insertReturnID(deuda);
+                    deuda.setDeudaID((int) id);
+                    Registro registro=new Registro();
+                    registro.setRegistroUserID(deuda.getUserID());
+                    registro.setDeudaID((int) id);
+                    registro.setCategoria("Préstamos");
+                    if(deuda.isDeuda()) {
+                        registro.setDescripcion("Yo -> "+deuda.getNombre());
+                    }else{
+                        registro.setDescripcion(deuda.getNombre()+" -> Yo");
+                    }
+                    registro.setFormaPago("Dinero en efectivo");
+                    registro.setGasto(!deuda.isDeuda());
+                    registro.setFecha(deuda.getFechaInicio());
+                    registro.setCoste(deuda.getCosteDeuda());
+                    id=mUsuarioDao.insert(registro);
+                    deuda.setRegistroIDPrincipal(id);
+                    mUsuarioDao.update(deuda);
+                }
+        );
+    }
+
 
 
 
@@ -148,8 +213,60 @@ public class UsuarioRepository {
     public void Update(Registro registro) {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> {
-                    mUsuarioDao.update(registro);
+                    Registro reg=mUsuarioDao.getRegistroByID(registro.RegistroID).blockingFirst();
+                    if(reg.getCategoria().equals("Préstamos")){
+                        Deuda d=mUsuarioDao.getDeudaByID(registro.DeudaID).blockingFirst();
+
+                        if(registro.getCategoria().equals("Préstamos") && d.getRegistroIDPrincipal() == registro.getRegistroID()){
+                                d.setCosteDeuda(registro.getCoste());
+                                String aux=mUsuarioDao.findUsuarioByID(registro.getRegistroUserID()).blockingFirst().getUsuario();
+                                d.setNombreCuenta(aux);
+                                d.setUserID(registro.getRegistroUserID());
+                                d.setDeuda(!registro.isGasto());
+                                mUsuarioDao.update(d);
+                        }else {
+                            if(d.getRegistroIDPrincipal() == registro.getRegistroID()){
+                                registro.setDeudaID(null);
+                                mUsuarioDao.update(registro);
+                                mUsuarioDao.delete(d);
+                                mUsuarioDao.DeleteAllRegistrosDeuda(registro.getDeudaID());
+                            }
+                        }
+                        ActualizarEstadoDeudas();
+                        mUsuarioDao.update(registro);
+                    }else{
+                        if(registro.getCategoria().equals("Préstamos") && registro.getDeudaID()==null){
+                            Deuda deuda= new Deuda();
+                            deuda.setDeuda(!registro.isGasto());
+                            deuda.setCosteDeuda(registro.getCoste());
+                            deuda.setUserID(registro.getRegistroUserID());
+                            deuda.setRegistroIDPrincipal(registro.getRegistroID());
+                            String aux=mUsuarioDao.findUsuarioByID(registro.getRegistroUserID()).blockingFirst().getUsuario();
+                            deuda.setNombreCuenta(aux);
+                            deuda.setNombre("SIN NOMBRE");
+
+                            deuda.setFechaInicio(registro.getFecha());
+                            Calendar calendar=Calendar.getInstance();
+                            calendar.add(Calendar.YEAR,1);
+                            aux=new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+                            try {
+                                deuda.setFechaVencimiento(new SimpleDateFormat("dd/MM/yyyy").parse(aux));
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+                            id=mUsuarioDao.insertReturnID(deuda);
+                            registro.setDeudaID((int) id);
+                        }
+                        mUsuarioDao.update(registro);
+                    }
                 }
+        );
+        NotificarPresupuestos();
+    }
+
+    public void UpdateOnlyRegistro(Registro registro) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> { mUsuarioDao.update(registro); }
         );
         NotificarPresupuestos();
     }
@@ -169,6 +286,18 @@ public class UsuarioRepository {
         );
     }
 
+    public void Update(Deuda deuda) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.update(deuda)
+        );
+    }
+
+    public void UpdateDeudaID(Deuda deuda) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.update(deuda)
+        );
+    }
+
 
     public void DeleteUsuario(Usuario user) {
         DatabaseNeosavings.dbExecutor.execute(
@@ -184,7 +313,20 @@ public class UsuarioRepository {
 
     public void DeleteRegistro(Registro registro) {
         DatabaseNeosavings.dbExecutor.execute(
-                () -> mUsuarioDao.deleteRegistro(registro)
+                () -> {
+                    if(registro.getCategoria().equals("Préstamos")){
+                        Deuda d=mUsuarioDao.getDeudaByID(registro.getDeudaID()).blockingFirst();
+                        if(d.getRegistroIDPrincipal()==registro.getRegistroID()){
+                            mUsuarioDao.DeleteAllRegistrosDeuda(d.getDeudaID());
+                            mUsuarioDao.delete(d);
+                        }else{
+                            mUsuarioDao.deleteRegistro(registro);
+                            ActualizarEstadoDeudas();
+                        }
+                    }else {
+                        mUsuarioDao.deleteRegistro(registro);
+                    }
+                }
         );
     }
 
@@ -197,6 +339,15 @@ public class UsuarioRepository {
     public void DeletePresupuesto(Presupuesto presupuesto) {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> mUsuarioDao.delete(presupuesto)
+        );
+    }
+
+    public void DeleteDeuda(Deuda deuda) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> {
+                    mUsuarioDao.DeleteAllRegistrosDeuda(deuda.getDeudaID());
+                    mUsuarioDao.delete(deuda);
+                }
         );
     }
 
@@ -223,6 +374,17 @@ public class UsuarioRepository {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> mUsuarioDao.deleteUsuario(user)
         );
+    }
+
+    public void ActualizarEstadoDeudas() {
+        List<PagosDeudas> pagos = mUsuarioDao.getALLRegistrosPagosDeudasFW().blockingFirst();
+        if (pagos == null) {
+            pagos = new ArrayList<>();
+        }
+
+        for (PagosDeudas p : pagos) {
+            p.ActualizarEstadoPrestamo(context);
+        }
     }
 
     public void NotificarPresupuestos(){

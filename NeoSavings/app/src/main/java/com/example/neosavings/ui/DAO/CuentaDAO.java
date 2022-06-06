@@ -11,7 +11,9 @@ import androidx.room.Update;
 
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;
+import com.example.neosavings.ui.Modelo.Deuda;
 import com.example.neosavings.ui.Modelo.PagoProgramado;
+import com.example.neosavings.ui.Modelo.PagosDeudas;
 import com.example.neosavings.ui.Modelo.Presupuesto;
 import com.example.neosavings.ui.Modelo.Registro;
 import com.example.neosavings.ui.Modelo.RegistrosPagosProgramados;
@@ -67,7 +69,7 @@ public interface CuentaDAO {
     ///REGISTROS
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Registro registro);
+    long insert(Registro registro);
 
     @Insert
     void insertAll(Registro... registros);
@@ -209,4 +211,49 @@ public interface CuentaDAO {
     @Transaction
     @Query("SELECT * FROM PagoProgramado where PagoProgramadoID=:pagoProgramadoID Limit 1")
     public Flowable<RegistrosPagosProgramados> getRegistroPagosProgramadoByIDFW(Integer pagoProgramadoID);
+
+    ///Deudas
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insert(Deuda deuda);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insertReturnID(Deuda deuda);
+
+
+    @Update
+    void update(Deuda deuda);
+
+    @Delete
+    void delete(Deuda deuda);
+
+    @Query("DELETE FROM Deuda where Deuda.DeudaID=:DeudaID")
+    void deleteDeuda(Integer DeudaID);
+
+    @Query("DELETE FROM Deuda")
+    void deleteALLDeudas();
+
+    @Query("SELECT * FROM Deuda")
+    public Flowable<List<Deuda>> getAllDeudasFW();
+
+    @Query("SELECT * FROM Deuda where Deuda.DeudaID=:DeudaID Limit 1")
+    public Flowable<Deuda> getDeudaByID(Integer DeudaID);
+
+    @Query("SELECT * FROM Deuda where Deuda.isDeuda=:isDeuda")
+    public Flowable<List<Deuda>> getDeudasIsDeuda(boolean isDeuda);
+
+    @Query("SELECT * FROM Registro where Registro.DeudaID=:DeudaID")
+    public Flowable<List<Registro>> getAllRegistrosDeuda(Integer DeudaID);
+
+    @Query("Delete  FROM Registro where Registro.DeudaID=:DeudaID")
+    public void DeleteAllRegistrosDeuda(Integer DeudaID);
+
+    @Transaction
+    @Query("SELECT * FROM Deuda")
+    public Flowable<List<PagosDeudas>> getALLRegistrosPagosDeudasFW();
+
+    @Transaction
+    @Query("SELECT * FROM Deuda where DeudaID=:DeudaID Limit 1")
+    public Flowable<PagosDeudas> getRegistrosDeudaByIDFW(Integer DeudaID);
+
 }

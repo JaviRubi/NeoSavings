@@ -4,12 +4,11 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">#C38FFF</item>
         <item name="colorPrimaryVariant">#000000</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="itemTextColor">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#00DAC5</item>
-        <item name="colorSecondaryVariant">#C38FFF</item>
+        <item name="colorSecondary">#4CC2FF</item>
+        <item name="colorSecondaryVariant">#4B6EAF</item>
         <item name="colorOnSecondary">@color/white</item>
         <item name="android:colorBackground">#121212</item>
         <item name="colorOnBackground">#FFFFFF</item>

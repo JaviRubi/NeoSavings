@@ -1,14 +1,16 @@
 package com.example.neosavings.ui.Deudas;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+
 import com.example.neosavings.R;
+import com.example.neosavings.ui.Formularios.Formulario_Deudas;
+import com.google.android.material.tabs.TabLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +23,9 @@ public class DeudasFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    TabLayout tabLayout;
+    Boolean Selected=true;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -61,6 +66,82 @@ public class DeudasFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_deudas, container, false);
+
+        View view=inflater.inflate(R.layout.fragment_deudas, container, false);
+
+        DeudaFragment deudaFragment=new DeudaFragment(true);
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(androidx.navigation.ui.R.animator.nav_default_enter_anim, androidx.navigation.ui.R.animator.nav_default_exit_anim,
+                        androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
+                        androidx.navigation.ui.R.animator.nav_default_pop_exit_anim)
+                .replace(R.id.FrameLayoutDeudas,deudaFragment)
+                .commit();
+
+        tabLayout=view.findViewById(R.id.tabLayout2);
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if(tab.getText().equals("DEUDAS")){
+                    Selected=true;
+                    DeudaFragment deudaFragment=new DeudaFragment(true);
+
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(androidx.navigation.ui.R.animator.nav_default_enter_anim, androidx.navigation.ui.R.animator.nav_default_exit_anim,
+                                    androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
+                                    androidx.navigation.ui.R.animator.nav_default_pop_exit_anim)
+                            .replace(R.id.FrameLayoutDeudas,deudaFragment)
+                            .commit();
+                }else{
+                    Selected=false;
+
+                    DeudaFragment deudaFragment=new DeudaFragment(false);
+
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(androidx.navigation.ui.R.animator.nav_default_enter_anim, androidx.navigation.ui.R.animator.nav_default_exit_anim,
+                                    androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
+                                    androidx.navigation.ui.R.animator.nav_default_pop_exit_anim)
+                            .replace(R.id.FrameLayoutDeudas,deudaFragment)
+                            .commit();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        view.findViewById(R.id.floatingActionButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), Formulario_Deudas.class);
+                intent.putExtra("CASO","CREAR");
+                startActivity(intent);
+            }
+        });
+        return view;
+
+    }
+
+    @Override
+    public void onResume() {
+
+        DeudaFragment deudaFragment=new DeudaFragment(Selected);
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(androidx.navigation.ui.R.animator.nav_default_enter_anim, androidx.navigation.ui.R.animator.nav_default_exit_anim,
+                        androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
+                        androidx.navigation.ui.R.animator.nav_default_pop_exit_anim)
+                .replace(R.id.FrameLayoutDeudas,deudaFragment)
+                .commit();
+
+        super.onResume();
     }
 }

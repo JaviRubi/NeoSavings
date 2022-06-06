@@ -392,6 +392,7 @@ public class Formulario_PagosProgramados extends AppCompatActivity {
         spinnerFormaPagos.add("Cupón");
         spinnerFormaPagos.add("Pago por móvil");
         spinnerFormaPagos.add("Pago por web");
+        spinnerFormaPagos.add("Bizum");
 
         spinnerPeriodicidad.add("DIARIAMENTE");
         spinnerPeriodicidad.add("SEMANALMENTE");

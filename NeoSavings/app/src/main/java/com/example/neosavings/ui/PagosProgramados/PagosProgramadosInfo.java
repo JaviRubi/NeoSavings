@@ -74,7 +74,7 @@ public class PagosProgramadosInfo extends AppCompatActivity {
                 mNombre = findViewById(R.id.textViewNombrePresupuesto);
                 mNombre.setText(registrosPagosProgramados.getPagoProgramado().getNombre());
 
-                mCategoria = findViewById(R.id.textViewCategoriaPresupuesto);
+                mCategoria = findViewById(R.id.textViewDeuda);
                 mCategoria.setText(registrosPagosProgramados.getPagoProgramado().getCategoría());
 
                 mNombreUsuario = findViewById(R.id.textViewUsuarioPresupuesto);

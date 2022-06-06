@@ -18,7 +18,7 @@
     <string name="menu_pagosProgramados">Pagos Programados</string>
     <string name="menu_registros">Registros</string>
     <string name="menu_cuentas">Lista de Cuentas</string>
-    <string name="menu_deudas">Deudas</string>
+    <string name="menu_deudas">Deudas y Préstamos</string>
     <string name="menu_objetivos">Objetivos</string>
     <string name="menu_ayuda">Ayuda</string>
     <string name="menu_configuracion">Configuracion</string>
@@ -41,7 +41,7 @@
     <string name="gasto">GASTO</string>
     <string name="ingreso">INGRESO</string>
     <string name="todo">TODO</string>
-    <string name="togglebutton">ToggleButton</string>
+    <string name="togglebutton2">ToggleButton</string>
     <string name="String_CrearCuenta">Crear Cuenta</string>
     <string name="String_CrearFormulario">Crear Formulario</string>
     <string name="String_NombreCuenta">Nombre de la Cuenta</string>
@@ -82,4 +82,15 @@
     <string name="String_Periocidad">Periocidad</string>
     <string name="String_Recordatorio">Recordatorio</string>
     <string name="String_Notificaciones">Notificaciones</string>
+    <string name="String_FechaVencimiento">Fecha de Vencimiento</string>
+    <string name="a_quien_ha_prestado">¿A quien ha prestado?</string>
+    <string name="para_qu_era">¿Para qué era?</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="prestamo">PRESTAMO</string>
+    <string name="deuda">DEUDA</string>
+    <string name="prestamos">PRESTAMOS</string>
+    <string name="deudas">DEUDAS</string>
+    <string name="a_adir_pago">AÑADIR PAGO</string>
+    <string name="acci_n">Acción</string>
+    <string name="cantidad">Cantidad</string>
 </resources>
