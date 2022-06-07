@@ -78,6 +78,7 @@ public class ObjetivosFragment extends Fragment {
         EstadoActivo.setEstadoActivo();
         EstadoPausado.setEstadoPausado();
         EstadoConcluido.setEstadoConcluido();
+        LastEstado=EstadoActivo.getEstado();
 
         view.findViewById(R.id.floatingActionButton5).setOnClickListener(new View.OnClickListener() {
             @Override

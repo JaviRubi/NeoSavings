@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -31,6 +32,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.neosavings.ImageZoom;
 import com.example.neosavings.R;
@@ -324,6 +326,28 @@ public class RegistroInfo extends AppCompatActivity {
                     // You can directly ask for the permission.
                     requestPermissions(new String[]{Manifest.permission.CAMERA},CODE_CAMARA);
                 }
+
+
+            }
+        });
+
+        ImageButton DeleteCamera= findViewById(R.id.imageButtonEliminarFotoUpdate);
+        DeleteCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registro.setTicket(null);
+                ImageView imageView=(ImageView)findViewById(R.id.imageView3);
+                imageView.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_menu_gallery, Resources.getSystem().newTheme()));
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                imageView.setColorFilter(typedArray.getColor(0, Color.LTGRAY));
+
 
 
             }

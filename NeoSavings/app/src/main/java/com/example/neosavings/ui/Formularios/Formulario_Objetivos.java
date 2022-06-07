@@ -54,6 +54,7 @@ public class Formulario_Objetivos extends AppCompatActivity {
         });
 
         if(caso.equals("CREAR")){
+            setTitle("Crear Objetivo");
             objetivo=new Objetivo();
             objetivo.setEstadoActivo();
             findViewById(R.id.floatingActionButtonOKObjetivo).setOnClickListener(new View.OnClickListener() {
@@ -70,6 +71,7 @@ public class Formulario_Objetivos extends AppCompatActivity {
                 }
             });
         }else{
+            setTitle("Editar Objetivo");
 
             ObjetivoID= (long) getIntent().getExtras().get("ObjetivoID");
             objetivo=mRepository.getObjetivoByID(ObjetivoID).blockingFirst();

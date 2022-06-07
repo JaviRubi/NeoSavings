@@ -41,6 +41,8 @@ public class Formulario_Cuentas extends AppCompatActivity {
 
         if(userID==-1) {
 
+            setTitle("Crear Usuario");
+
             ListaTipo = new ArrayList<>();
             ListaTipo.add("Tarjeta de Débito");
             ListaTipo.add("Tarjeta de Crédito");
@@ -76,6 +78,8 @@ public class Formulario_Cuentas extends AppCompatActivity {
             });
 
         }else{
+
+            setTitle("Editar Usuario");
 
             Flowable<Usuario> usuarioBlock=mRepository.getUserByID((long)this.getIntent().getExtras().get("UserID"));
             user=usuarioBlock.blockingFirst();

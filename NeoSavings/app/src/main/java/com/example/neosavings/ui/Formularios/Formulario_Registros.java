@@ -4,12 +4,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.PorterDuff;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -32,6 +32,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.example.neosavings.ImageZoom;
 import com.example.neosavings.R;
@@ -201,6 +202,28 @@ public class Formulario_Registros extends AppCompatActivity {
             }
         });
 
+        ImageButton DeleteCamera= findViewById(R.id.imageButtonEliminarFoto);
+        DeleteCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                registro.setTicket(null);
+                ImageView imageView=(ImageView)findViewById(R.id.imageView3);
+                imageView.setImageDrawable(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_menu_gallery, Resources.getSystem().newTheme()));
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                int[] attr = {com.google.android.material.R.attr.colorOnBackground};
+                TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+                imageView.setColorFilter(typedArray.getColor(0, Color.LTGRAY));
+
+
+
+            }
+        });
+
         spinner_cuentas=(Spinner) findViewById(R.id.Spinner_Cuentas);
         spinner_cuentas.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerCuentas));
 
@@ -296,17 +319,6 @@ public class Formulario_Registros extends AppCompatActivity {
         if(fecha.matches("^(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/([12][0-9]{3})$")){
             registro.setFecha(new SimpleDateFormat("dd/MM/yyyy").parse(fecha));
         }else{
-           /* AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Formato Invalido");
-            builder.setMessage("El formato a seguir es dd/MM/yyyy");
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                }
-            });
-            builder.create();
-            builder.show();*/
             Toast.makeText(getBaseContext(), "Formato Fecha No Valido", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -372,7 +384,7 @@ public class Formulario_Registros extends AppCompatActivity {
                 e.printStackTrace();
             }
             registro.setTicket(rotatedBitmap);
-            imageView.setImageTintMode(PorterDuff.Mode.MULTIPLY);
+            imageView.setColorFilter(Color.TRANSPARENT);
             imageView.setImageBitmap(rotatedBitmap);
             Ticket.setOnClickListener(new View.OnClickListener() {
                 @Override

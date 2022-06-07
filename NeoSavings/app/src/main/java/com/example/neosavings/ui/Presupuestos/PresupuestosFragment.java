@@ -67,8 +67,11 @@ public class PresupuestosFragment extends Fragment {
 
         presupuestoFragmentList=new PresupuestoFragmentList();
 
-        int commit = requireActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.FrameLayoutListaPresupuestos, presupuestoFragmentList)
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(androidx.navigation.ui.R.animator.nav_default_enter_anim, androidx.navigation.ui.R.animator.nav_default_exit_anim,
+                        androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
+                        androidx.navigation.ui.R.animator.nav_default_pop_exit_anim)
+                .replace(R.id.FrameLayoutListaPresupuestos,presupuestoFragmentList)
                 .commit();
 
         return view;
@@ -76,7 +79,14 @@ public class PresupuestosFragment extends Fragment {
 
     @Override
     public void onResume() {
-        presupuestoFragmentList.refresh();
+        presupuestoFragmentList=new PresupuestoFragmentList();
+
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(androidx.navigation.ui.R.animator.nav_default_enter_anim, androidx.navigation.ui.R.animator.nav_default_exit_anim,
+                        androidx.navigation.ui.R.animator.nav_default_pop_enter_anim,
+                        androidx.navigation.ui.R.animator.nav_default_pop_exit_anim)
+                .replace(R.id.FrameLayoutListaPresupuestos,presupuestoFragmentList)
+                .commit();
         super.onResume();
     }
 }

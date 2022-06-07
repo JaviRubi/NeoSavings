@@ -8,8 +8,6 @@
     android:alwaysDrawnWithCache="false">
 
 <androidx.recyclerview.widget.RecyclerView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list"
     android:name="com.example.neosavings.ui.Adapters.RegistroFragment"
     android:layout_width="match_parent"

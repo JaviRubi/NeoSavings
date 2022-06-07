@@ -30,15 +30,18 @@
             android:name=".ui.Objetivos.ObjetivoInfo"
             android:configChanges="orientation"
             android:exported="false"
+            android:label="Informacion Objetivo"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.Formularios.Formulario_NuevoPagoDeuda"
             android:configChanges="orientation"
+            android:label="Crear Nuevo Pago Deuda"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.Deudas.DeudasInfo"
             android:configChanges="orientation"
+            android:label="Informacion Deuda"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -110,7 +113,7 @@
             android:name=".ui.Formularios.Formulario_Registros"
             android:configChanges="orientation"
             android:exported="false"
-            android:label="@string/String_CrearFormulario"
+            android:label="Crear Registro"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NeoSavings" />
         <activity

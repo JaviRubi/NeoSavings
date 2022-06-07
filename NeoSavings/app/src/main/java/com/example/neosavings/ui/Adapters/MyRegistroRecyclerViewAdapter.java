@@ -1,5 +1,6 @@
 package com.example.neosavings.ui.Adapters;
 
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,6 +69,9 @@ public class MyRegistroRecyclerViewAdapter extends RecyclerView.Adapter<MyRegist
             holder.mImageView.setColorFilter(Color.TRANSPARENT);
 
         }else {
+            int[] attr = {com.google.android.material.R.attr.colorPrimary};
+            TypedArray typedArray = holder.itemView.getContext().obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
+            holder.mImageView.setColorFilter(typedArray.getColor(0, Color.LTGRAY));
             if(holder.mItem.getPagoProgramadoID()!=null) {
                 holder.mImageView.setImageResource(R.drawable.ic_update);
             }else{

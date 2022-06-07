@@ -49,6 +49,8 @@ public class Formulario_Presupuestos extends AppCompatActivity {
         String caso= (String) getIntent().getExtras().get("CASO");
         if(caso.equals("CREAR")) {
 
+            setTitle("Crear Presupuesto");
+
             EditText Fechas = findViewById(R.id.editTextDateIni);
             Fechas.setText(new SimpleDateFormat("dd/MM/yyyy").format(new Date()));
 
@@ -119,6 +121,7 @@ public class Formulario_Presupuestos extends AppCompatActivity {
 
         }else{
 
+            setTitle("Editar Presupuesto");
             mRepository = new UsuarioRepository(getApplicationContext());
             PresupuestoID= (long) getIntent().getExtras().get("PresupuestoID");
             presupuesto=mRepository.getPresupuestosByIDFW(PresupuestoID).blockingFirst();

@@ -67,6 +67,9 @@ public class RegistrosFragment extends Fragment {
         spinnerCategorias.clear();
 
         spinnerCategorias.add("Todas");
+        spinnerCategorias.add("Solo Gastos");
+        spinnerCategorias.add("Solo Ingresos");
+
         if(ListaCategoria!=null) {
             if(ListaCategoria.size()!=0){
                 for (Categoria c : ListaCategoria) {
@@ -148,11 +151,21 @@ public class RegistrosFragment extends Fragment {
 
                 List<Registro> AuxList=new ArrayList<>();
                 if(binding.spinnerCategorias.getSelectedItemPosition()!=0){
-                    Categoria categoria=ListaCategoria.get(binding.spinnerCategorias.getSelectedItemPosition()-1);
+                    String categoria=(String) binding.spinnerCategorias.getSelectedItem();
                     AuxList.addAll(ListaRegistros);
                     for (Registro r:AuxList){
-                        if(!r.getCategoria().equals(categoria.getCategoría())){
-                            ListaRegistros.remove(r);
+                        if(categoria.equals("Solo Gastos")){
+                            if(!r.isGasto()){
+                                ListaRegistros.remove(r);
+                            }
+                        }else if(categoria.equals("Solo Ingresos")){
+                            if(r.isGasto()){
+                                ListaRegistros.remove(r);
+                            }
+                        }else{
+                            if(!r.getCategoria().equals(categoria)){
+                                ListaRegistros.remove(r);
+                            }
                         }
                     }
                 }

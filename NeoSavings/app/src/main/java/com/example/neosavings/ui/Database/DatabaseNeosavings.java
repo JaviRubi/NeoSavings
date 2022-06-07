@@ -21,7 +21,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {Usuario.class, Registro.class, Categoria.class, Presupuesto.class, PagoProgramado.class, Deuda.class, Objetivo.class}, version =4,exportSchema = false)
+@Database(entities = {Usuario.class, Registro.class, Categoria.class, Presupuesto.class, PagoProgramado.class, Deuda.class, Objetivo.class}, version =1,exportSchema = false)
 @TypeConverters({Converters.class})
     public abstract class DatabaseNeosavings extends RoomDatabase {
         public abstract CuentaDAO userDao();

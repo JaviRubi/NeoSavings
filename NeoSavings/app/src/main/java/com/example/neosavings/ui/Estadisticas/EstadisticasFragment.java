@@ -270,7 +270,11 @@ public class EstadisticasFragment extends Fragment {
             e.printStackTrace();
         }
         for(Cuenta c:ListaCuentasSelec){
-            SaldoInical=SaldoInical+Double.valueOf(c.getUser().getValor());
+            if(c.getMinDate().getTime()>=FechaFinalMes.getTime()){
+                SaldoInical=SaldoInical+0;
+            }else {
+                SaldoInical = SaldoInical + Double.valueOf(c.getUser().getValor());
+            }
 
             for (Registro r:c.Registros){
 

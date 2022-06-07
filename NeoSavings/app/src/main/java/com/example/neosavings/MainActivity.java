@@ -1,12 +1,9 @@
 package com.example.neosavings;
 
 import android.Manifest;
-import android.app.AlarmManager;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,11 +37,8 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private UsuarioRepository mRepository;
-    final String CHANNEL_ID_DEUDAS="Notificaciones Deudas";
 
-    private static final int CODE_CAMARA=200;
     private SwitchCompat NightModeSwitch;
-    public AlarmManager alarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -284,18 +278,6 @@ public class MainActivity extends AppCompatActivity {
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_CANCELED) {
-            //Cancelado por el usuario
-        }
-        if ((resultCode == RESULT_OK) && (requestCode == 1)) {
-            //Procesar el resultado
-            Uri uri = data.getData(); //obtener el uri content
-        }
     }
 
 }

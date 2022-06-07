@@ -40,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:singleLine="true"
             android:text="@string/String_NotFound"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"

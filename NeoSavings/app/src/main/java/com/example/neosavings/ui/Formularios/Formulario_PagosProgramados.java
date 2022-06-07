@@ -149,8 +149,11 @@ public class Formulario_PagosProgramados extends AppCompatActivity {
 
 
         if(caso.equals("CREAR")){
+            setTitle("Crear Pago Programado");
 
             pagoProgramado=new PagoProgramado();
+
+            switch_Recordar.setChecked(pagoProgramado.isRecordatorio());
 
             FechaIni.setText(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()));
 
@@ -170,6 +173,7 @@ public class Formulario_PagosProgramados extends AppCompatActivity {
             });
 
         }else{
+            setTitle("Editar Pago Programado");
 
             int ID_Pago= (int) getIntent().getExtras().get("PagoProgramadoID");
             pagoProgramado=mRepository.getPagoProgramadoByID(ID_Pago).blockingFirst();
@@ -198,6 +202,7 @@ public class Formulario_PagosProgramados extends AppCompatActivity {
             spinner_Periocidad.setSelection(getPosicionPeriodicidad());
 
             switch_Recordar.setChecked(pagoProgramado.isRecordatorio());
+            toggleButton.setChecked(!pagoProgramado.isGasto());
 
             FechaIni.setText(new SimpleDateFormat("dd/MM/yyyy").format(pagoProgramado.getFechaInicio()));
             FechaFin.setText(new SimpleDateFormat("dd/MM/yyyy").format(pagoProgramado.getFechaFin()));
@@ -476,7 +481,7 @@ public class Formulario_PagosProgramados extends AppCompatActivity {
     public int getPosicionPeriodicidad(){
 
         int index=0;
-        for (String i:spinnerCategorias){
+        for (String i:spinnerPeriodicidad){
             if(i.equals(pagoProgramado.getPeriodicidad())){
                 return index;
             }

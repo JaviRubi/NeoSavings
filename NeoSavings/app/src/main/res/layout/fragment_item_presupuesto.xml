@@ -20,19 +20,22 @@
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorButtonNormal">
+        android:background="?attr/colorSurface">
 
         <TextView
             android:id="@+id/textViewNombrePresupuesto"
             style="@style/Widget.AppCompat.TextView.SpinnerItem"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:singleLine="true"
             android:text="@string/String_NotFound"
             android:textSize="20sp"
             android:textStyle="bold"
             app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toStartOf="@+id/textViewCategoriaPresupuesto"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,13 +56,16 @@
         <TextView
             android:id="@+id/textViewUsuarioPresupuesto"
             style="@style/Widget.AppCompat.TextView.SpinnerItem"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="10dp"
+            android:layout_marginEnd="25dp"
+            android:singleLine="true"
             android:text="@string/String_NotFound"
             android:textSize="16sp"
             app:autoSizeTextType="uniform"
+            app:layout_constraintEnd_toStartOf="@+id/textViewCategoriaPresupuesto"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewNombrePresupuesto" />
 
