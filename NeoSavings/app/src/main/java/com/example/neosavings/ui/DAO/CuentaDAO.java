@@ -12,6 +12,7 @@ import androidx.room.Update;
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;
 import com.example.neosavings.ui.Modelo.Deuda;
+import com.example.neosavings.ui.Modelo.Objetivo;
 import com.example.neosavings.ui.Modelo.PagoProgramado;
 import com.example.neosavings.ui.Modelo.PagosDeudas;
 import com.example.neosavings.ui.Modelo.Presupuesto;
@@ -255,5 +256,31 @@ public interface CuentaDAO {
     @Transaction
     @Query("SELECT * FROM Deuda where DeudaID=:DeudaID Limit 1")
     public Flowable<PagosDeudas> getRegistrosDeudaByIDFW(Integer DeudaID);
+
+    //OBJETIVOS
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    long insert(Objetivo objetivo);
+
+    @Update
+    void update(Objetivo objetivo);
+
+    @Delete
+    void delete(Objetivo objetivo);
+
+    @Query("DELETE FROM Objetivo where Objetivo.ObjetivoID=:DeudaID")
+    void deleteObjetivo(Integer DeudaID);
+
+    @Query("DELETE FROM Objetivo")
+    void deleteALLObjetivos();
+
+    @Query("SELECT * FROM Objetivo")
+    public Flowable<List<Objetivo>> getAllObjetivosFW();
+
+    @Query("SELECT * FROM Objetivo where Objetivo.ObjetivoID=:ObjetivoID Limit 1")
+    public Flowable<Objetivo> getObjetivoByID(long ObjetivoID);
+
+    @Query("SELECT * FROM Objetivo where Objetivo.Estado=:estado")
+    public Flowable<List<Objetivo>> getObjetivosByEstado(String estado);
 
 }

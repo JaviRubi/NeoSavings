@@ -22,8 +22,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NeoSavings">
         <activity
+            android:name=".ui.Formularios.Formulario_Objetivos"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.Objetivos.ObjetivoInfo"
+            android:configChanges="orientation"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".ui.Formularios.Formulario_NuevoPagoDeuda"
-            android:exported="false" />
+            android:configChanges="orientation"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.Deudas.DeudasInfo"
             android:configChanges="orientation"

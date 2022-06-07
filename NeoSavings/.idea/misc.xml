@@ -36,20 +36,29 @@
         <entry key="..\:/Users/javi_/AndroidStudioProjects/NeoSavings/app/src/main/res/layout/switch_item.xml" value="0.4427083333333333" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/NeoSavings/app/src/main/res/menu/activity_main_drawer.xml" value="0.5505208333333333" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/NeoSavings/app/src/main/res/menu/main.xml" value="0.5505208333333333" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/drawable/circle_shape.xml" value="0.1" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/drawable/itemselector.xml" value="0.1" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/drawable/prgress_bar_drawable.xml" value="0.1" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/drawable/progress_bar_drawable.xml" value="0.1" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/drawable/side_nav_bar.xml" value="0.1" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout-v31/fragment_estadisticas.xml" value="0.21875" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_deudas_info.xml" value="0.2857142857142857" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_formulario_cuentas.xml" value="0.18857142857142858" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_formulario_deudas.xml" value="0.2857142857142857" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_formulario_nuevo_pago_deuda.xml" value="0.2857142857142857" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_formulario_objetivos.xml" value="0.3625" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_formulario_pagos_programados.xml" value="0.4427083333333333" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_formulario_presupuestos.xml" value="0.42857142857142855" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_formulario_registros.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_image_zoom.xml" value="0.12571428571428572" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_main.xml" value="0.21875" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_objetivo_info.xml" value="0.3625" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_pagos_programados_info.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_presupuesto_info.xml" value="0.3828571428571429" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_registro_info.xml" value="0.33559782608695654" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/alertdialog_Importar.xml" value="0.2857142857142857" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/alertdialog_felicitacion.xml" value="0.3625" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/alertdialog_importar.xml" value="0.1453125" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/app_bar_main.xml" value="0.21875" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/content_main.xml" value="0.21875" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/content_registro_info.xml" value="0.21875" />
@@ -60,7 +69,7 @@
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_deudas.xml" value="0.21875" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_estadisticas.xml" value="0.36302083333333335" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_formulario_registro.xml" value="0.18795289855072464" />
-        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_home.xml" value="0.18795289855072464" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_home.xml" value="0.3828571428571429" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_item_cuenta.xml" value="0.20625" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_item_deuda.xml" value="0.2857142857142857" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_item_list.xml" value="0.20625" />
@@ -72,6 +81,8 @@
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_itemregistro.xml" value="0.42857142857142855" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_lista_cuentas.xml" value="0.20625" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_objetivos.xml" value="0.21875" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_objetivos_item_list.xml" value="0.5142857142857143" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_objetivos_list.xml" value="0.3625" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_pagosprogramados.xml" value="0.21875" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_presupuestos.xml" value="0.18857142857142858" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_registros.xml" value="0.42857142857142855" />
@@ -80,6 +91,7 @@
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/support_simple_spinner_dropdown_itemV2.xml" value="0.1" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/switch_item.xml" value="0.13019250253292808" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/menu/activity_main_drawer.xml" value="0.5142857142857143" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/menu/activity_toolbar_objetivos.xml" value="0.5142857142857143" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/menu/main.xml" value="0.1925925925925926" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1695" />
       </map>

@@ -182,7 +182,7 @@ public class Formulario_Deudas extends AppCompatActivity {
             spinnerRecordatorio=new ArrayList<>();
             spinnerRecordatorio.add("Ninguno");
             spinnerRecordatorio.add("Tres días antes");
-            spinnerRecordatorio.add("Ún día antes");
+            spinnerRecordatorio.add("Un día antes");
             spinnerRecordatorio.add("Fecha límite");
 
             adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerRecordatorio);
@@ -357,8 +357,10 @@ public class Formulario_Deudas extends AppCompatActivity {
 
         if(deuda.getRecordatorio().equals("Tres días antes")){
             calendar.add(Calendar.DAY_OF_YEAR,-3);
-        }else if(deuda.getRecordatorio().equals("Un día antes")){
-            calendar.add(Calendar.DAY_OF_YEAR,-1);
+        }else if(deuda.getRecordatorio().equals("Un día antes")) {
+            calendar.add(Calendar.DAY_OF_YEAR, -1);
+        }else if(deuda.getRecordatorio().equals("Fecha límite")){
+
         }else{
             deuda.setNotificado(true);
         }

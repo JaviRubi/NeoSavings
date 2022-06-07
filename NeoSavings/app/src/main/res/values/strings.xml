@@ -22,8 +22,8 @@
     <string name="menu_objetivos">Objetivos</string>
     <string name="menu_ayuda">Ayuda</string>
     <string name="menu_configuracion">Configuracion</string>
-    <string name="menu_importar">Importar Datos</string>
-    <string name="menu_exportar">Exportar Datos</string>
+    <string name="menu_importar">Exportar\Importar Datos</string>
+    <string name="menu_exportar">Compartir Gastos</string>
     <string name="String_Add">ADD</string>
     <string name="title_activity_formulario_registro">Formulario_Registro</string>
     <string name="tab_text_1">Tab 1</string>
@@ -93,4 +93,18 @@
     <string name="a_adir_pago">AÑADIR PAGO</string>
     <string name="acci_n">Acción</string>
     <string name="cantidad">Cantidad</string>
+    <string name="activos">ACTIVOS</string>
+    <string name="pausados">PAUSADOS</string>
+    <string name="concluidos">CONCLUIDOS</string>
+    <string name="_0_00">0.00 %</string>
+    <string name="concluir">CONCLUIR</string>
+    <string name="a_adir">Añadir</string>
+    <string name="cantidad_ahorrada">Cantidad Ahorrada</string>
+    <string name="cantidad_objetivo">Cantidad Objetivo</string>
+    <string name="cantidad_ya_ahorrado">Cantidad ya ahorrado</string>
+    <string name="cu_l_es_tu_objetivo">¿Cuál es tu objetivo?</string>
+    <string name="enhorabuena">ENHORABUENA!!!</string>
+    <string name="exportar_importar_datos">Exportar - Importar Datos</string>
+    <string name="String_ExplicaciónImportar">Seleccione un archivo backup anterior</string>
+    <string name="String_ExplicaciónExportar">Se generará un archivo en la carpeta de descargas</string>
 </resources>

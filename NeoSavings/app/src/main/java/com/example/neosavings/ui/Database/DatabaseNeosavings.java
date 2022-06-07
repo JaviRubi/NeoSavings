@@ -11,6 +11,7 @@ import com.example.neosavings.ui.DAO.Converters;
 import com.example.neosavings.ui.DAO.CuentaDAO;
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Deuda;
+import com.example.neosavings.ui.Modelo.Objetivo;
 import com.example.neosavings.ui.Modelo.PagoProgramado;
 import com.example.neosavings.ui.Modelo.Presupuesto;
 import com.example.neosavings.ui.Modelo.Registro;
@@ -20,7 +21,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-@Database(entities = {Usuario.class, Registro.class, Categoria.class, Presupuesto.class, PagoProgramado.class, Deuda.class}, version =1,exportSchema = false)
+@Database(entities = {Usuario.class, Registro.class, Categoria.class, Presupuesto.class, PagoProgramado.class, Deuda.class, Objetivo.class}, version =4,exportSchema = false)
 @TypeConverters({Converters.class})
     public abstract class DatabaseNeosavings extends RoomDatabase {
         public abstract CuentaDAO userDao();
@@ -41,6 +42,7 @@ import java.util.concurrent.Executors;
                                 context.getApplicationContext(), DatabaseNeosavings.class,
                                 DATABASE_NAME)
                                 .fallbackToDestructiveMigration()
+                                .setJournalMode(JournalMode.TRUNCATE)
                                 .build();
                     }
                 }

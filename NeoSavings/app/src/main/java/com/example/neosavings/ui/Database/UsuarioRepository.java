@@ -14,6 +14,7 @@ import com.example.neosavings.ui.DAO.CuentaDAO;
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;
 import com.example.neosavings.ui.Modelo.Deuda;
+import com.example.neosavings.ui.Modelo.Objetivo;
 import com.example.neosavings.ui.Modelo.PagoProgramado;
 import com.example.neosavings.ui.Modelo.PagosDeudas;
 import com.example.neosavings.ui.Modelo.Presupuesto;
@@ -43,6 +44,15 @@ public class UsuarioRepository {
         mUsuarioDao = db.userDao();
         this.context=context;
     }
+
+    public Flowable<Objetivo> getObjetivoByID(long objetivoID) { return mUsuarioDao.getObjetivoByID(objetivoID); }
+
+    public Flowable<List<Objetivo>> getAllObjetivos() { return mUsuarioDao.getAllObjetivosFW(); }
+
+    public Flowable<List<Objetivo>> getAllObjetivosByEstado(String estado){
+        return mUsuarioDao.getObjetivosByEstado(estado);
+    }
+
 
     public Flowable<Deuda> getDeudaByID(Integer deudaID) { return mUsuarioDao.getDeudaByID(deudaID); }
 
@@ -176,6 +186,12 @@ public class UsuarioRepository {
         );
     }
 
+    public void insertObjetivo(Objetivo objetivo) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.insert(objetivo)
+        );
+    }
+
     public void insertDeuda(Deuda deuda) {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> {
@@ -292,6 +308,12 @@ public class UsuarioRepository {
         );
     }
 
+    public void Update(Objetivo objetivo) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.update(objetivo)
+        );
+    }
+
     public void UpdateDeudaID(Deuda deuda) {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> mUsuarioDao.update(deuda)
@@ -302,6 +324,12 @@ public class UsuarioRepository {
     public void DeleteUsuario(Usuario user) {
         DatabaseNeosavings.dbExecutor.execute(
                 () -> mUsuarioDao.delete(user)
+        );
+    }
+
+    public void DeleteObjetivo(Objetivo objetivo) {
+        DatabaseNeosavings.dbExecutor.execute(
+                () -> mUsuarioDao.delete(objetivo)
         );
     }
 

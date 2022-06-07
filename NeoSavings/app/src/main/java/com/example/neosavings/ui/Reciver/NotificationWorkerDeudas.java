@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -64,13 +65,16 @@ public class NotificationWorkerDeudas extends Worker {
         for (PagosDeudas r : pagosDeudas) {
             try {
                 Calendar calendar=Calendar.getInstance();
+                String FechaActual= new SimpleDateFormat("dd/MM/yyyy").format(calendar.getTime());
+                Date fechaAct=new SimpleDateFormat("dd/MM/yyyy").parse(FechaActual);
 
-                if (r.getDeuda().getFechaNotificacion().getTime()<calendar.getTime().getTime()) {
+                if (r.getDeuda().getFechaNotificacion().getTime()<=fechaAct.getTime()) {
                     if(!r.getDeuda().isNotificado()){
                         if(r.getDeuda().getFechaNotificacion().getTime()<=r.getDeuda().getFechaVencimiento().getTime()){
                             Double DeudaInicial=Double.valueOf(r.getDeuda().getCosteDeuda());
                             Double DeudaRestante=r.GetDeudaRestante();
                             if(DeudaRestante!=0){
+
                                 Notificaciones.add(new NotificationCompat.Builder(context, CHANNEL_ID_DEUDAS)
                                         .setSmallIcon(R.drawable.naira_line_icon)
                                         .setContentTitle(r.getDeuda().getNombre())
@@ -80,6 +84,7 @@ public class NotificationWorkerDeudas extends Worker {
 
                                 Calendar calendar1=(Calendar) Calendar.getInstance().clone();
                                 calendar1.setTime(r.getDeuda().getFechaNotificacion());
+                                calendar1.add(Calendar.DAY_OF_YEAR,1);
                                 String aux=new SimpleDateFormat("dd/MM/yyyy").format(calendar1.getTime());
                                 r.getDeuda().setFechaNotificacion(new SimpleDateFormat("dd/MM/yyyy").parse(aux));
                                 mRepository.Update(r.getDeuda());
@@ -91,7 +96,6 @@ public class NotificationWorkerDeudas extends Worker {
                 e.printStackTrace();
             }
         }
-
         if (Notificaciones.size() > 0) {
             NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
 
@@ -108,15 +112,16 @@ public class NotificationWorkerDeudas extends Worker {
                 mChannel.setShowBadge(false);
                 notificationManagerCompat.createNotificationChannel(mChannel);
             }
+
             Notification summaryNotification =
                     new NotificationCompat.Builder(context, CHANNEL_ID_DEUDAS)
                             .setContentTitle("NeoSavings")
                             //set content text to support devices running API level < 24
-                            .setContentText("Se han actualizado " + Notificaciones.size() + " Pagos Programados")
+                            .setContentText("Se acerca la fecha límite de " + Notificaciones.size() + " Deudas")
                             .setSmallIcon(R.drawable.naira_line_icon)
                             //build summary info into InboxStyle template
                             .setStyle(new NotificationCompat.InboxStyle()
-                                    .setSummaryText(Notificaciones.size() + " Pagos Programados Actualizados"))
+                                    .setSummaryText(Notificaciones.size() + " Deudas cerca de llegar a fecha límite sin concluir"))
                             //specify which group this notification belongs to
                             .setGroup(GROUP_KEY_WORK_PAGOPROGRAMADO)
                             //set this notification as the summary for the group

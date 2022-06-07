@@ -54,14 +54,14 @@
 
         <TextView
             android:id="@+id/textView13"
+            style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="36dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginBottom="25dp"
             android:text="@string/String_Entre"
             android:textColorHighlight="?attr/colorOnSurface"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/editTextDate3"
             app:layout_constraintStart_toEndOf="@+id/editTextDate2"
@@ -71,14 +71,19 @@
         <ImageButton
             android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="?attr/colorPrimary"
             android:contentDescription="@string/String_Buscar"
-            android:src="@android:drawable/ic_menu_search"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toTopOf="@+id/textView15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ImageContrastCheck" />
+            tools:ignore="ImageContrastCheck"
+            app:tint="?attr/colorOnPrimary" />
 
         <TextView
             android:id="@+id/textView14"
@@ -98,12 +103,14 @@
             style="@style/Widget.AppCompat.TextView.SpinnerItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="132dp"
+            android:layout_marginEnd="96dp"
             android:text="@string/String_Categoria"
             android:textColor="?attr/colorOnSurface"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
 
         <Spinner
@@ -133,8 +140,10 @@
             android:contentDescription="@string/String_Categoria"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/textView14"
+            app:layout_constraintVertical_bias="0.0"
             tools:ignore="DuplicateSpeakableTextCheck" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -143,7 +152,7 @@
             android:layout_height="0dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintGuide_begin="205dp"
+            app:layout_constraintGuide_percent="0.5"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -162,5 +171,18 @@
         app:layout_constraintVertical_bias="1.0">
 
     </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton_AddRegistro2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:clickable="true"
+        android:contentDescription="@string/String_Add"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

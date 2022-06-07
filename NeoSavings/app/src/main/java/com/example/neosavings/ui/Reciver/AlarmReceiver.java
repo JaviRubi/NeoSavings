@@ -32,7 +32,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setInitialDelay(2,TimeUnit.HOURS)
                 .build();
 
-        PeriodicWorkRequest NotificacionesDeudas = new PeriodicWorkRequest.Builder(NotificationWorker.class,3, TimeUnit.HOURS)
+        PeriodicWorkRequest NotificacionesDeudas = new PeriodicWorkRequest.Builder(NotificationWorkerDeudas.class,3, TimeUnit.HOURS)
                 .addTag("notificaciones Deudas")
                 .build();
 

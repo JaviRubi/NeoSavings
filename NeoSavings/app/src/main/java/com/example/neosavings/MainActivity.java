@@ -2,9 +2,11 @@ package com.example.neosavings;
 
 import android.Manifest;
 import android.app.AlarmManager;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +30,7 @@ import com.example.neosavings.databinding.ActivityMainBinding;
 import com.example.neosavings.ui.Database.UsuarioRepository;
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Reciver.NotificationWorker;
+import com.example.neosavings.ui.Reciver.NotificationWorkerDeudas;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.concurrent.TimeUnit;
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private UsuarioRepository mRepository;
+    final String CHANNEL_ID_DEUDAS="Notificaciones Deudas";
 
     private static final int CODE_CAMARA=200;
     private SwitchCompat NightModeSwitch;
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_cuentas, R.id.nav_registros, R.id.nav_stadistic, R.id.nav_pagosProgramados, R.id.nav_presupuestos, R.id.nav_deudas, R.id.nav_objetivos, R.id.nav_importar, R.id.nav_exportar, R.id.nav_ayuda,  R.id.nav_configuracion )
+                R.id.nav_home, R.id.nav_cuentas, R.id.nav_registros, R.id.nav_stadistic, R.id.nav_pagosProgramados, R.id.nav_presupuestos, R.id.nav_deudas, R.id.nav_objetivos, R.id.nav_exportar, R.id.nav_ayuda)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -67,12 +71,18 @@ public class MainActivity extends AppCompatActivity {
 
         mRepository= new UsuarioRepository(getApplication());
         Categorias();
-        String[] permisos=new String[1];
+        String[] permisos=new String[3];
         permisos[0]= Manifest.permission.CAMERA;
+        permisos[1]=Manifest.permission.WRITE_EXTERNAL_STORAGE;
+        permisos[2]=Manifest.permission.READ_EXTERNAL_STORAGE;
+
+        requestPermissions(permisos,2);
 
         ConfiguracionesTemas();
 
         setWorker();
+
+        //doWork();
 
 
 
@@ -137,12 +147,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void setWorker(){
 
+
+
         PeriodicWorkRequest NotificacionesPagosProgramados = new PeriodicWorkRequest.Builder(NotificationWorker.class,4, TimeUnit.HOURS)
                 .addTag("notificaciones PagosProgramados")
-                .setInitialDelay(2,TimeUnit.HOURS)
+                .setInitialDelay(25,TimeUnit.MINUTES)
                 .build();
 
-        PeriodicWorkRequest NotificacionesDeudas = new PeriodicWorkRequest.Builder(NotificationWorker.class,3, TimeUnit.HOURS)
+        PeriodicWorkRequest NotificacionesDeudas = new PeriodicWorkRequest.Builder(NotificationWorkerDeudas.class,3, TimeUnit.HOURS)
                 .addTag("notificaciones Deudas")
                 .build();
 
@@ -274,5 +286,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_CANCELED) {
+            //Cancelado por el usuario
+        }
+        if ((resultCode == RESULT_OK) && (requestCode == 1)) {
+            //Procesar el resultado
+            Uri uri = data.getData(); //obtener el uri content
+        }
+    }
 
 }

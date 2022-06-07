@@ -1,12 +1,14 @@
 package com.example.neosavings.ui.Registros;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.neosavings.R;
 import com.example.neosavings.databinding.FragmentRegistrosBinding;
 import com.example.neosavings.ui.Database.UsuarioRepository;
+import com.example.neosavings.ui.Formularios.Formulario_Registros;
 import com.example.neosavings.ui.Modelo.Categoria;
 import com.example.neosavings.ui.Modelo.Cuenta;
 import com.example.neosavings.ui.Modelo.Registro;
@@ -91,6 +94,14 @@ public class RegistrosFragment extends Fragment {
                 .replace(R.id.FrameLayout2,Lista)
                 .commit();
 
+        binding.floatingActionButtonAddRegistro2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), Formulario_Registros.class);
+                startActivity(intent);
+            }
+        });
+
         mRepository=new UsuarioRepository(getContext());
         binding.editTextDate3.setText(new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime()));
         binding.imageButton2.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +121,9 @@ public class RegistrosFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }else{
+                    if(!fechaIni.isEmpty()) {
+                        Toast.makeText(getContext(), "Formato Fecha Inicio Incorrecto", Toast.LENGTH_SHORT).show();
+                    }
                     fechaIniDT=new Date(Long.MIN_VALUE);
                 }
 
@@ -120,6 +134,7 @@ public class RegistrosFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }else{
+                    Toast.makeText(getContext(), "Formato Fecha Fin Incorrecto", Toast.LENGTH_SHORT).show();
                     fechaFinDT=Calendar.getInstance().getTime();
                 }
 
@@ -170,6 +185,12 @@ public class RegistrosFragment extends Fragment {
 
 
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        binding.imageButton2.callOnClick();
+        super.onResume();
     }
 
     @Override

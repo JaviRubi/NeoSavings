@@ -56,33 +56,21 @@
         <menu tools:showIn="navigation_view">
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/nav_importar"
-                    android:icon="@drawable/ic_menu_camera"
-                    android:title="@string/menu_importar" />
-                <item
                     android:id="@+id/nav_exportar"
                     android:icon="@drawable/ic_menu_camera"
                     android:title="@string/menu_exportar" />
+                <item
+                    android:id="@+id/nav_ayuda"
+                    android:icon="@drawable/ic_menu_camera"
+                    android:title="@string/menu_ayuda" />
+                <item
+                    android:id="@+id/app_bar_switch"
+                    android:title="@string/modo_oscuro"
+                    app:actionLayout="@layout/switch_item"
+                    app:showAsAction="always" />
             </group>
         </menu>
     </item>
-    <group
-        android:id="@+id/Group4"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_ayuda"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_ayuda" />
-        <item
-            android:id="@+id/nav_configuracion"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_configuracion" />
-        <item
-            android:id="@+id/app_bar_switch"
-            android:title="@string/modo_oscuro"
-            app:actionLayout="@layout/switch_item"
-            app:showAsAction="always" />
-    </group>
 
 
 </menu>
