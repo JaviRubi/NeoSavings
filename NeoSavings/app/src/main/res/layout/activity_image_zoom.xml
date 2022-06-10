@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
     tools:context=".ImageZoom">
 
     <LinearLayout
@@ -31,9 +32,9 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:contentDescription="@string/String_Back"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="?attr/actionModeCloseDrawable"
-        tools:ignore="ImageContrastCheck"
-        android:focusable="true" />
+        tools:ignore="ImageContrastCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

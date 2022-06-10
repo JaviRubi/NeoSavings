@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
     tools:context=".ui.Presupuestos.PresupuestosFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -28,10 +29,10 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:contentDescription="@string/String_Add"
+        android:focusable="true"
         android:src="@android:drawable/ic_input_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="ImageContrastCheck"
-        android:focusable="true" />
+        tools:ignore="ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

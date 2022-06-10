@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
     tools:context=".ui.Objetivos.ObjetivoInfo">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -164,11 +165,11 @@
         android:layout_marginTop="25dp"
         android:backgroundTint="?attr/colorSurface"
         android:contentDescription="@string/String_Add"
-        app:tint="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="@+id/button"
         app:layout_constraintStart_toStartOf="@+id/button"
         app:layout_constraintTop_toBottomOf="@+id/button"
         app:srcCompat="@drawable/ic_play_circle"
+        app:tint="?attr/colorPrimary"
         tools:ignore="ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

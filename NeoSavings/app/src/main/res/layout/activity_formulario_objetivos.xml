@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
     tools:context=".ui.Formularios.Formulario_Objetivos">
 
     <TextView
@@ -155,14 +156,14 @@
         android:backgroundTint="?attr/colorOnSurface"
         android:ems="10"
         android:hint="@string/String_Empty"
+        android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
         android:textColorHint="?attr/colorOnSurface"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView36"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonOKObjetivo"
@@ -172,10 +173,10 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:contentDescription="@string/String_Add"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_done_24"
-        android:focusable="true" />
+        app:srcCompat="@drawable/ic_baseline_done_24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonBackObjetivo"
@@ -185,12 +186,12 @@
         android:layout_marginBottom="16dp"
         android:clickable="true"
         android:contentDescription="@string/String_Back"
+        android:focusable="true"
         app:backgroundTint="?attr/colorError"
         app:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/mr_dialog_close_dark"
-        android:focusable="true" />
+        app:srcCompat="@drawable/mr_dialog_close_dark" />
 
     <View
         android:id="@+id/divider4"

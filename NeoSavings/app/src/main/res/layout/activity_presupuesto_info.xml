@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/backgroundColor"
     tools:context=".ui.Presupuestos.PresupuestoInfo">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -136,10 +137,10 @@
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:contentDescription="@string/String_Descripcion"
+        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_edit"
-        android:focusable="true" />
+        app:srcCompat="@android:drawable/ic_menu_edit" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonBack"

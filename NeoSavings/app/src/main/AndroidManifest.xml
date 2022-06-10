@@ -20,33 +20,36 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NeoSavings">
+        android:theme="@style/Theme.NeoSavings"
+        android:forceDarkAllowed="true">
         <activity
             android:name=".ui.Formularios.Formulario_Objetivos"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:forceDarkAllowed="true"/>
         <activity
             android:name=".ui.Objetivos.ObjetivoInfo"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
             android:label="Informacion Objetivo"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:forceDarkAllowed="true"/>
         <activity
             android:name=".ui.Formularios.Formulario_NuevoPagoDeuda"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:label="Crear Nuevo Pago Deuda"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.Deudas.DeudasInfo"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:label="Informacion Deuda"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.Formularios.Formulario_Deudas"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
             android:screenOrientation="portrait" />
 
@@ -62,48 +65,48 @@
 
         <activity
             android:name=".ui.PagosProgramados.PagosProgramadosInfo"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
             android:label="Informacion Pago Programado"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Formularios.Formulario_PagosProgramados"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
             android:label="Editar Pago Programado"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Presupuestos.PresupuestoInfo"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
             android:label="Informacion Presupuesto"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Formularios.Formulario_Presupuestos"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
             android:label="Editar Presupuesto"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ImageZoom"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Registros.RegistroInfo"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
             android:label="@string/String_EditarRegistro"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Formularios.Formulario_Cuentas"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
             android:label="@string/String_CrearCuenta"
             android:parentActivityName=".MainActivity"
@@ -111,18 +114,19 @@
             android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Formularios.Formulario_Registros"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="false"
             android:label="Crear Registro"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".MainActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|uiMode"
             android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NeoSavings.NoActionBar">
+            android:theme="@style/Theme.NeoSavings.NoActionBar"
+            android:forceDarkAllowed="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -77,6 +77,8 @@ public class EstadisticasFragment extends Fragment {
      TextView TextGastos;
      TextView TextTotal;
 
+     View Vista;
+
 
     public EstadisticasFragment() {
         // Required empty public constructor

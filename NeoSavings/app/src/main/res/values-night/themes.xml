@@ -11,19 +11,21 @@
         <item name="colorSecondaryVariant">#4B6EAF</item>
         <item name="colorOnSecondary">@color/white</item>
         <item name="android:colorBackground">#121212</item>
+        <item name="backgroundColor">#121212</item>
         <item name="colorOnBackground">#FFFFFF</item>
         <item name="colorSurface">#292929</item>
         <item name ="colorOnSurface">@color/white</item>
         <item name="colorError">#CF6679</item>
         <item name="colorOnError">#000000</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="q">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="Q">?attr/colorPrimaryVariant</item>
         <item name="android:textColorLink">@color/white</item>
         <item name="android:prompt">@color/white</item>
         <item name="android:colorBackgroundCacheHint">@color/white</item>
         <!-- Customize your theme here. -->
 
     </style>
+
 
 
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="@color/design_default_color_secondary"
+    android:background="?attr/backgroundColor"
     tools:context=".ui.Formularios.Formulario_Registros">
 
     <FrameLayout
@@ -264,8 +264,8 @@
         app:layout_constraintStart_toEndOf="@+id/imageButtonCamera"
         app:layout_constraintTop_toBottomOf="@+id/Spinner_Categorias"
         app:srcCompat="@drawable/ic_menu_gallery"
-        tools:ignore="ImageContrastCheck"
-        app:tint="?attr/colorOnBackground" />
+        app:tint="?attr/colorOnBackground"
+        tools:ignore="ImageContrastCheck" />
 
     <Spinner
         android:id="@+id/spinner_FormasPago"

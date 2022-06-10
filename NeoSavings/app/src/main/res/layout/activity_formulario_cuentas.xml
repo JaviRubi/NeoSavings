@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background='?attr/backgroundColor'
     tools:context=".ui.Formularios.Formulario_Cuentas">
 
     <TextView
@@ -75,11 +76,11 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="@string/String_Empty"
+        android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton_Cancelar"

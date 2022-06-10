@@ -107,4 +107,5 @@
     <string name="exportar_importar_datos">Exportar - Importar Datos</string>
     <string name="String_ExplicaciónImportar">Seleccione un archivo backup anterior</string>
     <string name="String_ExplicaciónExportar">Se generará un archivo en la carpeta de descargas</string>
+    <string name="utilities">Utilities</string>
 </resources>
