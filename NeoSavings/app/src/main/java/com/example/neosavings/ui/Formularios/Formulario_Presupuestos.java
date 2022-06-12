@@ -74,7 +74,7 @@ public class Formulario_Presupuestos extends AppCompatActivity {
             if (ListaCategoria != null) {
                 if (ListaCategoria.size() != 0) {
                     for (Categoria c : ListaCategoria) {
-                        spinnerCategorias.add(c.getCategoría());
+                        spinnerCategorias.add(c.getCategoria());
                     }
                 }
             }
@@ -156,7 +156,7 @@ public class Formulario_Presupuestos extends AppCompatActivity {
             if (ListaCategoria != null) {
                 if (ListaCategoria.size() != 0) {
                     for (Categoria c : ListaCategoria) {
-                        spinnerCategorias.add(c.getCategoría());
+                        spinnerCategorias.add(c.getCategoria());
                     }
                 }
             }
@@ -258,7 +258,7 @@ public class Formulario_Presupuestos extends AppCompatActivity {
 
         int index=1;
         for (Categoria i:ListaCategoria){
-            if(i.getCategoría().equals(presupuesto.getCategoria())){
+            if(i.getCategoria().equals(presupuesto.getCategoria())){
                 return index;
             }
             index++;

@@ -252,9 +252,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Configuration.UI_MODE_NIGHT_YES:
                 recreate();
-                attr = new int[]{com.google.android.material.R.attr.colorSurface, com.google.android.material.R.attr.colorPrimaryVariant};
+                /*attr = new int[]{com.google.android.material.R.attr.colorSurface, com.google.android.material.R.attr.colorPrimaryVariant};
                 typedArray= obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));*/
 
 
                 break;
@@ -264,115 +264,137 @@ public class MainActivity extends AppCompatActivity {
 
     public void Categorias(){
 
-
+        int id=1;
         Categoria categoria=new Categoria();
-        categoria.setCategoría("Comida y Bebida");
+        categoria.setCategoria("Comida y Bebida");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Compras");
+        categoria.setCategoria("Compras");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Vivienda");
+        categoria.setCategoria("Vivienda");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Transporte");
+        categoria.setCategoria("Transporte");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Vehiculos");
+        categoria.setCategoria("Vehiculos");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Entretenimiento");
+        categoria.setCategoria("Entretenimiento");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Informatica");
+        categoria.setCategoria("Informatica");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Impuestos");
+        categoria.setCategoria("Impuestos");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Préstamos");
+        categoria.setCategoria("Préstamos");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Inversiones");
+        categoria.setCategoria("Inversiones");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Otros");
+        categoria.setCategoria("Otros");
+        categoria.setCategoriaID(id++);
         categoria.setTipoGasto();
         mRepository.insertCategoria(categoria);
 
 
         categoria=new Categoria();
-        categoria.setCategoría("Ingreso");
+        categoria.setCategoria("Ingreso");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Cheques");
+        categoria.setCategoria("Cheques");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Donaciones");
+        categoria.setCategoria("Donaciones");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Ingresos Alquiler");
+        categoria.setCategoria("Ingresos Alquiler");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Intereses");
+        categoria.setCategoria("Intereses");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Lotería/Juegos de Azar");
+        categoria.setCategoria("Lotería/Juegos de Azar");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Préstamos");
+        categoria.setCategoria("Préstamos");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Reembolsos");
+        categoria.setCategoria("Reembolsos");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Regalos");
+        categoria.setCategoria("Regalos");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Salarios");
+        categoria.setCategoria("Salarios");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 
         categoria=new Categoria();
-        categoria.setCategoría("Ventas");
+        categoria.setCategoria("Ventas");
+        categoria.setCategoriaID(id++);
         categoria.setTipoIngreso();
         mRepository.insertCategoria(categoria);
 

@@ -73,7 +73,7 @@ public class RegistrosFragment extends Fragment {
         if(ListaCategoria!=null) {
             if(ListaCategoria.size()!=0){
                 for (Categoria c : ListaCategoria) {
-                    spinnerCategorias.add(c.getCategoría());
+                    spinnerCategorias.add(c.getCategoria());
                 }
             }else{
                 spinnerCategorias.add("NO HAY CATEGORIAS");

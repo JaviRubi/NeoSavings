@@ -122,7 +122,7 @@ public class RegistroInfo extends AppCompatActivity {
         if(ListaCategoriaGastos!=null) {
             if(ListaCategoriaGastos.size()!=0){
                 for (Categoria c : ListaCategoriaGastos) {
-                    spinnerCategoriasGastos.add(c.getCategoría());
+                    spinnerCategoriasGastos.add(c.getCategoria());
                 }
             }else{
                 spinnerCategorias.add("NO HAY CATEGORIAS");
@@ -132,7 +132,7 @@ public class RegistroInfo extends AppCompatActivity {
         if(ListaCategoriaIngresos!=null) {
             if(ListaCategoriaIngresos.size()!=0){
                 for (Categoria c : ListaCategoriaIngresos) {
-                    spinnerCategoriasIngresos.add(c.getCategoría());
+                    spinnerCategoriasIngresos.add(c.getCategoria());
                 }
             }else{
                 spinnerCategorias.add("NO HAY CATEGORIAS");
@@ -386,7 +386,7 @@ public class RegistroInfo extends AppCompatActivity {
 
         int index=0;
         for (Categoria i:ListaCategoria){
-            if(i.getCategoría().equals(registro.getCategoria())){
+            if(i.getCategoria().equals(registro.getCategoria())){
                 return index;
             }
             index++;

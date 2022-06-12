@@ -107,8 +107,8 @@ public class Formulario_PagosProgramados extends AppCompatActivity {
         if(ListaCategoriaGastos !=null) {
             if(ListaCategoriaGastos.size()!=0){
                 for (Categoria c : ListaCategoriaGastos) {
-                    spinnerCategorias.add(c.getCategoría());
-                    spinnerCategoriasGastos.add(c.getCategoría());
+                    spinnerCategorias.add(c.getCategoria());
+                    spinnerCategoriasGastos.add(c.getCategoria());
                 }
             }else{
                 spinnerCategorias.add("NO HAY CATEGORIAS");
@@ -118,7 +118,7 @@ public class Formulario_PagosProgramados extends AppCompatActivity {
         if(ListaCategoriaIngresos !=null) {
             if(ListaCategoriaIngresos.size()!=0){
                 for (Categoria c : ListaCategoriaIngresos) {
-                    spinnerCategoriasIngresos.add(c.getCategoría());
+                    spinnerCategoriasIngresos.add(c.getCategoria());
                 }
             }
         }

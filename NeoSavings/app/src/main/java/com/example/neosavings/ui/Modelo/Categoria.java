@@ -2,26 +2,24 @@ package com.example.neosavings.ui.Modelo;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(primaryKeys = {"CategoriaID","Categoria"})
 public class Categoria {
 
 
-    @PrimaryKey(autoGenerate = true)
     private long CategoriaID;
 
     @NonNull
-    private String Categoría;
+    private String Categoria;
 
     private String Tipo;
 
-    public String getCategoría() {
-        return Categoría;
+    public String getCategoria() {
+        return Categoria;
     }
 
-    public void setCategoría(String categoría) {
-        Categoría = categoría;
+    public void setCategoria(String categoria) {
+        Categoria = categoria;
     }
 
     public String getTipo() {

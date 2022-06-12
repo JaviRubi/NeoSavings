@@ -35,6 +35,13 @@ android {
 
 dependencies {
 
+    implementation 'com.google.android.material:material:1.5.0'
+
+    // Circle Indicator (To fix the xml preview "Missing classes" error)
+    implementation 'me.relex:circleindicator:2.1.6'
+
+    implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.1.0'
+
 //Graficas de Datos
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view-androidx:3.10.0'
@@ -53,6 +60,7 @@ dependencies {
     implementation 'androidx.room:room-common:2.4.2'
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
     def room_version = "2.4.2"
 
     implementation "androidx.room:room-runtime:$room_version"

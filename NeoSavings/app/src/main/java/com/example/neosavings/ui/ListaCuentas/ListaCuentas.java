@@ -1,5 +1,6 @@
 package com.example.neosavings.ui.ListaCuentas;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.example.neosavings.R;
+import com.example.neosavings.ui.Formularios.Formulario_Cuentas;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,6 +65,16 @@ public class ListaCuentas extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_lista_cuentas, container, false);
+
+        view.findViewById(R.id.floatingActionButton8).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), Formulario_Cuentas.class);
+                long extra=-1;
+                intent.putExtra("UserID",extra);
+                startActivity(intent);
+            }
+        });
 
         Lista=new CuentaFragment();
 

@@ -108,4 +108,16 @@
     <string name="String_ExplicaciónImportar">Seleccione un archivo backup anterior</string>
     <string name="String_ExplicaciónExportar">Se generará un archivo en la carpeta de descargas</string>
     <string name="utilities">Utilities</string>
+    <string name="registros_ayuda">REGISTROS</string>
+    <string name="estad_sticas_ayuda">ESTADÍSTICAS</string>
+    <string name="usuarios_ayuda">USUARIOS</string>
+    <string name="home_ayuda">HOME</string>
+    <string name="home">HOME</string>
+    <string name="deudas_y_n_pr_stamos">DEUDAS Y \n PRÉSTAMOS</string>
+    <string name="pagos_n_programados_ayuda">PAGOS \n PROGRAMADOS</string>
+    <string name="objetivos_ayuda">OBJETIVOS</string>
+    <string name="title_activity_ayuda_home">Ayuda_Home</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="informacion_ngeneral">Informacion\nGeneral</string>
+    <string name="navegacion">Navegacion</string>
 </resources>

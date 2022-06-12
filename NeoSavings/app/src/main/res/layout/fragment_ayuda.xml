@@ -8,15 +8,366 @@
     android:background="?attr/backgroundColor"
     tools:context=".ui.Ayuda.AyudaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="@string/menu_ayuda"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   <GridLayout
+       android:layout_width="match_parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent"
+       android:layout_height="match_parent"
+       android:columnCount="2"
+       android:rowCount="4"
+       android:layout_margin="15dp">
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/Home_card"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_rowWeight="1"
+           android:layout_columnWeight="1"
+           android:layout_margin="10dp"
+           app:cardBackgroundColor="#0099FF"
+           app:cardCornerRadius="15dp"
+           app:cardElevation="6dp">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:id="@+id/relativeLayout5"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <ImageView
+                   android:id="@+id/imageView24"
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:contentDescription="@string/todo"
+                   app:layout_constraintBottom_toTopOf="@+id/textView49"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:srcCompat="@drawable/ic_home_round"
+                   app:tint="@color/white"></ImageView>
+
+               <TextView
+                   android:id="@+id/textView49"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:layout_marginBottom="5dp"
+                   android:fontFamily="sans-serif-smallcaps"
+                   android:text="@string/home"
+                   android:textAlignment="center"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent" />
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/Users_Card"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_rowWeight="1"
+           android:layout_columnWeight="1"
+           android:layout_margin="10dp"
+           app:cardBackgroundColor="#CC6600"
+           app:cardCornerRadius="15dp"
+           app:cardElevation="6dp">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:id="@+id/relativeLayout4"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <ImageView
+                   android:id="@+id/imageView23"
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:contentDescription="@string/todo"
+                   app:layout_constraintBottom_toTopOf="@+id/textView50"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:srcCompat="@drawable/ic_manage_accounts"
+                   app:tint="@color/white"></ImageView>
+
+               <TextView
+                   android:id="@+id/textView50"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:layout_marginBottom="5dp"
+                   android:text="@string/usuarios_ayuda"
+                   android:textAlignment="center"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent" />
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/Registros_Card"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_rowWeight="1"
+           android:layout_columnWeight="1"
+           android:layout_margin="10dp"
+           app:cardBackgroundColor="#2E7D32"
+           app:cardCornerRadius="15dp"
+           app:cardElevation="6dp">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:id="@+id/relativeLayout3"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <ImageView
+                   android:id="@+id/imageView22"
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:contentDescription="@string/todo"
+                   app:layout_constraintBottom_toTopOf="@+id/textView48"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:srcCompat="@drawable/ic_receipt"
+                   app:tint="@color/white"></ImageView>
+
+               <TextView
+                   android:id="@+id/textView48"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:layout_marginBottom="5dp"
+                   android:text="@string/registros_ayuda"
+                   android:textAlignment="center"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent" />
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/Estadísticas_Card"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_rowWeight="1"
+           android:layout_columnWeight="1"
+           android:layout_margin="10dp"
+           app:cardBackgroundColor="#6C3483"
+           app:cardCornerRadius="15dp"
+           app:cardElevation="6dp">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:id="@+id/relativeLayout2"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <ImageView
+                   android:id="@+id/imageView21"
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:contentDescription="@string/todo"
+                   app:layout_constraintBottom_toTopOf="@+id/textView47"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:srcCompat="@drawable/ic_monitoring"
+                   app:tint="@color/white"></ImageView>
+
+               <TextView
+                   android:id="@+id/textView47"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:layout_marginBottom="5dp"
+                   android:text="@string/estad_sticas_ayuda"
+                   android:textAlignment="center"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent" />
+
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/PagosProgramados_Card"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_rowWeight="1"
+           android:layout_columnWeight="1"
+           android:layout_margin="10dp"
+           app:cardBackgroundColor="#3300FF"
+           app:cardCornerRadius="15dp"
+           app:cardElevation="6dp">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <ImageView
+                   android:id="@+id/imageView25"
+                   android:layout_width="0dp"
+                   android:layout_height="0dp"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:contentDescription="@string/todo"
+                   android:src="@drawable/ic_update"
+                   app:layout_constraintBottom_toTopOf="@+id/textView45"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:tint="@color/white" />
+
+               <TextView
+                   android:id="@+id/textView45"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:layout_marginBottom="5dp"
+                   android:text="@string/pagos_n_programados_ayuda"
+                   android:textAlignment="center"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent" />
+           </androidx.constraintlayout.widget.ConstraintLayout>
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/Deudas_Card"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_rowWeight="1"
+           android:layout_columnWeight="1"
+           android:layout_margin="10dp"
+           android:padding="10dp"
+           app:cardBackgroundColor="#B71C1C"
+           app:cardCornerRadius="15dp"
+           app:cardElevation="6dp">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <ImageView
+                   android:id="@+id/imageView18"
+                   android:layout_width="0dp"
+                   android:layout_height="0dp"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:contentDescription="@string/todo"
+                   android:src="@drawable/pedir_prestado"
+                   app:layout_constraintBottom_toTopOf="@+id/textView43"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:tint="@color/white" />
+
+               <TextView
+                   android:id="@+id/textView43"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:layout_marginBottom="5dp"
+                   android:text="@string/deudas_y_n_pr_stamos"
+                   android:textAlignment="center"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent" />
+           </androidx.constraintlayout.widget.ConstraintLayout>
+       </androidx.cardview.widget.CardView>
+
+       <androidx.cardview.widget.CardView
+           android:id="@+id/Objetivos_Card"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:layout_rowWeight="1"
+           android:layout_columnWeight="1"
+           android:layout_margin="10dp"
+           app:cardBackgroundColor="#ED5CCE"
+           app:cardCornerRadius="15dp"
+           app:cardElevation="6dp">
+
+           <androidx.constraintlayout.widget.ConstraintLayout
+               android:id="@+id/relativeLayout"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent">
+
+               <ImageView
+                   android:id="@+id/imageView20"
+                   android:layout_width="0dp"
+                   android:layout_height="0dp"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginTop="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:contentDescription="@string/todo"
+                   app:layout_constraintBottom_toTopOf="@+id/textView46"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:srcCompat="@drawable/ic_savings"
+                   app:tint="@color/white"></ImageView>
+
+               <TextView
+                   android:id="@+id/textView46"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="5dp"
+                   android:layout_marginEnd="5dp"
+                   android:layout_marginBottom="5dp"
+                   android:text="@string/objetivos_ayuda"
+                   android:textAlignment="center"
+                   android:textColor="@color/white"
+                   android:textStyle="bold"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintStart_toStartOf="parent" />
+           </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+       </androidx.cardview.widget.CardView>
+
+
+   </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,6 +43,7 @@
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/drawable/progress_bar_drawable.xml" value="0.1" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/drawable/side_nav_bar.xml" value="0.1" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout-v31/fragment_estadisticas.xml" value="0.21875" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_ayuda_home.xml" value="0.21354166666666666" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_deudas_info.xml" value="0.2857142857142857" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_formulario_cuentas.xml" value="0.18857142857142858" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/activity_formulario_deudas.xml" value="0.2857142857142857" />
@@ -63,7 +64,8 @@
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/app_bar_main.xml" value="0.21875" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/content_main.xml" value="0.21875" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/content_registro_info.xml" value="0.21875" />
-        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_ayuda.xml" value="0.21875" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_ayuda.xml" value="0.3828571428571429" />
+        <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_ayuda_home.xml" value="0.21354166666666666" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_blank.xml" value="0.21875" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_configuracion.xml" value="0.20625" />
         <entry key="..\:/Users/javi_/AndroidStudioProjects/TFG/NeoSavings/app/src/main/res/layout/fragment_cuenta.xml" value="0.21875" />
@@ -103,5 +105,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.2857142857142857" />
+      </ProjectState>
+    </option>
   </component>
 </project>

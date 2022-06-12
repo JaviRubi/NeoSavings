@@ -16,36 +16,43 @@
 
     <application
         android:allowBackup="true"
+        android:forceDarkAllowed="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NeoSavings"
-        android:forceDarkAllowed="true">
+        android:theme="@style/Theme.NeoSavings">
+        <activity
+            android:name=".ui.Ayuda.Ayuda_Home"
+            android:configChanges="orientation|uiMode"
+            android:exported="false"
+            android:label="Ayuda Home"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.NeoSavings" />
         <activity
             android:name=".ui.Formularios.Formulario_Objetivos"
             android:configChanges="orientation|uiMode"
             android:exported="false"
-            android:screenOrientation="portrait"
-            android:forceDarkAllowed="true"/>
+            android:forceDarkAllowed="true"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.Objetivos.ObjetivoInfo"
             android:configChanges="orientation|uiMode"
             android:exported="false"
+            android:forceDarkAllowed="true"
             android:label="Informacion Objetivo"
-            android:screenOrientation="portrait"
-            android:forceDarkAllowed="true"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.Formularios.Formulario_NuevoPagoDeuda"
             android:configChanges="orientation|uiMode"
-            android:label="Crear Nuevo Pago Deuda"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:label="Crear Nuevo Pago Deuda"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.Deudas.DeudasInfo"
             android:configChanges="orientation|uiMode"
-            android:label="Informacion Deuda"
             android:exported="false"
+            android:label="Informacion Deuda"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.Formularios.Formulario_Deudas"
@@ -123,10 +130,10 @@
             android:name=".MainActivity"
             android:configChanges="orientation|uiMode"
             android:exported="true"
+            android:forceDarkAllowed="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.NeoSavings.NoActionBar"
-            android:forceDarkAllowed="true">
+            android:theme="@style/Theme.NeoSavings.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

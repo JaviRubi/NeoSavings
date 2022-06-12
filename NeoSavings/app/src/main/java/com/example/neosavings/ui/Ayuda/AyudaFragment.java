@@ -1,12 +1,13 @@
 package com.example.neosavings.ui.Ayuda;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
 
 import com.example.neosavings.R;
 
@@ -61,6 +62,26 @@ public class AyudaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ayuda, container, false);
+        View view=inflater.inflate(R.layout.fragment_ayuda, container, false);
+        CardView cardView=view.findViewById(R.id.Home_card);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(),Ayuda_Home.class);
+                intent.putExtra("CASO","HOME");
+                startActivity(intent);
+            }
+        });
+        cardView=view.findViewById(R.id.Users_Card);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(),Ayuda_Home.class);
+                intent.putExtra("CASO","USER");
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 }
