@@ -12,7 +12,7 @@
     <string name="menu_slideshow">Slideshow</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="estadisticas">Estadisticas</string>
+    <string name="estadisticas">Estadísticas</string>
     <string name="menu_presupuestos">Presupuestos</string>
     <string name="menu_estadisticas">Estadísticas</string>
     <string name="menu_pagosProgramados">Pagos Programados</string>
@@ -120,4 +120,5 @@
     <string name="wednesday">Wednesday</string>
     <string name="informacion_ngeneral">Informacion\nGeneral</string>
     <string name="navegacion">Navegacion</string>
+    <string name="notificaciones">Notificaciones</string>
 </resources>

@@ -70,6 +70,7 @@ public class NotificationWorker extends Worker {
                                 .setContentTitle(r.getPagoProgramado().getNombre())
                                 .setContentText("Se ha generado un nuevo Registro automático")
                                 .setGroup(GROUP_KEY_WORK_PAGOPROGRAMADO)
+                                .setAutoCancel(true)
                                 .build());
                     }
                 }
@@ -107,6 +108,7 @@ public class NotificationWorker extends Worker {
                             .setGroup(GROUP_KEY_WORK_PAGOPROGRAMADO)
                             //set this notification as the summary for the group
                             .setGroupSummary(true)
+                            .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
                             .build();
             int index = 500;
 

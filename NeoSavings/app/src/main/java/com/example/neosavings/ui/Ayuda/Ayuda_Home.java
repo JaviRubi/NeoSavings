@@ -38,10 +38,27 @@ public class Ayuda_Home extends AppCompatActivity {
                 ListaImagenes.add(new CarouselItem(R.drawable.pantalla_navegacion_menu,"Información Navegación"));
                 break;
             case "USER":
-                ListaImagenes.add(new CarouselItem(R.drawable.ic_home,"Información Lista Cuentas"));
-                ListaImagenes.add(new CarouselItem(R.drawable.ic_edit_fill,"Cómo Crear una Cuenta"));
-                ListaImagenes.add(new CarouselItem(R.drawable.ic_edit_fill,"Cómo Borrar una Cuenta"));
-                ListaImagenes.add(new CarouselItem(R.drawable.ic_edit_fill,"Cómo Editar una Cuenta"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_lista_cuentas_info,"Información Lista Cuentas"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_crear_cuentas_info,"Cómo Crear una Cuenta"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_editar_cuentas_info,"Cómo Editar una Cuenta"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_eliminar_cuentas_info,"Cómo Borrar una Cuenta"));
+                setTitle("Ayuda Usuarios");
+                break;
+            case "REGISTROS":
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_filtro_registros_info,"Información Pantalla Registros"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_formulario_registros_info,"Información Formulario Registros"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_preview_imagen_registros_info,"Zoom Imagen Registro"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_crear_registros_info,"Cómo Crear un Registro"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_editar_registros_info,"Cómo Editar un Registro"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_eliminar_registros_info,"Cómo Borrar un Registro"));
+                setTitle("Ayuda Registros");
+                break;
+            case "ESTADISTICAS":
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_estadisticas_info,"Información Pantalla Estadísticas"));
+                setTitle("Ayuda Estadísticas");
+                break;
+
+
         }
 
 
@@ -56,7 +73,7 @@ public class Ayuda_Home extends AppCompatActivity {
         carousel.setShowTopShadow(false);
         carousel.setShowNavigationButtons(false);
         carousel.setCarouselType(CarouselType.BLOCK);
-        carousel.setCaptionTextSize(70);
+        carousel.setCaptionTextSize(60);
         carousel.setCurrentPosition(0);
 
 

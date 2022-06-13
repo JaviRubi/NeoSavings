@@ -82,6 +82,66 @@ public class AyudaFragment extends Fragment {
             }
         });
 
+        cardView=view.findViewById(R.id.Registros_Card);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(),Ayuda_Home.class);
+                intent.putExtra("CASO","REGISTROS");
+                startActivity(intent);
+            }
+        });
+
+        cardView=view.findViewById(R.id.Estadísticas_Card);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(),Ayuda_Home.class);
+                intent.putExtra("CASO","ESTADISTICAS");
+                startActivity(intent);
+            }
+        });
+
+        cardView=view.findViewById(R.id.PagosProgramados_Card);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(),Ayuda_Home.class);
+                intent.putExtra("CASO","PAGOSPROGRAMADOS");
+                startActivity(intent);
+            }
+        });
+
+        cardView=view.findViewById(R.id.Deudas_Card);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(),Ayuda_Home.class);
+                intent.putExtra("CASO","DEUDAS");
+                startActivity(intent);
+            }
+        });
+
+        cardView=view.findViewById(R.id.Objetivos_Card);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(),Ayuda_Home.class);
+                intent.putExtra("CASO","OBJETIVOS");
+                startActivity(intent);
+            }
+        });
+
+        cardView=view.findViewById(R.id.Notificaciones_Card);
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(),Ayuda_Home.class);
+                intent.putExtra("CASO","NOTIFICACIONES");
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 }

@@ -2,6 +2,8 @@ package com.example.neosavings.ui.Deudas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -37,6 +39,8 @@ public class DeudasInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deudas_info);
 
@@ -48,13 +52,6 @@ public class DeudasInfo extends AppCompatActivity {
         mDeudaRestante=findViewById(R.id.textViewDeudaRestante);
         mFechaInicio= findViewById(R.id.textViewFechaInicioDeuda);
         mFechaFin= findViewById(R.id.textViewFechaFinDeuda);
-
-        findViewById(R.id.floatingActionButtonBackDeuda).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         findViewById(R.id.floatingActionButtonEditDeuda).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +122,18 @@ public class DeudasInfo extends AppCompatActivity {
                         androidx.navigation.ui.R.animator.nav_default_pop_exit_anim)
                 .replace(R.id.FrameLayoutRegistrosDeuda,registroFragmentV5)
                 .commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: //hago un case por si en un futuro agrego mas opciones
+                Log.i("ActionBar", "Atrás!");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

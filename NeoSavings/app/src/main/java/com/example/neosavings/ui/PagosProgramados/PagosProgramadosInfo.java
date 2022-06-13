@@ -3,6 +3,8 @@ package com.example.neosavings.ui.PagosProgramados;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -42,7 +44,9 @@ public class PagosProgramadosInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pagos_programados_info);
 
         PagoProgramadoID = (Integer) getIntent().getExtras().get("PagoProgramadoID");
@@ -58,12 +62,7 @@ public class PagosProgramadosInfo extends AppCompatActivity {
         Flowable<RegistrosPagosProgramados> registroPagosProgramadoByID = mRepository.getRegistroPagosProgramadoByID(PagoProgramadoID);
         registrosPagosProgramados = registroPagosProgramadoByID.blockingFirst();
 
-        findViewById(R.id.floatingActionButtonBack).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+
 
         if (registrosPagosProgramados != null) {
             if (registrosPagosProgramados.getRegistros() == null) {
@@ -134,6 +133,18 @@ public class PagosProgramadosInfo extends AppCompatActivity {
                         .commit();
             }
 
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: //hago un case por si en un futuro agrego mas opciones
+                Log.i("ActionBar", "Atrás!");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

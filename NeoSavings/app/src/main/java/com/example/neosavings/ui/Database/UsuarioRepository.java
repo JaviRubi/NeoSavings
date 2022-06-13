@@ -437,6 +437,7 @@ public class UsuarioRepository {
                             .setContentTitle(p.getName())
                             .setContentText("Ha superado el presupuesto configurado.")
                             .setGroup(GROUP_KEY_WORK_PRESUPUESTO)
+                            .setAutoCancel(true)
                             .build());
                     p.setNotificado(true);
                     Update(p);
@@ -460,6 +461,8 @@ public class UsuarioRepository {
                 mChannel.setShowBadge(false);
                 notificationManagerCompat.createNotificationChannel(mChannel);
             }
+
+
             Notification summaryNotification =
                     new NotificationCompat.Builder(context, CHANNEL_ID)
                             .setContentTitle("NeoSavings")
@@ -473,6 +476,8 @@ public class UsuarioRepository {
                             .setGroup(GROUP_KEY_WORK_PRESUPUESTO)
                             //set this notification as the summary for the group
                             .setGroupSummary(true)
+                            .setAutoCancel(true)
+                            .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
                             .build();
             int index=1;
 

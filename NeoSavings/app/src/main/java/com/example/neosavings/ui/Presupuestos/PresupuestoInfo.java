@@ -2,6 +2,8 @@ package com.example.neosavings.ui.Presupuestos;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -26,6 +28,8 @@ public class PresupuestoInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_presupuesto_info);
         PresupuestoID= (long) getIntent().getExtras().get("PresupuestoID");
@@ -40,12 +44,6 @@ public class PresupuestoInfo extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.floatingActionButtonBack).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         ActualizarLayout();
     }
 
@@ -96,6 +94,18 @@ public class PresupuestoInfo extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.FrameLayoutListaRegistrosPresupuesto,registroFragmentV2)
                 .commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: //hago un case por si en un futuro agrego mas opciones
+                Log.i("ActionBar", "Atrás!");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override

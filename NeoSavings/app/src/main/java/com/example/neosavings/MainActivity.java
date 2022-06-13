@@ -3,6 +3,7 @@ package com.example.neosavings;
 import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -49,12 +50,18 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPref;
     private final String SHARED_PREF="SHARED_PREF";
     private final String SAVED_THEME="THEME";
+    MenuItem ModoOscuro;
     int Themes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         boolean contains = sharedPref.contains("THEME");
+        if(!contains){
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(SAVED_THEME, AppCompatDelegate.MODE_NIGHT_NO);
+            editor.apply();
+        }
         Themes=sharedPref.getInt(SAVED_THEME,1);
 
         if(Themes==AppCompatDelegate.MODE_NIGHT_NO){
@@ -85,7 +92,14 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        ModoOscuro= binding.navView.getMenu().findItem(R.id.app_bar_switch);
 
+        if(Themes==AppCompatDelegate.MODE_NIGHT_NO){
+            ModoOscuro.setIcon(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_light_mode, Resources.getSystem().newTheme()));
+        }else{
+            ModoOscuro.setIcon(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_dark_mode, Resources.getSystem().newTheme()));
+
+        }
 
         mRepository= new UsuarioRepository(getApplication());
         Categorias();
@@ -120,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ConfiguracionesTemas(){
-        MenuItem ModoOscuro= binding.navView.getMenu().findItem(R.id.app_bar_switch);
+
         View view= ModoOscuro.getActionView();
         NightModeSwitch=view.findViewById(R.id.SwitchNav);
 
@@ -145,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
             TypedArray typedArray = obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));
         }
+        /*
         if(defaultNightMode==AppCompatDelegate.MODE_NIGHT_NO) {
             Default=true;
             if(NightModeSwitch.isChecked()){
@@ -158,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
             editor.commit();
 
             ModoOscuro.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_light_mode, null));
-        }
+        }*/
 
         if(!Default){
             int defaultValue = AppCompatDelegate.MODE_NIGHT_NO;
@@ -188,8 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked) {
                     Toast.makeText(MainActivity.this, "MODO OSCURO activado", Toast.LENGTH_SHORT).show();
 
-                    ModoOscuro.setIcon(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_dark_mode,null));
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                      //getWindow().setStatusBarColor(Color.parseColor("#000000"));
                     //navigationView.setBackground(new ColorDrawable(Color.parseColor("#444444")));
                     SharedPreferences.Editor editor = sharedPref.edit();
@@ -199,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
                     Toast.makeText(MainActivity.this, "Modo OSCURO desactivado", Toast.LENGTH_SHORT).show();
-                    ModoOscuro.setIcon(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_light_mode,null));
+                    //ModoOscuro.setIcon(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_light_mode,null));
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                    //context.recreate();
                     SharedPreferences.Editor editor = sharedPref.edit();
@@ -252,6 +266,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Configuration.UI_MODE_NIGHT_YES:
                 recreate();
+
                 /*attr = new int[]{com.google.android.material.R.attr.colorSurface, com.google.android.material.R.attr.colorPrimaryVariant};
                 typedArray= obtainStyledAttributes(R.style.Theme_NeoSavings, attr);
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(typedArray.getColor(0, Color.BLACK)));*/

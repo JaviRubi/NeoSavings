@@ -3,7 +3,8 @@ package com.example.neosavings;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,8 +18,11 @@ public class ImageZoom extends AppCompatActivity {
     Bitmap bitmap;
     SubsamplingScaleImageView imageView;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_zoom);
         String file=(String)getIntent().getExtras().get("Imagen");
@@ -38,12 +42,18 @@ public class ImageZoom extends AppCompatActivity {
             }
         }
 
-        findViewById(R.id.floatingActionButton2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: //hago un case por si en un futuro agrego mas opciones
+                Log.i("ActionBar", "Atrás!");
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

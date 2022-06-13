@@ -80,6 +80,7 @@ public class NotificationWorkerDeudas extends Worker {
                                         .setContentTitle(r.getDeuda().getNombre())
                                         .setContentText("Se acerca la fecha de vencimiento para concluir esta Deuda/Préstamo")
                                         .setGroup(GROUP_KEY_WORK_PAGOPROGRAMADO)
+                                        .setAutoCancel(true)
                                         .build());
 
                                 Calendar calendar1=(Calendar) Calendar.getInstance().clone();
@@ -126,6 +127,7 @@ public class NotificationWorkerDeudas extends Worker {
                             .setGroup(GROUP_KEY_WORK_PAGOPROGRAMADO)
                             //set this notification as the summary for the group
                             .setGroupSummary(true)
+                            .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
                             .build();
             int index = 50;
 
