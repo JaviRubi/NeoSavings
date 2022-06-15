@@ -67,10 +67,12 @@ public class MainActivity extends AppCompatActivity {
         if(Themes==AppCompatDelegate.MODE_NIGHT_NO){
             if(AppCompatDelegate.getDefaultNightMode()!=AppCompatDelegate.MODE_NIGHT_NO) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                recreate();
             }
         }else{
             if(AppCompatDelegate.getDefaultNightMode()!=AppCompatDelegate.MODE_NIGHT_YES) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                recreate();
             }
         }
         super.onCreate(savedInstanceState);

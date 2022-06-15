@@ -83,6 +83,11 @@ public class DeudasInfo extends AppCompatActivity {
 
         pagosDeudas=mRepository.getRegistrosDeudasByID(DeudaID).blockingFirst();
         pagosDeudas.ActualizarEstadoPrestamo(getBaseContext());
+        if(pagosDeudas.getDeuda().isDeuda()){
+            setTitle("Información Deuda");
+        }else{
+            setTitle("Información Préstamo");
+        }
 
         if(pagosDeudas.getDeuda().isDeuda()){
             mNombre.setText(pagosDeudas.getDeuda().getNombreCuenta()+" -> "+pagosDeudas.getDeuda().getNombre());

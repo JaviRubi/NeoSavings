@@ -27,7 +27,7 @@ public class Converters {
             return null;
         }else{
             ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
-            value.compress(Bitmap.CompressFormat.JPEG,75,outputStream);
+            value.compress(Bitmap.CompressFormat.JPEG,100,outputStream);
             return outputStream.toByteArray();
         }
     }

@@ -46,7 +46,7 @@
             android:name=".ui.Formularios.Formulario_NuevoPagoDeuda"
             android:configChanges="orientation|uiMode"
             android:exported="false"
-            android:label="Crear Nuevo Pago Deuda"
+            android:label="Crear Nuevo Pago Deuda/Préstamo"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.Deudas.DeudasInfo"

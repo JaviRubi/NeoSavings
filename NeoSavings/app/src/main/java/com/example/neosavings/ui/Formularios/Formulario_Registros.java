@@ -1,6 +1,7 @@
 package com.example.neosavings.ui.Formularios;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -43,8 +44,10 @@ import com.example.neosavings.ui.Modelo.Registro;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -59,6 +62,7 @@ public class Formulario_Registros extends AppCompatActivity {
 
     private static final int PICK_IMAGE=200;
     private static final int CODE_CAMARA=500;
+    private static final int SELECT_FILE = 700;
 
     private List<Cuenta> ListaCuentas;
     private List<Categoria> ListaCategoriaGastos;
@@ -224,6 +228,18 @@ public class Formulario_Registros extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.imageButtonGaleriaForm).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(
+                        Intent.createChooser(intent, "Seleccione una imagen"),
+                        SELECT_FILE);
+            }
+        });
+
         spinner_cuentas=(Spinner) findViewById(R.id.Spinner_Cuentas);
         spinner_cuentas.setAdapter(new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, spinnerCuentas));
 
@@ -355,7 +371,7 @@ public class Formulario_Registros extends AppCompatActivity {
         if (requestCode==PICK_IMAGE && resultCode==RESULT_OK){
             Bitmap rotatedBitmap = null;
             ImageView imageView=(ImageView)findViewById(R.id.imageView3);
-            registro.setTicket(BitmapFactory.decodeFile(currentPhotoPath));
+            registro.setTicket(Compress(BitmapFactory.decodeFile(currentPhotoPath)));
             try {
                 ExifInterface ei=new ExifInterface(currentPhotoPath);
                 int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
@@ -414,6 +430,62 @@ public class Formulario_Registros extends AppCompatActivity {
             });
         }
 
+        if (resultCode == Activity.RESULT_OK && requestCode==SELECT_FILE) {
+
+            Uri selectedImageUri = null;
+            Uri selectedImage;
+
+            String filePath = null;
+
+            selectedImage = data.getData();
+            String selectedPath=selectedImage.getPath();
+            if (selectedPath != null) {
+                InputStream imageStream = null;
+                try {
+                    imageStream = getContentResolver().openInputStream(
+                            selectedImage);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                // Transformamos la URI de la imagen a inputStream y este a un Bitmap
+                Bitmap bmp = BitmapFactory.decodeStream(imageStream);
+
+                // Ponemos nuestro bitmap en un ImageView que tengamos en la vista
+                ImageView mImg = (ImageView) findViewById(R.id.imageView3);
+                mImg.setColorFilter(Color.TRANSPARENT);
+                mImg.setImageBitmap(bmp);
+                registro.setTicket(Compress(bmp));
+                mImg.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getBaseContext(), ImageZoom.class);
+                        if (registro.getTicket() == null) {
+                            intent.putExtra("Imagen", "NOIMAGEN");
+                            startActivity(intent);
+                        } else {
+                            String fileName = "myImage";//no .png or .jpg needed
+                            String path;
+                            try {
+                                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                                registro.getTicket().compress(Bitmap.CompressFormat.JPEG, 80, bytes);
+                                FileOutputStream fo = openFileOutput(fileName, Context.MODE_PRIVATE);
+                                fo.write(bytes.toByteArray());
+                                // remember close file output
+                                fo.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                fileName = null;
+                            }
+                            intent.putExtra("Imagen", fileName);
+                            startActivity(intent);
+                        }
+                    }
+                });
+
+            }
+        }
+
 
     }
 
@@ -468,6 +540,14 @@ public class Formulario_Registros extends AppCompatActivity {
         });
 
 
+
+    }
+
+    public Bitmap Compress(Bitmap bitmap){
+        ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,75,outputStream);
+        byte[] bites= outputStream.toByteArray();
+        return  BitmapFactory.decodeByteArray(bites,0,bites.length);
 
     }
 }

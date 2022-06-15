@@ -34,8 +34,8 @@ public class Ayuda_Home extends AppCompatActivity {
 
         switch (caso){
             case "HOME":
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_home_info,"Pantalla Home"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_navegacion_menu,"Información Navegación"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_home_infov2,"Pantalla Home"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_navegacion_infov2,"Información Navegación"));
                 carousel.setCaptionTextSize(60);
                 break;
 
@@ -49,11 +49,11 @@ public class Ayuda_Home extends AppCompatActivity {
                 break;
 
             case "REGISTROS":
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_filtro_registros_info,"Pantalla Registros"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_formulario_registros_info,"Formulario Registros"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_preview_imagen_registros_info,"Zoom Imagen Registro"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_registros_crear_info,"Cómo Crear un Registro"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_registros_update_info,"Cómo Editar un Registro"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_filtro_registros_infov2,"Pantalla Registros"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_formulario_registros_infov2,"Formulario Registros"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_preview_imagen_registros_infov2,"Zoom Imagen Registro"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_registros_crear_infov2,"Cómo Crear un Registro"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_registros_update_infov2,"Cómo Editar un Registro"));
                 ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_eliminar_registros_info,"Cómo Borrar un Registro"));
                 carousel.setCaptionTextSize(60);
                 setTitle("Ayuda Registros");
@@ -77,31 +77,32 @@ public class Ayuda_Home extends AppCompatActivity {
                 break;
 
             case "DEUDAS":
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_estadisticas_info,"Pantalla Deudas y Préstamos"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_estadisticas_info,"Pantalla Detalle Deuda o Préstamo"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_estadisticas_info,"Formulario Deuda o Préstamo"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_registros_crear_info,"Cómo Crear una Deuda o Préstamo"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_registros_update_info,"Cómo Editar una Deuda o Préstamo"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_eliminar_registros_info,"Cómo Borrar una Deuda o Préstamo"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_deudas_info,"Pantalla Deudas y Préstamos"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_detalle_deudas_info,"Pantalla Detalle Deuda o Préstamo"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_formulario_deudas_info,"Formulario Deuda o Préstamo"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_formulario_nuevo_pago_deudas_info,"Formulario Nuevo Pago Deuda o Préstamo"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_crear_deudas_info,"Cómo Crear una Deuda o Préstamo"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_crear_nuevo_pago_deudas_info,"Cómo Añadir un Pago"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_editar_deudas_info,"Cómo Editar una Deuda o Préstamo"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_borrar_deudas_info,"Cómo Borrar una Deuda o Préstamo"));
                 carousel.setCaptionTextSize(40);
                 setTitle("Ayuda Deudas y Préstamos");
                 break;
 
             case "OBJETIVOS":
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_estadisticas_info,"Pantalla Objetivos"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_estadisticas_info,"Pantalla Detalle Objetivo"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_estadisticas_info,"Formulario Objetivo"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_registros_crear_info,"Cómo Crear un Objetivo"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_registros_update_info,"Cómo Editar un Objetivo"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_eliminar_registros_info,"Cómo Borrar un Objetivo"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_objetivo_info,"Pantalla Objetivos"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_detalle_objetivo_info,"Pantalla Detalle Objetivo"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_crear_objetivo_info,"Cómo Crear un Objetivo"));//
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_editar_objetivo_info,"Cómo Editar un Objetivo"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_borrar_objetivo_info,"Cómo Borrar un Objetivo"));//
                 carousel.setCaptionTextSize(50);
                 setTitle("Ayuda Objetivos");
                 break;
 
             case "NOTIFICACIONES":
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_estadisticas_info,"Notificación Presupuesto"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_estadisticas_info,"Notificación Pago Programado"));
-                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_estadisticas_info,"Notificación Deuda o Préstamo"));
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_notificacion_presupuesto_info,"Notificación Presupuesto"));//
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_notificacion_pagos_programados_info,"Notificación Pago Programado"));//
+                ListaImagenes.add(new CarouselItem(R.drawable.pantalla_ayuda_notificacion_deuda_info,"Notificación Deuda o Préstamo"));//
                 carousel.setCaptionTextSize(45);
                 setTitle("Ayuda Notificaciones");
                 break;
