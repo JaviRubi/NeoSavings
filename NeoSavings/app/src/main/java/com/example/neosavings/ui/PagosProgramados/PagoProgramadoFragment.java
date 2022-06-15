@@ -97,10 +97,12 @@ public class PagoProgramadoFragment extends Fragment implements ItemClickListene
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("ALERTA");
-                builder.setIcon(ResourcesCompat.getDrawable(getResources(),R.drawable.ic_warning,Resources.getSystem().newTheme()));
-                builder.setMessage("¿Quiere eliminar todos los registros asignados a este pago programado, o quiere que los gastos asignados a este pago programado se mantengan guardados?");
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                builder.setTitle("AVISO");
+                Drawable drawable=ResourcesCompat.getDrawable(getResources(),R.drawable.ic_warning,Resources.getSystem().newTheme());
+                drawable.setTint(Color.parseColor("#EF606C"));
+                builder.setIcon(drawable);
+                builder.setMessage("¿Quiere eliminar todos los registros asignados a este pago programado?");
+                builder.setPositiveButton("Eliminar Todo", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         PagoProgramado p=ListaPagosProgramados.get(viewHolder.getAbsoluteAdapterPosition());
@@ -110,7 +112,7 @@ public class PagoProgramadoFragment extends Fragment implements ItemClickListene
                         adapter.notifyItemRemoved(viewHolder.getAbsoluteAdapterPosition());
                     }
                 });
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Eliminar Manteniendo Registros", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mRepository.DeletePagoProgramado(ListaPagosProgramados.get(viewHolder.getAbsoluteAdapterPosition()));
@@ -118,6 +120,13 @@ public class PagoProgramadoFragment extends Fragment implements ItemClickListene
                         adapter.notifyItemRemoved(viewHolder.getAbsoluteAdapterPosition());
                     }
                 });
+                builder.setNeutralButton("Cancelar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        adapter.notifyItemChanged(viewHolder.getAbsoluteAdapterPosition());
+                    }
+                });
+
                 builder.setCancelable(true);
                 builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
                     @Override
