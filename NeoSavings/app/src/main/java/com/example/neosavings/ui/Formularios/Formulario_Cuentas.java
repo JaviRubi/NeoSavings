@@ -58,8 +58,14 @@ public class Formulario_Cuentas extends AppCompatActivity {
                 }
             });
 
-            findViewById(R.id.floatingActionButton_Cancelar).setVisibility(View.INVISIBLE);
-            findViewById(R.id.floatingActionButton_Cancelar).setClickable(false);
+            findViewById(R.id.floatingActionButton_Cancelar).setVisibility(View.VISIBLE);
+            findViewById(R.id.floatingActionButton_Cancelar).setClickable(true);
+            findViewById(R.id.floatingActionButton_Cancelar).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
 
             Spinner spinner_cuentas = (Spinner) findViewById(R.id.spinner_Tipo);
             spinner_cuentas.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, ListaTipo));
