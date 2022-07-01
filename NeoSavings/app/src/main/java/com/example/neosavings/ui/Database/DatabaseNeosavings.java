@@ -42,7 +42,6 @@ import java.util.concurrent.Executors;
                                 context.getApplicationContext(), DatabaseNeosavings.class,
                                 DATABASE_NAME)
                                 .fallbackToDestructiveMigration()
-                                .setJournalMode(JournalMode.TRUNCATE)
                                 .build();
                     }
                 }

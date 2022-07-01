@@ -110,6 +110,8 @@ public class MainActivity extends AppCompatActivity {
         permisos[1]=Manifest.permission.WRITE_EXTERNAL_STORAGE;
         permisos[2]=Manifest.permission.READ_EXTERNAL_STORAGE;
 
+
+
         requestPermissions(permisos,2);
 
         ConfiguracionesTemas();

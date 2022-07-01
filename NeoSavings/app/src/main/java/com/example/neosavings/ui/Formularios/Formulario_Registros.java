@@ -544,9 +544,15 @@ public class Formulario_Registros extends AppCompatActivity {
     }
 
     public Bitmap Compress(Bitmap bitmap){
-        ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,75,outputStream);
-        byte[] bites= outputStream.toByteArray();
+        byte[] bites;
+        int quality=100;
+        do{
+            ByteArrayOutputStream outputStream=new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG,quality,outputStream);
+            bites= outputStream.toByteArray();
+            quality-=5;
+        }while(bites.length>=524288);
+
         return  BitmapFactory.decodeByteArray(bites,0,bites.length);
 
     }
