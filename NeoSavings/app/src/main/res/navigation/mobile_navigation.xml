@@ -26,9 +26,6 @@
             android:id="@+id/action_nav_home_to_nav_presupuestos"
             app:destination="@id/nav_presupuestos" />
         <action
-            android:id="@+id/action_nav_home_to_nav_configuracion"
-            app:destination="@id/nav_configuracion" />
-        <action
             android:id="@+id/action_nav_home_to_nav_objetivos"
             app:destination="@id/nav_objetivos" />
         <action
@@ -54,13 +51,23 @@
         <action
             android:id="@+id/action_nav_registros_to_registroInfo"
             app:destination="@id/registroInfo" />
+        <action
+            android:id="@+id/action_nav_registros_to_formulario_Registros"
+            app:destination="@id/formulario_Registros" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_pagosProgramados"
         android:name="com.example.neosavings.ui.PagosProgramados.PagosProgramadosFragment"
         android:label="@string/menu_pagosProgramados"
-        tools:layout="@layout/fragment_pagosprogramados" />
+        tools:layout="@layout/fragment_pagosprogramados" >
+        <action
+            android:id="@+id/action_nav_pagosProgramados_to_pagosProgramadosInfo"
+            app:destination="@id/pagosProgramadosInfo" />
+        <action
+            android:id="@+id/action_nav_pagosProgramados_to_formulario_PagosProgramados"
+            app:destination="@id/formulario_PagosProgramados" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_stadistic"
@@ -72,37 +79,61 @@
         android:id="@+id/nav_presupuestos"
         android:name="com.example.neosavings.ui.Presupuestos.PresupuestosFragment"
         android:label="@string/menu_presupuestos"
-        tools:layout="@layout/fragment_presupuestos" />
+        tools:layout="@layout/fragment_presupuestos" >
+        <action
+            android:id="@+id/action_nav_presupuestos_to_presupuestoInfo"
+            app:destination="@id/presupuestoInfo" />
+        <action
+            android:id="@+id/action_nav_presupuestos_to_formulario_Presupuestos"
+            app:destination="@id/formulario_Presupuestos" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_cuentas"
         android:name="com.example.neosavings.ui.ListaCuentas.ListaCuentas"
         android:label="@string/menu_cuentas"
-        tools:layout="@layout/fragment_lista_cuentas" />
+        tools:layout="@layout/fragment_lista_cuentas" >
+        <action
+            android:id="@+id/action_nav_cuentas_to_formulario_Cuentas"
+            app:destination="@id/formulario_Cuentas" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_deudas"
         android:name="com.example.neosavings.ui.Deudas.DeudasFragment"
         android:label="@string/menu_deudas"
-        tools:layout="@layout/fragment_deudas" />
+        tools:layout="@layout/fragment_deudas" >
+        <action
+            android:id="@+id/action_nav_deudas_to_deudasInfo"
+            app:destination="@id/deudasInfo" />
+        <action
+            android:id="@+id/action_nav_deudas_to_formulario_Deudas"
+            app:destination="@id/formulario_Deudas" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_objetivos"
         android:name="com.example.neosavings.ui.Objetivos.ObjetivosFragment"
         android:label="@string/menu_objetivos"
-        tools:layout="@layout/fragment_objetivos" />
+        tools:layout="@layout/fragment_objetivos" >
+        <action
+            android:id="@+id/action_nav_objetivos_to_objetivoInfo"
+            app:destination="@id/objetivoInfo" />
+        <action
+            android:id="@+id/action_nav_objetivos_to_formulario_Objetivos"
+            app:destination="@id/formulario_Objetivos" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_ayuda"
         android:name="com.example.neosavings.ui.Ayuda.AyudaFragment"
         android:label="@string/menu_ayuda"
-        tools:layout="@layout/fragment_ayuda" />
+        tools:layout="@layout/fragment_ayuda" >
+        <action
+            android:id="@+id/action_nav_ayuda_to_ayuda_Home"
+            app:destination="@id/ayuda_Home" />
+    </fragment>
 
-    <fragment
-        android:id="@+id/nav_configuracion"
-        android:name="com.example.neosavings.ui.Configuracion.ConfiguracionFragment"
-        android:label="@string/menu_configuracion"
-        tools:layout="@layout/fragment_configuracion" />
     <activity
         android:id="@+id/registroInfo"
         android:name="com.example.neosavings.ui.Registros.RegistroInfo"
@@ -118,4 +149,59 @@
         android:name="com.example.neosavings.ui.Formularios.Formulario_Cuentas"
         android:label="activity_formulario_cuentas"
         tools:layout="@layout/activity_formulario_cuentas" />
+    <activity
+        android:id="@+id/objetivoInfo"
+        android:name="com.example.neosavings.ui.Objetivos.ObjetivoInfo"
+        android:label="activity_objetivo_info"
+        tools:layout="@layout/activity_objetivo_info" />
+    <activity
+        android:id="@+id/formulario_Objetivos"
+        android:name="com.example.neosavings.ui.Formularios.Formulario_Objetivos"
+        android:label="activity_formulario_objetivos"
+        tools:layout="@layout/activity_formulario_objetivos" />
+    <activity
+        android:id="@+id/presupuestoInfo"
+        android:name="com.example.neosavings.ui.Presupuestos.PresupuestoInfo"
+        android:label="activity_presupuesto_info"
+        tools:layout="@layout/activity_presupuesto_info" />
+    <activity
+        android:id="@+id/formulario_Presupuestos"
+        android:name="com.example.neosavings.ui.Formularios.Formulario_Presupuestos"
+        android:label="activity_formulario_presupuestos"
+        tools:layout="@layout/activity_formulario_presupuestos" />
+    <activity
+        android:id="@+id/pagosProgramadosInfo"
+        android:name="com.example.neosavings.ui.PagosProgramados.PagosProgramadosInfo"
+        android:label="activity_pagos_programados_info"
+        tools:layout="@layout/activity_pagos_programados_info" />
+    <activity
+        android:id="@+id/formulario_PagosProgramados"
+        android:name="com.example.neosavings.ui.Formularios.Formulario_PagosProgramados"
+        android:label="activity_formulario_pagos_programados"
+        tools:layout="@layout/activity_formulario_pagos_programados" />
+    <activity
+        android:id="@+id/imageZoom"
+        android:name="com.example.neosavings.ImageZoom"
+        android:label="activity_image_zoom"
+        tools:layout="@layout/activity_image_zoom" />
+    <activity
+        android:id="@+id/ayuda_Home"
+        android:name="com.example.neosavings.ui.Ayuda.Ayuda_Home"
+        android:label="activity_ayuda_home"
+        tools:layout="@layout/activity_ayuda_home" />
+    <activity
+        android:id="@+id/deudasInfo"
+        android:name="com.example.neosavings.ui.Deudas.DeudasInfo"
+        android:label="activity_deudas_info"
+        tools:layout="@layout/activity_deudas_info" />
+    <activity
+        android:id="@+id/formulario_Deudas"
+        android:name="com.example.neosavings.ui.Formularios.Formulario_Deudas"
+        android:label="activity_formulario_deudas"
+        tools:layout="@layout/activity_formulario_deudas" />
+    <activity
+        android:id="@+id/formulario_NuevoPagoDeuda"
+        android:name="com.example.neosavings.ui.Formularios.Formulario_NuevoPagoDeuda"
+        android:label="activity_formulario_nuevo_pago_deuda"
+        tools:layout="@layout/activity_formulario_nuevo_pago_deuda" />
 </navigation>

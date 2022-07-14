@@ -129,6 +129,8 @@ public class ObjetivoInfo extends AppCompatActivity {
                     AlertDialogFel dialof = new AlertDialogFel();
                     soundPool.play(sound, 1, 1, 0, 0, 1);
                     dialof.show(getSupportFragmentManager(), "AlertDialog2");
+                }else{
+                    ActualizarObjetivo();
                 }
             }
         });
